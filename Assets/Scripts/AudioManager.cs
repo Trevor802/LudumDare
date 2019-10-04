@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
+    #region Singleton
     public static AudioManager instance = null;
-
-    public AudioSource musicSource;
-    public AudioSource soundSource;
 
     private void Awake()
     {
@@ -20,13 +18,19 @@ public class AudioManager : MonoBehaviour
         }
         DontDestroyOnLoad(transform.gameObject);
     }
+    #endregion
 
+    public AudioSource musicSource;
+    public AudioSource soundSource;
+
+    // Play sound one time
     public void PlaySingle(AudioClip clip)
     {
         soundSource.clip = clip;
         soundSource.Play();
     }
 
+    // Change the background music
     public void PlayMusic(AudioClip clip)
     {
         musicSource.clip = clip;
