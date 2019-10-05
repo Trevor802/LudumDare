@@ -5,7 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int lives = 3;
-    public int steps = 7;
+    public int initSteps = 7;
+    private int steps;
     private Vector3 initPos;
     private bool hasKey = false;
     public LayerMask blockingLayer;
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
     {
         boxCollider = GetComponent<BoxCollider2D>();
         rb2D = GetComponent<Rigidbody2D>();
+        steps = initSteps;
     }
 
     bool Move(int xDir, int yDir, out RaycastHit2D hit)
@@ -53,7 +55,11 @@ public class Player : MonoBehaviour
         {
             vertical = 0;
         }
-
+        if(horizontal !=0 || vertical != 0)
+        {
+            RaycastHit2D hit;
+            Move(horizontal, vertical, out hit);
+        }
     }
 
     public void ResetRespawnPos(Vector3 pos)
@@ -65,6 +71,7 @@ public class Player : MonoBehaviour
     {
         transform.position = initPos;
         lives--;
+        steps = initSteps;
         if (lives <=0)
         {
             GameOver();
