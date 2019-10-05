@@ -49,8 +49,22 @@ public class Player : MonoBehaviour
     {
         int horizontal = 0;
         int vertical = 0;
-        horizontal = (int)(Input.GetAxisRaw("Horizontal"));
-        vertical = (int)(Input.GetAxisRaw("Vertical"));
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            horizontal = -1;
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            horizontal = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            vertical = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            vertical = -1;
+        }
         if(horizontal != 0)
         {
             vertical = 0;
@@ -60,6 +74,8 @@ public class Player : MonoBehaviour
             RaycastHit2D hit;
             Move(horizontal, vertical, out hit);
         }
+        horizontal = 0;
+        vertical = 0;
     }
 
     public void ResetRespawnPos(Vector3 pos)
