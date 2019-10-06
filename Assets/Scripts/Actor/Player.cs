@@ -44,6 +44,10 @@ public class Player : MonoBehaviour
 
     private void SmoothMovement(Vector3 end, bool costStep = true)
     {
+        foreach(TileNode tile in FindObjectsOfType<TileNode>())
+        {
+            tile.OnTick();
+        }
         transform.position = end;
         if (costStep)
         {
