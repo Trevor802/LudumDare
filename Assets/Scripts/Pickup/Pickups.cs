@@ -20,9 +20,13 @@ public class Pickups : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Pick up key!");
+        if (collision.gameObject.GetComponent<Player>())
+        {
+            collision.gameObject.GetComponent<Player>().AddKey();
+            this.gameObject.SetActive(false);
+        }
+        //Debug.Log("Pick up key!");
         //Destroy(this.gameObject);
-        pairedDoor.ToggleDoorState();
-        this.gameObject.SetActive(false);
+        
     }
 }
