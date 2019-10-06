@@ -9,7 +9,17 @@ public class CameraManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+    }
+
+    private void Awake()
+    {
         level_index = 0;
+        cinema_list[0].SetActive(true);
+        for(int i=1; i<cinema_list.Count; i++)
+        {
+            cinema_list[i].SetActive(false);
+        }
     }
 
     // Update is called once per frame
