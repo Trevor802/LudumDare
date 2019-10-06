@@ -67,12 +67,12 @@ public class Player : MonoBehaviour
     {
         moving = true;
         // Set the player's z position to 0, or remove the z value while calculating the distance
-        float sqrDistance = (transform.position - end).sqrMagnitude;
+        float sqrDistance = (new Vector2(transform.position.x ,transform.position.y) - new Vector2(end.x, end.y)).sqrMagnitude;
         while(sqrDistance > float.Epsilon)
         {
             Vector3 newPos = Vector3.MoveTowards(rb2D.position, end, inverseMoveTime * Time.deltaTime);
             rb2D.MovePosition(newPos);
-            sqrDistance = (transform.position - end).sqrMagnitude;
+            sqrDistance = (new Vector2(transform.position.x, transform.position.y) - new Vector2(end.x, end.y)).sqrMagnitude;
             yield return null;
         }
         moving = false;
