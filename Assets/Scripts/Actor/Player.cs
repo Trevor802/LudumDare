@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     private BoxCollider2D boxCollider;
     private Rigidbody2D rb2D;
     public Vector2 lastMove;
-    public static bool dying = false;
     public GameObject keyInstance;
 
     private void Start()
@@ -55,7 +54,6 @@ public class Player : MonoBehaviour
         }
         if (steps <= 0)
         {
-            dying = true;
             Respawn();
         }
     }
@@ -101,7 +99,6 @@ public class Player : MonoBehaviour
 
     public void Respawn()
     {
-        dying = false;
         foreach (TileNode node in FindObjectsOfType<TileNode>())
         {
             node.OnPlayerRespawn(this);
