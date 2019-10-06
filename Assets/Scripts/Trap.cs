@@ -5,7 +5,7 @@ using UnityEngine;
 public class Trap : TileNode
 {
    // public bool hitWithTrap = false;
-    private int cnt = 0;
+    private int cnt = 1;
     //public GameObject trap;
     // private int firstTrapAtStep = 0;
     private int trapTimes = 2;// cnt%? 2 is odd/even
@@ -14,7 +14,11 @@ public class Trap : TileNode
     // Start is called before the first frame update
     void Start()
     {
-
+        if(isTrapOnEven == false)
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
+        }
+        
     }
     override public void OnTickStart()
     {
