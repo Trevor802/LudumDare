@@ -47,12 +47,12 @@ public class Triggerboard : MonoBehaviour
         if (Triggered == true)
         {
             GameObject door = GameObject.Find("door");
-            door.Collider2D.enabled = false;
+            door.GetComponent<BoxCollider2D>().enabled = false;
         }
         if (Triggered == false)
         {
             GameObject door = GameObject.Find("door");
-            door.Collider2D.enabled = true;
+            door.GetComponent<BoxCollider2D>().enabled = true;
         }
     }
 }
