@@ -16,9 +16,8 @@ public class Player : MonoBehaviour
     public Vector2 lastMove;
     public GameObject keyInstance;
     private float inverseMoveTime;
-    private bool moving;
-    private bool dying;
-    private Coroutine movingCoroutine;
+    public bool moving;
+    public Coroutine movingCoroutine;
     private GameObject headKey;
 
     private void Start()
@@ -28,8 +27,8 @@ public class Player : MonoBehaviour
         steps = initSteps;
         initPos = transform.position;
         UIManager.instance.UpdateUI();
-        headKey = this.transform.Find("HeadKey").gameObject;
         inverseMoveTime = 1 / moveTime;
+        headKey = this.transform.Find("HeadKey").gameObject;
     }
 
     public bool Move(int xDir, int yDir, out RaycastHit2D hit,
@@ -50,14 +49,14 @@ public class Player : MonoBehaviour
                     tile.OnTickStart();
                 }
                 steps--;
-                if (smoothMove)
-                {
-                    movingCoroutine = StartCoroutine(SmoothMovement(end));
-                }
-                else
-                {
-                    transform.position = new Vector3(end.x, end.y, -1);
-                }
+            }
+            if (smoothMove)
+            {
+                movingCoroutine = StartCoroutine(SmoothMovement(end));
+            }
+            else
+            {
+                transform.position = new Vector3(end.x, end.y, -1);
             }
             return true;
         }
@@ -138,7 +137,6 @@ public class Player : MonoBehaviour
         }
         Vector3 deathPos = transform.position;
         transform.position = initPos;
-        lives--;
         steps = initSteps;
         lastMove = Vector2.zero;
         moving = false;
@@ -149,6 +147,7 @@ public class Player : MonoBehaviour
             headKey.SetActive(false);
             hasKey = false;
         }
+        lives--;
         if (lives <=0)
         {
             GameOver();

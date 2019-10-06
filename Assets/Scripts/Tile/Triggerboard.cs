@@ -36,11 +36,13 @@ public class Triggerboard : TileNode
         {
             GameObject door = GameObject.Find(doorName);
             door.GetComponent<BoxCollider2D>().enabled = false;
+            door.GetComponent<SpriteRenderer>().enabled = false;
         }
         if (Triggered == false)
         {
             GameObject door = GameObject.Find(doorName);
             door.GetComponent<BoxCollider2D>().enabled = true;
+            door.GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 
@@ -48,6 +50,7 @@ public class Triggerboard : TileNode
     {
         if (Vector2.Distance(player.transform.position, transform.position) <= threshold)
         {
+            Debug.Log("Die on");
             PlayerDiedOn = true;
             Triggered = true;
         }
