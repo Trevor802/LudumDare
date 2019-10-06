@@ -1,26 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Hole : MonoBehaviour
+public class Hole : TileNode
 {
-    public static bool fall = false;
     bool filled = false;
-    void LateUpdate()
-    {
-        fall = false;
-    }
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.GetComponent<Player>())
+        Player player = col.GetComponent<Player>();
+        if (player)
         {
-            if(filled == true)
+            if (filled == false)
             {
-                fall = false;
-            }
-            else
-            {
-                fall = true;
+                player.Respawn();
             }
             filled = true;
         }
