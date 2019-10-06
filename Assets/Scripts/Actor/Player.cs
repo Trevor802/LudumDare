@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public int lives = 3;
     public int initSteps = 7;
+    public GameObject keyPrefab;
     private int steps;
     private Vector3 initPos;
     private bool hasKey = false;
@@ -85,9 +86,15 @@ public class Player : MonoBehaviour
 
     public void Respawn()
     {
+        Vector3 deathPos = transform.position;
         transform.position = initPos;
-        lives--;
+        if (hasKey)
+        {
+            Instantiate(keyPrefab, deathPos, Quaternion.identity);
+        }
         steps = initSteps;
+        hasKey = false;
+        lives--;
         if (lives <=0)
         {
             GameOver();
