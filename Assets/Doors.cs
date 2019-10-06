@@ -4,31 +4,20 @@ using UnityEngine;
 
 public class Doors : TileNode
 {
-    private bool openable;
-    // Start is called before the first frame update
+    private GameObject camera;
+
     void Start()
     {
-        openable = false;
+        camera= GameObject.FindGameObjectWithTag("MainCamera");
+        GameObject.FindGameObjectWithTag("MainCamera");
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void ToggleDoorState()
-    {
-        if (!openable)
-            openable = true;
-    }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.GetComponent<Player>())
         {
             if (collision.gameObject.GetComponent<Player>().TryUseKey())
+                camera.GetComponent<CameraManager>().SwitchLevelCamera();
                 this.gameObject.SetActive(false);
         }
     }
