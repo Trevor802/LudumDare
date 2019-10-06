@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     }
 
     public bool Move(int xDir, int yDir, out RaycastHit2D hit,
-        bool costStep = true)
+        bool costStep = true, bool smoothMove = true)
     {
         Vector2 start = transform.position;
         lastMove = new Vector2(xDir, yDir);
@@ -45,11 +45,18 @@ public class Player : MonoBehaviour
         {
             if (costStep)
             {
-                steps--;
-                movingCoroutine = StartCoroutine(SmoothMovement(end));
                 foreach (TileNode tile in FindObjectsOfType<TileNode>())
                 {
                     tile.OnTickStart();
+                }
+                steps--;
+                if (smoothMove)
+                {
+                    movingCoroutine = StartCoroutine(SmoothMovement(end));
+                }
+                else
+                {
+                    transform.position = new Vector3(end.x, end.y, -1);
                 }
             }
             return true;
@@ -76,7 +83,6 @@ public class Player : MonoBehaviour
         }
         if (steps <= 0)
         {
-
             Respawn();
         }
     }
@@ -125,6 +131,7 @@ public class Player : MonoBehaviour
 
     public void Respawn()
     {
+        StopCoroutine(movingCoroutine);
         foreach (TileNode node in FindObjectsOfType<TileNode>())
         {
             node.OnPlayerRespawn(this);
@@ -134,6 +141,7 @@ public class Player : MonoBehaviour
         lives--;
         steps = initSteps;
         lastMove = Vector2.zero;
+        moving = false;
         if (hasKey)
         {
             keyInstance.transform.position = deathPos;
