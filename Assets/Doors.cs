@@ -23,14 +23,6 @@ public class Doors : MonoBehaviour
             openable = true;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.GetComponent<Player>())
-        {
-            if (collision.gameObject.GetComponent<Player>().TryUseKey())
-                this.gameObject.SetActive(false);
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

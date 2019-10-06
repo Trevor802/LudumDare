@@ -104,6 +104,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   lastMove: {x: 0, y: 0}
+  keyInstance: {fileID: 6913738886738647043, guid: 62ae1ac88bf704a03b39e3691a8aa0a1,
+    type: 3}
 --- !u!61 &6301811893623763971
 BoxCollider2D:
   m_ObjectHideFlags: 0
