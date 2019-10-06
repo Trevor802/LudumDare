@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb2D;
     public Vector2 lastMove;
     public static bool dying = false;
+    public GameObject keyInstance;
 
     private void Start()
     {
@@ -106,6 +107,12 @@ public class Player : MonoBehaviour
         lives--;
         steps = initSteps;
         lastMove = Vector2.zero;
+        if (hasKey)
+        {
+            keyInstance.transform.position = deathPos;
+            keyInstance.SetActive(true);
+            hasKey = false;
+        }
         if (lives <=0)
         {
             GameOver();
