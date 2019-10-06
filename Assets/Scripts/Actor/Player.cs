@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public LayerMask blockingLayer;
     private BoxCollider2D boxCollider;
     private Rigidbody2D rb2D;
+    public static bool dying = false;
 
     private void Start()
     {
@@ -52,6 +53,7 @@ public class Player : MonoBehaviour
         }
         if (steps <= 0)
         {
+            dying = true;
             Respawn();
         }
     }
@@ -96,6 +98,7 @@ public class Player : MonoBehaviour
 
     public void Respawn()
     {
+        dying = false;
         foreach (TileNode node in FindObjectsOfType<TileNode>())
         {
             node.OnPlayerRespawn(this);
