@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class TileNode : MonoBehaviour
+public class TileNode : MonoBehaviour
 {
-    public abstract void OnTick();
-    public abstract void OnPlayerRespawn(Player player);
+    public virtual void OnTick() { }
+    public virtual void OnPlayerRespawn(Player player) { }
 }
