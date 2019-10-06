@@ -15,10 +15,15 @@ public class TileNode : MonoBehaviour
             OnPlayerEnter(collidedPlayer);
         }
     }
-    public virtual void OnPlayerRespawn(Player player)
+    public virtual void OnPlayerRespawnStart(Player player)
+    {
+
+    }
+    public virtual void OnPlayerRespawnEnd(Player player)
     {
         playerIn = false;
     }
+
     public virtual void OnPlayerEnter(Player player) { }
 
     private void OnTriggerEnter2D(Collider2D other)

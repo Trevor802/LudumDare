@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class Player : MonoBehaviour
     public Coroutine movingCoroutine;
     private GameObject headKey;
 
+    //private UnityEvent playerRespawnStartEvent;
+    //private UnityEvent playerRespawnEndEvent;
+
     private void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
@@ -29,6 +33,7 @@ public class Player : MonoBehaviour
         UIManager.instance.UpdateUI();
         inverseMoveTime = 1 / moveTime;
         headKey = this.transform.Find("HeadKey").gameObject;
+        
     }
 
     public bool Move(int xDir, int yDir, out RaycastHit2D hit,
@@ -86,6 +91,28 @@ public class Player : MonoBehaviour
         }
     }
 
+    private IEnumerator Respawning()
+    {
+        moving = true;
+        yield return new WaitForSeconds(3);
+        Vector3 deathPos = transform.position;
+        transform.position = initPos;
+        steps = initSteps;
+        lastMove = Vector2.zero;
+        moving = false;
+        if (hasKey)
+        {
+            keyInstance.transform.position = deathPos;
+            keyInstance.SetActive(true);
+            headKey.SetActive(false);
+            hasKey = false;
+        }
+        foreach (TileNode node in FindObjectsOfType<TileNode>())
+        {
+            node.OnPlayerRespawnEnd(this);
+        }
+    }
+
     private void Update()
     {
         int horizontal = 0;
@@ -133,25 +160,15 @@ public class Player : MonoBehaviour
         StopCoroutine(movingCoroutine);
         foreach (TileNode node in FindObjectsOfType<TileNode>())
         {
-            node.OnPlayerRespawn(this);
-        }
-        Vector3 deathPos = transform.position;
-        transform.position = initPos;
-        steps = initSteps;
-        lastMove = Vector2.zero;
-        moving = false;
-        if (hasKey)
-        {
-            keyInstance.transform.position = deathPos;
-            keyInstance.SetActive(true);
-            headKey.SetActive(false);
-            hasKey = false;
+            node.OnPlayerRespawnStart(this);
         }
         lives--;
-        if (lives <=0)
+        if (lives <= 0)
         {
             GameOver();
+            return;
         }
+        StartCoroutine(Respawning());
     }
 
     public void GameOver()
