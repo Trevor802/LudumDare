@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Triggerboard : MonoBehaviour
+public class Triggerboard : TileNode
 {
     bool Triggered = false;
     bool PlayerDiedOn = false;
@@ -10,11 +10,6 @@ public class Triggerboard : MonoBehaviour
     void Start()
     {
         
-    }
-
-    public void OnTick()
-    {
-
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -25,20 +20,10 @@ public class Triggerboard : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D col)
-    {
-        if (col.gameObject.GetComponent<Player>() && Player.dying == true)
-        {
-            PlayerDiedOn = true;
-        }
-    }
-
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (PlayerDiedOn == false)
-        {
+        if (PlayerDiedOn)
             Triggered = false;
-        }
     }
 
     // Update is called once per frame
@@ -53,6 +38,15 @@ public class Triggerboard : MonoBehaviour
         {
             GameObject door = GameObject.Find("door");
             door.GetComponent<BoxCollider2D>().enabled = true;
+        }
+    }
+
+    public override void OnPlayerRespawn(Player player)
+    {
+        if (Vector2.Distance(player.transform.position, transform.position) < Mathf.Epsilon)
+        {
+            PlayerDiedOn = true;
+            Triggered = true;
         }
     }
 }
