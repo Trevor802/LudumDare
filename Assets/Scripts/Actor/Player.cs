@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
         initPos = transform.position;
     }
 
-    bool Move(int xDir, int yDir, out RaycastHit2D hit)
+    public bool Move(int xDir, int yDir, out RaycastHit2D hit)
     {
         Vector2 start = transform.position;
         lastMove = new Vector2(xDir, yDir);
