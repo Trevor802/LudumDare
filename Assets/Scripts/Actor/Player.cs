@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public bool moving;
     public Coroutine movingCoroutine;
     private GameObject headKey;
+    private Animator animator;
 
     //private UnityEvent playerRespawnStartEvent;
     //private UnityEvent playerRespawnEndEvent;
@@ -34,7 +35,7 @@ public class Player : MonoBehaviour
         UIManager.instance.UpdateUI();
         inverseMoveTime = 1 / moveTime;
         headKey = this.transform.Find("HeadKey").gameObject;
-        
+        animator = GetComponent<Animator>();
     }
 
     public bool Move(int xDir, int yDir, out RaycastHit2D hit,
@@ -142,6 +143,28 @@ public class Player : MonoBehaviour
         {
             if (!moving)
             {
+                if (horizontal != 0)
+                {
+                    if (horizontal == 1)
+                    {
+                        animator.Play("WalkRight");
+                    }
+                    else
+                    {
+                        animator.Play("WalkLeft");
+                    }
+                }
+                else
+                {
+                    if (vertical == 1)
+                    {
+                        animator.Play("WalkUp");
+                    }
+                    else
+                    {
+                        animator.Play("WalkDown");
+                    }
+                }
                 RaycastHit2D hit;
                 Move(horizontal, vertical, out hit);
                 UIManager.instance.UpdateUI();
