@@ -135,4 +135,9 @@ public class Player : MonoBehaviour
     {
         hasKey = true;
     }
+
+    public void AddStep(int qty)
+    {
+        steps += qty;
+    }
 }
