@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Doors : TileNode
 {
@@ -12,13 +10,13 @@ public class Doors : TileNode
         GameObject.FindGameObjectWithTag("MainCamera");
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public override void OnPlayerEnter(Player player)
     {
-        if(collision.gameObject.GetComponent<Player>())
+        if (player.TryUseKey())
         {
-            if (collision.gameObject.GetComponent<Player>().TryUseKey())
-                camera.GetComponent<CameraManager>().SwitchLevelCamera();
-                this.gameObject.SetActive(false);
+            camera.GetComponent<CameraManager>().SwitchLevelCamera();
+            this.gameObject.SetActive(false);
         }
     }
+    
 }
