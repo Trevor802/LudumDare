@@ -4,9 +4,8 @@ using UnityEngine;
 public class Hole : TileNode
 {
     bool filled = false;
-    void OnTriggerEnter2D(Collider2D col)
+    public override void OnPlayerEnter(Player player)
     {
-        Player player = col.GetComponent<Player>();
         if (player)
         {
             if (filled == false)
