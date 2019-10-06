@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         rb2D = GetComponent<Rigidbody2D>();
         steps = initSteps;
+        initPos = transform.position;
     }
 
     bool Move(int xDir, int yDir, out RaycastHit2D hit)
