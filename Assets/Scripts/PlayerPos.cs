@@ -5,21 +5,19 @@ using UnityEngine;
 public class PlayerPos : MonoBehaviour
 {
     private GameMaster gm;
+    public Player playerPos;
+    
     void Start()
     {
         gm = GameObject.FindWithTag("GM").GetComponent<GameMaster>();
         transform.position = gm.lastCheckPointPos;
 
     }
-    
+
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            
-            transform.position = gm.lastCheckPointPos;
-        }
+       
     }
-    
+
 }
