@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public int lives = 3;
     public int initSteps = 7;
     public GameObject keyPrefab;
+    public Vector2 lastMove;
     private int steps;
     private Vector3 initPos;
     private bool hasKey = false;
@@ -25,7 +26,8 @@ public class Player : MonoBehaviour
     bool Move(int xDir, int yDir, out RaycastHit2D hit)
     {
         Vector2 start = transform.position;
-        Vector2 end = start + new Vector2(xDir, yDir);
+        lastMove = new Vector2(xDir, yDir);
+        Vector2 end = start + lastMove;
         boxCollider.enabled = false;
         hit = Physics2D.Linecast(start, end, blockingLayer);
         boxCollider.enabled = true;
@@ -97,6 +99,7 @@ public class Player : MonoBehaviour
         }
         Vector3 deathPos = transform.position;
         transform.position = initPos;
+        lastMove = Vector2.zero;
         if (hasKey)
         {
             Instantiate(keyPrefab, deathPos, Quaternion.identity);
