@@ -40,6 +40,10 @@ public class Player : MonoBehaviour
     private void SmoothMovement(Vector3 end)
     {
         transform.position = end;
+        foreach(TileNode node in FindObjectsOfType<TileNode>())
+        {
+            node.OnTick();
+        }
         steps--;
         if (steps <= 0)
         {
@@ -87,6 +91,10 @@ public class Player : MonoBehaviour
 
     public void Respawn()
     {
+        foreach (TileNode node in FindObjectsOfType<TileNode>())
+        {
+            node.OnPlayerRespawn(this);
+        }
         Vector3 deathPos = transform.position;
         transform.position = initPos;
         if (hasKey)
