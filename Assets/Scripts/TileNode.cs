@@ -5,5 +5,5 @@ using UnityEngine;
 public abstract class TileNode : MonoBehaviour
 {
     public abstract void OnTick();
-    public abstract void OnPlayerDead(Player player);
+    public abstract void OnPlayerRespawn(Player player);
 }
