@@ -143,5 +143,6 @@ public class Player : MonoBehaviour
     public void AddStep(int step)
     {
         steps += step;
+        UIManager.instance.UpdateUI();
     }
 }
