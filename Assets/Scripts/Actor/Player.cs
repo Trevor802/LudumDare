@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
         initPos = transform.position;
     }
 
-    public bool Move(int xDir, int yDir, out RaycastHit2D hit)
+    public bool Move(int xDir, int yDir, out RaycastHit2D hit, bool costStep = true)
     {
         Vector2 start = transform.position;
         lastMove = new Vector2(xDir, yDir);
@@ -33,20 +33,23 @@ public class Player : MonoBehaviour
         boxCollider.enabled = true;
         if (hit.transform == null)
         {
-            SmoothMovement(end);
+            SmoothMovement(end, costStep);
             return true;
         }
         return false;
     }
 
-    private void SmoothMovement(Vector3 end)
+    private void SmoothMovement(Vector3 end, bool costStep)
     {
         transform.position = end;
         foreach(TileNode node in FindObjectsOfType<TileNode>())
         {
             node.OnTick();
         }
-        steps--;
+        if (costStep)
+        {
+            steps--;
+        }
         if (steps <= 0)
         {
             Respawn();
