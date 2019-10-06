@@ -46,7 +46,7 @@ public class Triggerboard : TileNode
         }
     }
 
-    public override void OnPlayerRespawn(Player player)
+    public override void OnPlayerRespawnStart(Player player)
     {
         if (Vector2.Distance(player.transform.position, transform.position) <= threshold)
         {
