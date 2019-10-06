@@ -6,12 +6,13 @@ public class Player : MonoBehaviour
 {
     public int lives = 3;
     public int initSteps = 7;
-    private int steps;
+    public int steps;
     private Vector3 initPos;
-    private bool hasKey = false;
+    public bool hasKey = false;
     public LayerMask blockingLayer;
     private BoxCollider2D boxCollider;
     private Rigidbody2D rb2D;
+    public Vector2 lastMove;
     public static bool dying = false;
 
     private void Start()
@@ -19,27 +20,34 @@ public class Player : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         rb2D = GetComponent<Rigidbody2D>();
         steps = initSteps;
+        initPos = transform.position;
+        UIManager.instance.UpdateUI();
     }
 
-    bool Move(int xDir, int yDir, out RaycastHit2D hit)
+    public bool Move(int xDir, int yDir, out RaycastHit2D hit,
+        bool costStep = true)
     {
         Vector2 start = transform.position;
-        Vector2 end = start + new Vector2(xDir, yDir);
+        lastMove = new Vector2(xDir, yDir);
+        Vector2 end = start + lastMove;
         boxCollider.enabled = false;
         hit = Physics2D.Linecast(start, end, blockingLayer);
         boxCollider.enabled = true;
         if (hit.transform == null)
         {
-            SmoothMovement(end);
+            SmoothMovement(end, costStep);
             return true;
         }
         return false;
     }
 
-    private void SmoothMovement(Vector3 end)
+    private void SmoothMovement(Vector3 end, bool costStep = true)
     {
         transform.position = end;
-        steps--;
+        if (costStep)
+        {
+            steps--;
+        }
         if (steps <= 0)
         {
             dying = true;
@@ -75,6 +83,7 @@ public class Player : MonoBehaviour
         {
             RaycastHit2D hit;
             Move(horizontal, vertical, out hit);
+            UIManager.instance.UpdateUI();
         }
         horizontal = 0;
         vertical = 0;
@@ -96,6 +105,7 @@ public class Player : MonoBehaviour
         transform.position = initPos;
         lives--;
         steps = initSteps;
+        lastMove = Vector2.zero;
         if (lives <=0)
         {
             GameOver();
@@ -120,5 +130,11 @@ public class Player : MonoBehaviour
     public void AddKey()
     {
         hasKey = true;
+        UIManager.instance.UpdateUI();
+    }
+
+    public void AddStep(int step)
+    {
+        steps += step;
     }
 }
