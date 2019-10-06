@@ -18,8 +18,8 @@ public class CheckPoint : TileNode
         if (otherPlayer.CompareTag("Player"))
         {
             lastCheckPointPos = transform.position;
-            
-            otherPlayer.ResetRespawnPos(lastCheckPointPos);
+
+            otherPlayer.ResetRespawnPos(new Vector3(lastCheckPointPos.x,lastCheckPointPos.y,otherPlayer.transform.position.z));
         }
     }
     void Update()
