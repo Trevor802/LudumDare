@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public GameObject keyInstance;
     private float inverseMoveTime;
     private bool moving;
+    private bool dying;
     private Coroutine movingCoroutine;
 
     private void Start()
@@ -43,18 +44,11 @@ public class Player : MonoBehaviour
             if (costStep)
             {
                 steps--;
-            }
-            foreach (TileNode tile in FindObjectsOfType<TileNode>())
-            {
-                tile.OnTickStart();
-            }
-            if (steps <= 0)
-            {
-                Respawn();
-            }
-            else
-            {
                 movingCoroutine = StartCoroutine(SmoothMovement(end));
+                foreach (TileNode tile in FindObjectsOfType<TileNode>())
+                {
+                    tile.OnTickStart();
+                }
             }
             return true;
         }
@@ -77,6 +71,11 @@ public class Player : MonoBehaviour
         foreach (TileNode tile in FindObjectsOfType<TileNode>())
         {
             tile.OnTickEnd();
+        }
+        if (steps <= 0)
+        {
+
+            Respawn();
         }
     }
 
