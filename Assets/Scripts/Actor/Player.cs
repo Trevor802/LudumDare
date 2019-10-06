@@ -6,8 +6,6 @@ public class Player : MonoBehaviour
 {
     public int lives = 3;
     public int initSteps = 7;
-    public GameObject keyPrefab;
-    public Vector2 lastMove;
     private int steps;
     private Vector3 initPos;
     private bool hasKey = false;
@@ -20,36 +18,27 @@ public class Player : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         rb2D = GetComponent<Rigidbody2D>();
         steps = initSteps;
-        initPos = transform.position;
     }
 
-    public bool Move(int xDir, int yDir, out RaycastHit2D hit, bool costStep = true)
+    bool Move(int xDir, int yDir, out RaycastHit2D hit)
     {
         Vector2 start = transform.position;
-        lastMove = new Vector2(xDir, yDir);
-        Vector2 end = start + lastMove;
+        Vector2 end = start + new Vector2(xDir, yDir);
         boxCollider.enabled = false;
         hit = Physics2D.Linecast(start, end, blockingLayer);
         boxCollider.enabled = true;
         if (hit.transform == null)
         {
-            SmoothMovement(end, costStep);
+            SmoothMovement(end);
             return true;
         }
         return false;
     }
 
-    private void SmoothMovement(Vector3 end, bool costStep)
+    private void SmoothMovement(Vector3 end)
     {
         transform.position = end;
-        foreach(TileNode node in FindObjectsOfType<TileNode>())
-        {
-            node.OnTick();
-        }
-        if (costStep)
-        {
-            steps--;
-        }
+        steps--;
         if (steps <= 0)
         {
             Respawn();
@@ -96,20 +85,9 @@ public class Player : MonoBehaviour
 
     public void Respawn()
     {
-        foreach (TileNode node in FindObjectsOfType<TileNode>())
-        {
-            node.OnPlayerRespawn(this);
-        }
-        Vector3 deathPos = transform.position;
         transform.position = initPos;
-        lastMove = Vector2.zero;
-        if (hasKey)
-        {
-            Instantiate(keyPrefab, deathPos, Quaternion.identity);
-        }
-        steps = initSteps;
-        hasKey = false;
         lives--;
+        steps = initSteps;
         if (lives <=0)
         {
             GameOver();
@@ -134,10 +112,5 @@ public class Player : MonoBehaviour
     public void AddKey()
     {
         hasKey = true;
-    }
-
-    public void AddStep(int qty)
-    {
-        steps += qty;
     }
 }
