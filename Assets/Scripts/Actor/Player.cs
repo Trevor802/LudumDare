@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public int lives = 3;
     public int initSteps = 7;
     public int steps;
+    public float respawnDelaySeconds = 0.5f;
     private Vector3 initPos;
     public bool hasKey = false;
     public LayerMask blockingLayer;
@@ -94,7 +95,7 @@ public class Player : MonoBehaviour
     private IEnumerator Respawning()
     {
         moving = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(respawnDelaySeconds);
         Vector3 deathPos = transform.position;
         transform.position = initPos;
         steps = initSteps;
