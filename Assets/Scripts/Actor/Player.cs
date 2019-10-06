@@ -160,8 +160,10 @@ public class Player : MonoBehaviour
         return false;
     }
 
-    public void AddKey()
+    public void AddKey(GameObject picked_key)
     {
+        keyInstance = picked_key;
+        //Debug.Log(keyInstance.name);
         hasKey = true;
         UIManager.instance.UpdateUI();
     }

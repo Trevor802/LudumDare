@@ -7,9 +7,9 @@ public class Trap : TileNode
    // public bool hitWithTrap = false;
     private int cnt = 0;
     //public GameObject trap;
-    public int firstTrapAtStep = 0;//first trap appears in which step
-    public int trapTimes = 2;// cnt%? 2 is odd/even
-    public bool isTrap = true;
+    private int firstTrapAtStep = 0;//first trap appears in which step
+    private int trapTimes = 2;// cnt%? 2 is odd/even
+    public bool isTrapOnEven = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,29 +30,29 @@ public class Trap : TileNode
     {
         if (cnt % trapTimes != 0)
         {
-            if (isTrap == true)
+            if (isTrapOnEven == true)
             {
-                isTrap = false;
+                isTrapOnEven = false;
             }
             else
             {
-                isTrap = true;
+                isTrapOnEven = true;
             }
                 
-            GetComponent<SpriteRenderer>().enabled = isTrap;
+            GetComponent<SpriteRenderer>().enabled = isTrapOnEven;
                 // this.gameObject.SetActive(false);
         }
         else
         {
-            if(isTrap == false)
+            if(isTrapOnEven == false)
             {
-                isTrap = true;
+                isTrapOnEven = true;
             }
             else
             {
-                isTrap = false;
+                isTrapOnEven = false;
             }
-            GetComponent<SpriteRenderer>().enabled = isTrap;
+            GetComponent<SpriteRenderer>().enabled = isTrapOnEven;
         }
         
 
@@ -62,7 +62,7 @@ public class Trap : TileNode
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Player>() && isTrap == true)
+        if (collision.gameObject.GetComponent<Player>() && isTrapOnEven == true)
         {
             //hitWithTrap = true;
             collision.gameObject.GetComponent<Player>().Respawn();

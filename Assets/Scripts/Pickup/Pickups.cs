@@ -8,7 +8,7 @@ public class Pickups : MonoBehaviour
     public enum pickup_Type { Key, AP_supply };
     public int AP_supply_qty;
     public pickup_Type pickup;
-    public Doors pairedDoor;
+    //public Doors pairedDoor;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +25,7 @@ public class Pickups : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Player>() && pickup == pickup_Type.Key)
         {
-            collision.gameObject.GetComponent<Player>().AddKey();
+            collision.gameObject.GetComponent<Player>().AddKey(this.gameObject);
             this.gameObject.SetActive(false);
         }
         if (collision.gameObject.GetComponent<Player>() && pickup == pickup_Type.AP_supply)
