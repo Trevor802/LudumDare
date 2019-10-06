@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     private float inverseMoveTime;
     public bool moving;
     public Coroutine movingCoroutine;
+    private GameObject headKey;
 
     private void Start()
     {
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
         initPos = transform.position;
         UIManager.instance.UpdateUI();
         inverseMoveTime = 1 / moveTime;
+        headKey = this.transform.Find("HeadKey").gameObject;
     }
 
     public bool Move(int xDir, int yDir, out RaycastHit2D hit,
@@ -142,6 +144,7 @@ public class Player : MonoBehaviour
         {
             keyInstance.transform.position = deathPos;
             keyInstance.SetActive(true);
+            headKey.SetActive(false);
             hasKey = false;
         }
     }
@@ -156,6 +159,7 @@ public class Player : MonoBehaviour
         if (hasKey)
         {
             hasKey = false;
+            headKey.SetActive(false);
             return true;
         }
         return false;
@@ -164,6 +168,7 @@ public class Player : MonoBehaviour
     public void AddKey(GameObject picked_key)
     {
         keyInstance = picked_key;
+        headKey.SetActive(true);
         //Debug.Log(keyInstance.name);
         hasKey = true;
         UIManager.instance.UpdateUI();
