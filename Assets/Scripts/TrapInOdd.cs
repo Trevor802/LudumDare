@@ -12,7 +12,7 @@ public class TrapInOdd : TileNode
     {
 
     }
-    override public void OnTick()
+    override public void OnTickStart()
     {
         cnt++;
         IsTrap();

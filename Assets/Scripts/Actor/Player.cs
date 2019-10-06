@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public float moveTime = 0.5f;
     public int lives = 3;
     public int initSteps = 7;
     public int steps;
@@ -14,6 +15,9 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb2D;
     public Vector2 lastMove;
     public GameObject keyInstance;
+    private float inverseMoveTime;
+    private bool moving;
+    private Coroutine movingCoroutine;
 
     private void Start()
     {
@@ -22,6 +26,7 @@ public class Player : MonoBehaviour
         steps = initSteps;
         initPos = transform.position;
         UIManager.instance.UpdateUI();
+        inverseMoveTime = 1 / moveTime;
     }
 
     public bool Move(int xDir, int yDir, out RaycastHit2D hit,
@@ -35,26 +40,43 @@ public class Player : MonoBehaviour
         boxCollider.enabled = true;
         if (hit.transform == null)
         {
-            SmoothMovement(end, costStep);
+            if (costStep)
+            {
+                steps--;
+            }
+            foreach (TileNode tile in FindObjectsOfType<TileNode>())
+            {
+                tile.OnTickStart();
+            }
+            if (steps <= 0)
+            {
+                Respawn();
+            }
+            else
+            {
+                movingCoroutine = StartCoroutine(SmoothMovement(end));
+            }
             return true;
         }
         return false;
     }
 
-    private void SmoothMovement(Vector3 end, bool costStep = true)
+    private IEnumerator SmoothMovement(Vector3 end)
     {
-        foreach(TileNode tile in FindObjectsOfType<TileNode>())
+        moving = true;
+        // Set the player's z position to 0, or remove the z value while calculating the distance
+        float sqrDistance = (transform.position - end).sqrMagnitude;
+        while(sqrDistance > float.Epsilon)
         {
-            tile.OnTick();
+            Vector3 newPos = Vector3.MoveTowards(rb2D.position, end, inverseMoveTime * Time.deltaTime);
+            rb2D.MovePosition(newPos);
+            sqrDistance = (transform.position - end).sqrMagnitude;
+            yield return null;
         }
-        transform.position = end;
-        if (costStep)
+        moving = false;
+        foreach (TileNode tile in FindObjectsOfType<TileNode>())
         {
-            steps--;
-        }
-        if (steps <= 0)
-        {
-            Respawn();
+            tile.OnTickEnd();
         }
     }
 
@@ -84,9 +106,12 @@ public class Player : MonoBehaviour
         }
         if(horizontal !=0 || vertical != 0)
         {
-            RaycastHit2D hit;
-            Move(horizontal, vertical, out hit);
-            UIManager.instance.UpdateUI();
+            if (!moving)
+            {
+                RaycastHit2D hit;
+                Move(horizontal, vertical, out hit);
+                UIManager.instance.UpdateUI();
+            }
         }
         horizontal = 0;
         vertical = 0;
