@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     private bool moving;
     private bool dying;
     private Coroutine movingCoroutine;
+    private GameObject headKey;
 
     private void Start()
     {
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
         steps = initSteps;
         initPos = transform.position;
         UIManager.instance.UpdateUI();
+        headKey = this.transform.Find("HeadKey").gameObject;
         inverseMoveTime = 1 / moveTime;
     }
 
@@ -136,6 +138,7 @@ public class Player : MonoBehaviour
         {
             keyInstance.transform.position = deathPos;
             keyInstance.SetActive(true);
+            headKey.SetActive(false);
             hasKey = false;
         }
         if (lives <=0)
@@ -154,6 +157,7 @@ public class Player : MonoBehaviour
         if (hasKey)
         {
             hasKey = false;
+            headKey.SetActive(false);
             return true;
         }
         return false;
@@ -162,6 +166,7 @@ public class Player : MonoBehaviour
     public void AddKey(GameObject picked_key)
     {
         keyInstance = picked_key;
+        headKey.SetActive(true);
         //Debug.Log(keyInstance.name);
         hasKey = true;
         UIManager.instance.UpdateUI();
