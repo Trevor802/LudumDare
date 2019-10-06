@@ -28,22 +28,33 @@ public class Trap : TileNode
 
     void IsTrap()
     {
-        for(int i = 0; i < trapTimes - 1; i++)
+        if (cnt % trapTimes != 0)
         {
-            if (cnt % trapTimes != 0)
+            if (isTrap == true)
             {
-
-                GetComponent<SpriteRenderer>().enabled = false;
                 isTrap = false;
-                // this.gameObject.SetActive(false);
             }
             else
             {
-                GetComponent<SpriteRenderer>().enabled = true;
                 isTrap = true;
             }
+                
+            GetComponent<SpriteRenderer>().enabled = isTrap;
+                // this.gameObject.SetActive(false);
         }
-       
+        else
+        {
+            if(isTrap == false)
+            {
+                isTrap = true;
+            }
+            else
+            {
+                isTrap = false;
+            }
+            GetComponent<SpriteRenderer>().enabled = isTrap;
+        }
+        
 
     }
 
