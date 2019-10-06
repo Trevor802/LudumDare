@@ -4,24 +4,17 @@ using UnityEngine;
 
 public class Hole : MonoBehaviour
 {
-    public static bool fall = false;
     bool filled = false;
-    void LateUpdate()
-    {
-        fall = false;
-    }
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.GetComponent<Player>())
+        Player player = col.GetComponent<Player>();
+        if (player)
         {
-            if(filled == true)
+            if(filled == false)
             {
-                fall = false;
+                player.Respawn();
             }
-            else
-            {
-                fall = true;
-            }
+
             filled = true;
         }
     }
