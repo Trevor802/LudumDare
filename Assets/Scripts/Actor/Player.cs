@@ -16,10 +16,8 @@ public class Player : MonoBehaviour
     public Vector2 lastMove;
     public GameObject keyInstance;
     private float inverseMoveTime;
-    private bool moving;
-    private bool dying;
-    private Coroutine movingCoroutine;
-    private GameObject headKey;
+    public bool moving;
+    public Coroutine movingCoroutine;
 
     private void Start()
     {
@@ -28,7 +26,6 @@ public class Player : MonoBehaviour
         steps = initSteps;
         initPos = transform.position;
         UIManager.instance.UpdateUI();
-        headKey = this.transform.Find("HeadKey").gameObject;
         inverseMoveTime = 1 / moveTime;
     }
 
@@ -57,7 +54,7 @@ public class Player : MonoBehaviour
         return false;
     }
 
-    private IEnumerator SmoothMovement(Vector3 end)
+    public IEnumerator SmoothMovement(Vector3 end)
     {
         moving = true;
         // Set the player's z position to 0, or remove the z value while calculating the distance
@@ -76,8 +73,16 @@ public class Player : MonoBehaviour
         }
         if (steps <= 0)
         {
-
-            Respawn();
+            lives--;
+            if (lives <= 0)
+            {
+                Respawn();
+                GameOver();
+            }
+            else
+            {
+                Respawn();
+            }
         }
     }
 
@@ -131,19 +136,13 @@ public class Player : MonoBehaviour
         }
         Vector3 deathPos = transform.position;
         transform.position = initPos;
-        lives--;
         steps = initSteps;
         lastMove = Vector2.zero;
         if (hasKey)
         {
             keyInstance.transform.position = deathPos;
             keyInstance.SetActive(true);
-            headKey.SetActive(false);
             hasKey = false;
-        }
-        if (lives <=0)
-        {
-            GameOver();
         }
     }
 
@@ -157,7 +156,6 @@ public class Player : MonoBehaviour
         if (hasKey)
         {
             hasKey = false;
-            headKey.SetActive(false);
             return true;
         }
         return false;
@@ -166,7 +164,6 @@ public class Player : MonoBehaviour
     public void AddKey(GameObject picked_key)
     {
         keyInstance = picked_key;
-        headKey.SetActive(true);
         //Debug.Log(keyInstance.name);
         hasKey = true;
         UIManager.instance.UpdateUI();

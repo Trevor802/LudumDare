@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Doors : MonoBehaviour
+public class Doors : TileNode
 {
     private bool openable;
     // Start is called before the first frame update

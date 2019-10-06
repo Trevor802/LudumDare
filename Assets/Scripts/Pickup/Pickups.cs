@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Pickups : MonoBehaviour
+public class Pickups : TileNode
 {
     public enum pickup_Type { Key, AP_supply };
     public int AP_supply_qty;
