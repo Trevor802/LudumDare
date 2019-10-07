@@ -132,6 +132,13 @@ public class Player : MonoBehaviour
         Vector3 deathPos = transform.position;
         Quaternion deathRot = transform.rotation;
         Pools.SpawnFromPool("Body", deathPos, deathRot);
+        if (hasKey)
+        {
+            keyInstance.transform.position = deathPos;
+            keyInstance.SetActive(true);
+            headKey.SetActive(false);
+            hasKey = false;
+        }
         transform.position = initPos;
         lastMove = Vector2.zero;
         moving = false;
@@ -145,13 +152,6 @@ public class Player : MonoBehaviour
         }
         animator.Play("WalkDown");
         keySprite.sortingOrder = 1;
-        if (hasKey)
-        {
-            keyInstance.transform.position = deathPos;
-            keyInstance.SetActive(true);
-            headKey.SetActive(false);
-            hasKey = false;
-        }
         // UI UPDATE
         UIManager.instance.UpdateUI();
         UpdateStepUI();
@@ -218,6 +218,12 @@ public class Player : MonoBehaviour
         }
         horizontal = 0;
         vertical = 0;
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene("2Dlevel");
+            UIManager.instance.initUI();
+        }
     }
 
     public void ResetRespawnPos(Vector3 pos)
