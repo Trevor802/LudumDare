@@ -9,10 +9,12 @@ public class Triggerboard : TileNode
     public string doorName = "door";
     private float threshold = 0.2f;
     private Animator animator;
+    private AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -24,7 +26,6 @@ public class Triggerboard : TileNode
             Triggered = false;
         if (Triggered == true)
         {
-            animator.SetBool("PlayerOn", true);
             GameObject door = this.transform.Find(doorName).gameObject;
             door.GetComponent<BoxCollider2D>().enabled = false;
             door.GetComponent<SpriteRenderer>().enabled = false;
@@ -44,6 +45,14 @@ public class Triggerboard : TileNode
         {
             PlayerDiedOn = true;
             Triggered = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!PlayerDiedOn)
+        {
+            source.Play();
         }
     }
 }
