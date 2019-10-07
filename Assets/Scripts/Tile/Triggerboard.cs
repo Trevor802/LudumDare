@@ -15,13 +15,12 @@ public class Triggerboard : TileNode
         animator = GetComponent<Animator>();
     }
 
-
     // Update is called once per frame
     void Update()
     {
-        if (playerIn)
+        if (playerInside)
             Triggered = true;
-        if (!playerIn && !PlayerDiedOn)
+        if (!playerInside && !PlayerDiedOn)
             Triggered = false;
         if (Triggered == true)
         {
