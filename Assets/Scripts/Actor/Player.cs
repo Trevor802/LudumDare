@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     public SpriteRenderer[] stepIcons;
     private Animator animator;
     private SpriteRenderer keySprite;
+    private AudioSource source;
 
     //private UnityEvent playerRespawnStartEvent;
     //private UnityEvent playerRespawnEndEvent;
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
         inverseMoveTime = 1 / moveTime;
         headKey = this.transform.Find("HeadKey").gameObject;
         animator = GetComponent<Animator>();
+        source = GetComponent<AudioSource>();
         UIManager.instance.UpdateUI();
         UpdateStepUI();
         keySprite = headKey.GetComponent<SpriteRenderer>();
@@ -48,6 +50,7 @@ public class Player : MonoBehaviour
     public bool Move(int xDir, int yDir, out RaycastHit2D hit,
         bool costStep = true, bool smoothMove = true)
     {
+        source.Play();
         Vector2 start = transform.position;
         lastMove = new Vector2(xDir, yDir);
         Vector2 end = start + lastMove;
