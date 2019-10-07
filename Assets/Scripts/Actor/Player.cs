@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
     public bool Move(int xDir, int yDir, out RaycastHit2D hit,
         bool costStep = true, bool smoothMove = true)
     {
-        source.Play();
+        source.PlayOneShot(footStep);
         Vector2 start = transform.position;
         lastMove = new Vector2(xDir, yDir);
         Vector2 end = start + lastMove;
