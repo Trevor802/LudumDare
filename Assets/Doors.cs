@@ -13,7 +13,6 @@ public class Doors : TileNode
     public GameObject startPoint;
     public float camSwitchBeforeDelay;
     private AudioSource source;
-    private bool hasSwitched;
     public int cnt = 0;
 
     void Start()
@@ -51,7 +50,7 @@ public class Doors : TileNode
     private IEnumerator Delay(Player player)
     {
         yield return new WaitForSeconds(camSwitchBeforeDelay);
-        if (isInAnimation && !hasSwitched)
+        if (isInAnimation)
         {
             StopAllCoroutines();
             LevelCamera.GetComponent<CameraManager>().SwitchLevelCamera();
