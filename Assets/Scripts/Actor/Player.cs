@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     private AudioSource source;
     private ObjectPooler Pools;
     private bool respawning;
+    public int doorCount = 0;
 
     //private UnityEvent playerRespawnStartEvent;
     //private UnityEvent playerRespawnEndEvent;

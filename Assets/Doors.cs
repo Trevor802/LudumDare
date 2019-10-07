@@ -30,13 +30,14 @@ public class Doors : TileNode
             source.Play();
             animator.Play("exit");
             isInAnimation = true;
-            player.Respawn(false);
             //judge if win
-            cnt++;
-            if(cnt >= 5)
+            player.doorCount++;
+            if(player.doorCount >= 5)
             {
                 player.GameWin();
+                return;
             }
+            player.Respawn(false);
         }
         
     }
