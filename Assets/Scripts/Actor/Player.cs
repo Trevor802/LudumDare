@@ -127,6 +127,8 @@ public class Player : MonoBehaviour
             spawnDur += camSwitchDur;
         }
         // Death Animation
+        animator.Play("Death");
+        HideStepIcon();
         yield return new WaitForSeconds(spawnDur);
         Vector3 deathPos = transform.position;
         Quaternion deathRot = transform.rotation;
@@ -142,6 +144,8 @@ public class Player : MonoBehaviour
         lastMove = Vector2.zero;
         steps = initSteps;
         // Respawn Animation
+        animator.Play("Respawn");
+        ShowStepIcon();
         source.PlayOneShot(respawn, 0.5f);
         yield return new WaitForSeconds(respawnAnimDur);
         foreach (TileNode node in FindObjectsOfType<TileNode>())
@@ -296,6 +300,22 @@ public class Player : MonoBehaviour
                 stepIcons[i].enabled = false;
             }
 
+        }
+    }
+
+    private void HideStepIcon()
+    {
+        foreach(var icon in stepIcons)
+        {
+            icon.enabled = false;
+        }
+    }
+
+    private void ShowStepIcon()
+    {
+        foreach (var icon in stepIcons)
+        {
+            icon.enabled = true;
         }
     }
 

@@ -155,9 +155,8 @@ MonoBehaviour:
   stepsText: {fileID: 97581977}
   livesText: {fileID: 1123730590}
   keyText: {fileID: 1106464174}
-  lifeImage1: {fileID: 1854557511}
-  lifeImage2: {fileID: 105636174}
-  lifeImage3: {fileID: 2074232628}
+  lifeIcons: []
+  crossIcons: []
 --- !u!114 &6979337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1208,6 +1207,11 @@ PrefabInstance:
         type: 3}
       propertyPath: cnt
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982404412974507289, guid: 366606255416c4cb49f859b247dabb46,
+        type: 3}
+      propertyPath: camSwitchBeforeDelay
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 366606255416c4cb49f859b247dabb46, type: 3}
@@ -4273,6 +4277,16 @@ PrefabInstance:
       propertyPath: footStep
       value: 
       objectReference: {fileID: 8300000, guid: 47ad2daede590cd41997e2b9e52dda27, type: 3}
+    - target: {fileID: 5375231222498850183, guid: 3b419e422a8ea8c439f296c691423c80,
+        type: 3}
+      propertyPath: deathAnimDur
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375231222498850183, guid: 3b419e422a8ea8c439f296c691423c80,
+        type: 3}
+      propertyPath: respawnAnimDur
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b419e422a8ea8c439f296c691423c80, type: 3}
 --- !u!1001 &7508719809045637924
