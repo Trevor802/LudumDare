@@ -61,6 +61,8 @@ public class UIManager : MonoBehaviour
         livesText.text = "";
         keyText.text = "";
         lifeImage1.enabled = false;
+        lifeImage2.enabled = false;
+        lifeImage3.enabled = false;
     }
 
     public void initUI()

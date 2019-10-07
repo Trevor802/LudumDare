@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     private SpriteRenderer keySprite;
     private AudioSource source;
     private ObjectPooler Pools;
+    private int ifWinCount = 0;
 
     //private UnityEvent playerRespawnStartEvent;
     //private UnityEvent playerRespawnEndEvent;
@@ -292,6 +293,12 @@ public class Player : MonoBehaviour
             }
 
         }
+    }
+
+    public void GameWin()
+    {       
+        UIManager.instance.ClearUI();
+        SceneManager.LoadScene("WinScene");
     }
 
 }
