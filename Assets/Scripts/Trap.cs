@@ -5,7 +5,7 @@ using UnityEngine;
 public class Trap : TileNode
 {
     // public bool hitWithTrap = false;
-    private int cnt = 1;
+    public int cnt = 1;
     //public GameObject trap;
     // private int firstTrapAtStep = 0;
     private int trapTimes = 2;// cnt%? 2 is odd/even
