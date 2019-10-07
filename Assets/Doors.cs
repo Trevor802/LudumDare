@@ -7,6 +7,7 @@ public class Doors : TileNode
     public int levelIndex;
     private string nextLevel;
     private Animator animator;
+    private bool isInAnimation;
     void Start()
     {
         LevelCamera= GameObject.FindGameObjectWithTag("MainCamera");
@@ -19,15 +20,26 @@ public class Doors : TileNode
         if (player.TryUseKey())
         {
             animator.Play("Trigger");
-            LevelCamera.GetComponent<CameraManager>().SwitchLevelCamera();
-            levelIndex = LevelCamera.GetComponent<CameraManager>().level_index;
-            nextLevel = "Level" + (levelIndex + 1).ToString();
-            Vector3 nextCheckPoint = new Vector3(GameObject.Find("Background").transform.Find("Grid").Find(nextLevel).Find("checkpoint").position.x, GameObject.Find("Background").transform.Find("Grid").Find(nextLevel).Find("checkpoint").position.y, player.transform.position.z);
-            player.ResetRespawnPos(nextCheckPoint);
+            isInAnimation = true;
             player.Respawn(false);
-            this.gameObject.SetActive(false);
         }
         
     }
-    
+
+    public override void OnPlayerRespawnEnd(Player player)
+    {
+        base.OnPlayerRespawnEnd(player);
+        if (isInAnimation)
+        {
+            LevelCamera.GetComponent<CameraManager>().SwitchLevelCamera();
+            levelIndex = LevelCamera.GetComponent<CameraManager>().level_index;
+            nextLevel = "Level" + (levelIndex + 1).ToString();
+            GameObject obj = GameObject.Find("Background/Grid/" + nextLevel + "/checkpoint");
+            Vector3 nextCheckPoint = new Vector3(GameObject.Find("Background/Grid/" + nextLevel + "/checkpoint").transform.position.x,
+                GameObject.Find("Background/Grid/"+nextLevel+"/checkpoint").transform.position.y, player.transform.position.z);
+            player.ResetRespawnPos(nextCheckPoint);
+        }
+        
+    }
+
 }

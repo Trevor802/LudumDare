@@ -118,6 +118,10 @@ public class Player : MonoBehaviour
     {
         moving = true;
         yield return new WaitForSeconds(respawnDelaySeconds);
+        foreach (TileNode node in FindObjectsOfType<TileNode>())
+        {
+            node.OnPlayerRespawnEnd(this);
+        }
         Vector3 deathPos = transform.position;
         transform.position = initPos;
         lastMove = Vector2.zero;
@@ -131,10 +135,6 @@ public class Player : MonoBehaviour
             keyInstance.SetActive(true);
             headKey.SetActive(false);
             hasKey = false;
-        }
-        foreach (TileNode node in FindObjectsOfType<TileNode>())
-        {
-            node.OnPlayerRespawnEnd(this);
         }
     }
 
