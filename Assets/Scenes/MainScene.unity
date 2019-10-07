@@ -1202,20 +1202,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sentence:
     sentences:
-    - In a world full of chaos and terrors, a group of people has reached an ancient
+    - 'In a world full of chaos and terrors, a group of people has reached an ancient
       tomb, searching for guidenceand hope.
-    - The group has gathered around a dark-portal.
+
+
+      Press Space to Continue...'
+    - 'The group has gathered around a dark-portal.
+
+
+      Press Space to Continue...'
     - 'Past that deep-dark space of unknown, a lurking shadow murmured : ''Bring me
-      the Holy Grail, and I shall grant you knowledge beyond space and time.'
+      the Holy Grail, and I shall grant you knowledge beyond space and time.
+
+
+      Press Space to Continue...'
     - 'Cultist 1:
 
-      Whatever it takes, we must prepare for the coming of the Great One.'
+      Whatever it takes, we must prepare for the coming of the Great One.
+
+
+      Press Space to Continue...'
     - 'Cultist 2:
 
       But every step I take, my feet feel heavier. Vision, blurred. Mind, Crumbling.My
-      body might not last long once we jump down there.'
+      body might not last long once we jump down there.
+
+
+      Press Space to Continue...'
     - "Cultist 3:\nIt must be the Great One calling on us. Quick, we must bring Him
-      the Holy Grail. We won\u2019t die for Nothing."
+      the Holy Grail. We won\u2019t die for Nothing.\n\nPress Space to Continue..."
 --- !u!1 &1446533903
 GameObject:
   m_ObjectHideFlags: 0
@@ -1769,7 +1784,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!95 &2010758296
 Animator:
   serializedVersion: 3
