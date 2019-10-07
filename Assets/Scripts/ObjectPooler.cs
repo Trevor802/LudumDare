@@ -45,6 +45,7 @@ public class ObjectPooler : MonoBehaviour
             for(int i = 0; i < pool.size; i++)
             {
                 GameObject obj = Instantiate(pool.prefab, rootObject.transform);
+                objectPool.Enqueue(obj);
                 obj.SetActive(false);
             }
             poolDictionary.Add(pool.tag, objectPool);
@@ -65,8 +66,9 @@ public class ObjectPooler : MonoBehaviour
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
         objectToSpawn.SetActive(true);
-        objectToSpawn.GetComponent<IPooledObject>().OnObjectSpawn();
-        poolDictionary[tag].Enqueue(objectToSpawn);
+        if (objectToSpawn.GetComponent<IPooledObject>() != null)
+            objectToSpawn.GetComponent<IPooledObject>().OnObjectSpawn();
+        // poolDictionary[tag].Enqueue(objectToSpawn);
         return objectToSpawn; 
     }
 }

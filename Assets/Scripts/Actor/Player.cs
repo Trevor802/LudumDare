@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     private Animator animator;
     private SpriteRenderer keySprite;
     private AudioSource source;
+    private ObjectPooler Pools;
 
     //private UnityEvent playerRespawnStartEvent;
     //private UnityEvent playerRespawnEndEvent;
@@ -50,6 +51,7 @@ public class Player : MonoBehaviour
         UpdateStepUI();
         keySprite = headKey.GetComponent<SpriteRenderer>();
         keySprite.sortingOrder = 1;
+        Pools = GameObject.Find("Pools").GetComponent<ObjectPooler>();
     }
 
     public bool Move(int xDir, int yDir, out RaycastHit2D hit,
@@ -127,6 +129,8 @@ public class Player : MonoBehaviour
         // Death Animation
         yield return new WaitForSeconds(spawnDur);
         Vector3 deathPos = transform.position;
+        Quaternion deathRot = transform.rotation;
+        Pools.SpawnFromPool("Body", deathPos, deathRot);
         transform.position = initPos;
         lastMove = Vector2.zero;
         moving = false;
@@ -247,7 +251,7 @@ public class Player : MonoBehaviour
     public void GameOver()
     {
         UIManager.instance.ClearUI();
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("RestartScene");
     }
 
     public bool TryUseKey()
