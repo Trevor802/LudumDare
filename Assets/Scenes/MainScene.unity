@@ -314,6 +314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textBox: {fileID: 2010758295}
   animator: {fileID: 2010758296}
+  clip: {fileID: 8300000, guid: 76cec3587fa9e2f42b26624dfaa86196, type: 3}
 --- !u!4 &375348480
 Transform:
   m_ObjectHideFlags: 0
