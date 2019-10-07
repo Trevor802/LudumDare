@@ -13,6 +13,7 @@ public class Doors : TileNode
     public GameObject startPoint;
     public float camSwitchBeforeDelay;
     private AudioSource source;
+    private bool hasSwitched;
     public int cnt = 0;
 
     void Start()
@@ -50,10 +51,10 @@ public class Doors : TileNode
     private IEnumerator Delay(Player player)
     {
         yield return new WaitForSeconds(camSwitchBeforeDelay);
-        if (isInAnimation)
+        if (isInAnimation && !hasSwitched)
         {
+            hasSwitched = true;
             LevelCamera.GetComponent<CameraManager>().SwitchLevelCamera();
-            levelIndex = LevelCamera.GetComponent<CameraManager>().level_index;
             Vector3 nextCheckPoint = new Vector3(startPoint.transform.position.x,
                 startPoint.transform.position.y, player.transform.position.z);
             player.ResetRespawnPos(nextCheckPoint);

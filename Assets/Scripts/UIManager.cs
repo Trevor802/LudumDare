@@ -33,6 +33,7 @@ public class UIManager : MonoBehaviour
         stepsText.text = "Steps: " + player.steps;
         livesText.text = "Lives: " + player.lives;
         keyText.text = "Key: " + player.hasKey.ToString();
+
         for (int i = 0; i < player.initLives; i++)
         {
             if (i <= player.lives - 1)
