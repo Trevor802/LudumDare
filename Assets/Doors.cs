@@ -53,7 +53,7 @@ public class Doors : TileNode
         yield return new WaitForSeconds(camSwitchBeforeDelay);
         if (isInAnimation && !hasSwitched)
         {
-            hasSwitched = true;
+            StopAllCoroutines();
             LevelCamera.GetComponent<CameraManager>().SwitchLevelCamera();
             Vector3 nextCheckPoint = new Vector3(startPoint.transform.position.x,
                 startPoint.transform.position.y, player.transform.position.z);
@@ -64,7 +64,7 @@ public class Doors : TileNode
     public override void OnPlayerRespawnEnd(Player player)
     {
         base.OnPlayerRespawnEnd(player);
-        
+        isInAnimation = false;
         
     }
 
