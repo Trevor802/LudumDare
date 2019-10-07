@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9101240239616859749}
   - component: {fileID: 1015662761}
   - component: {fileID: 8801123353006984038}
-  - component: {fileID: 405988839278455805}
+  - component: {fileID: 3168740315555591726}
   m_Layer: 0
   m_Name: Trap
   m_TagString: Untagged
@@ -142,7 +142,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!82 &405988839278455805
+--- !u!82 &3168740315555591726
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,7 +153,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ebd4cd029fd100e47aae0301b28bd3b1, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
