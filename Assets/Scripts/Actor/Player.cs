@@ -232,6 +232,7 @@ public class Player : MonoBehaviour
 
     public void GameOver()
     {
+        UIManager.instance.ClearUI();
         SceneManager.LoadScene(1);
     }
 

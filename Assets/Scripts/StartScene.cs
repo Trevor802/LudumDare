@@ -17,6 +17,7 @@ public class StartScene : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene(0);
+            UIManager.instance.initUI();
         }
     }
 }
