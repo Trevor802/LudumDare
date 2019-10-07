@@ -12,6 +12,7 @@ public class Trap : TileNode
     public bool isTrapOnEven = true;
     private bool activated;
     private Animator animator;
+    private AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,7 @@ public class Trap : TileNode
             UIManager.instance.UpdateUI();
             // GetComponent<SpriteRenderer>().enabled = false;
         }
-
+        source = GetComponent<AudioSource>();
 
     }
     override public void OnTickStart()
@@ -84,6 +85,7 @@ public class Trap : TileNode
         if (collision.gameObject.GetComponent<Player>() && isTrapOnEven == true && activated)
         {
             //hitWithTrap = true;
+            source.Play();
             collision.gameObject.GetComponent<Player>().Respawn();
             activated = false;
             //this.gameObject.SetActive(false);
