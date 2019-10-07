@@ -1196,17 +1196,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4270551901958866568, guid: 366606255416c4cb49f859b247dabb46,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 8982404412974507288, guid: 366606255416c4cb49f859b247dabb46,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -4781373940957465942, guid: 52382a1723fd9044a9882ff7fb823aeb,
         type: 3}
+    - target: {fileID: 8982404412974507289, guid: 366606255416c4cb49f859b247dabb46,
+        type: 3}
+      propertyPath: camSwitchBeforeDelay
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8982404412974507290, guid: 366606255416c4cb49f859b247dabb46,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -1216,6 +1216,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270551901958866568, guid: 366606255416c4cb49f859b247dabb46,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270551901958866568, guid: 366606255416c4cb49f859b247dabb46,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 366606255416c4cb49f859b247dabb46, type: 3}
@@ -3927,6 +3937,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375231222498850183, guid: 3b419e422a8ea8c439f296c691423c80,
+        type: 3}
+      propertyPath: deathAnimDur
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375231222498850183, guid: 3b419e422a8ea8c439f296c691423c80,
+        type: 3}
+      propertyPath: respawnAnimDur
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b419e422a8ea8c439f296c691423c80, type: 3}

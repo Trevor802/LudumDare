@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class Doors : TileNode
 {
@@ -9,6 +10,7 @@ public class Doors : TileNode
     private Animator animator;
     private bool isInAnimation;
     public GameObject startPoint;
+    public float camSwitchBeforeDelay;
     void Start()
     {
         LevelCamera= GameObject.FindGameObjectWithTag("MainCamera");
@@ -28,9 +30,15 @@ public class Doors : TileNode
         
     }
 
-    public override void OnPlayerRespawnEnd(Player player)
+    public override void OnPlayerRespawnStart(Player player)
     {
-        base.OnPlayerRespawnEnd(player);
+        base.OnPlayerRespawnStart(player);
+        StartCoroutine(Delay(player));
+    }
+
+    private IEnumerator Delay(Player player)
+    {
+        yield return new WaitForSeconds(camSwitchBeforeDelay);
         if (isInAnimation)
         {
             LevelCamera.GetComponent<CameraManager>().SwitchLevelCamera();
@@ -39,6 +47,12 @@ public class Doors : TileNode
                 startPoint.transform.position.y, player.transform.position.z);
             player.ResetRespawnPos(nextCheckPoint);
         }
+    }
+
+    public override void OnPlayerRespawnEnd(Player player)
+    {
+        base.OnPlayerRespawnEnd(player);
+        
         
     }
 
