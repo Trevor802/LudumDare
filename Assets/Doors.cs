@@ -8,6 +8,7 @@ public class Doors : TileNode
     private string nextLevel;
     private Animator animator;
     private bool isInAnimation;
+    public GameObject startPoint;
     void Start()
     {
         LevelCamera= GameObject.FindGameObjectWithTag("MainCamera");
@@ -33,10 +34,8 @@ public class Doors : TileNode
         {
             LevelCamera.GetComponent<CameraManager>().SwitchLevelCamera();
             levelIndex = LevelCamera.GetComponent<CameraManager>().level_index;
-            nextLevel = "Level" + (levelIndex + 1).ToString();
-            GameObject obj = GameObject.Find("Background/Grid/" + nextLevel + "/checkpoint");
-            Vector3 nextCheckPoint = new Vector3(GameObject.Find("Background/Grid/" + nextLevel + "/checkpoint").transform.position.x,
-                GameObject.Find("Background/Grid/"+nextLevel+"/checkpoint").transform.position.y, player.transform.position.z);
+            Vector3 nextCheckPoint = new Vector3(startPoint.transform.position.x,
+                startPoint.transform.position.y, player.transform.position.z);
             player.ResetRespawnPos(nextCheckPoint);
         }
         
