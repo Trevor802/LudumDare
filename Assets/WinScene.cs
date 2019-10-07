@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class WinScene : MonoBehaviour
 {
+    public AudioClip audio;
     void Start()
     {
-
+        AudioManager.instance.PlayMusic(audio);
     }
 
     // Update is called once per frame

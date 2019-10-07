@@ -13,7 +13,7 @@ public class Doors : TileNode
     public GameObject startPoint;
     public float camSwitchBeforeDelay;
     private AudioSource source;
-    private int cnt = 5;
+    public int cnt = 0;
 
     void Start()
     {
