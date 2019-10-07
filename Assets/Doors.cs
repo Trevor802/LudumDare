@@ -54,7 +54,6 @@ public class Doors : TileNode
         {
             StopAllCoroutines();
             LevelCamera.GetComponent<CameraManager>().SwitchLevelCamera();
-            levelIndex = LevelCamera.GetComponent<CameraManager>().level_index;
             Vector3 nextCheckPoint = new Vector3(startPoint.transform.position.x,
                 startPoint.transform.position.y, player.transform.position.z);
             player.ResetRespawnPos(nextCheckPoint);
