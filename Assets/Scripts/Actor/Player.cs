@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     private SpriteRenderer keySprite;
     private AudioSource source;
     private ObjectPooler Pools;
+    private bool respawning;
 
     //private UnityEvent playerRespawnStartEvent;
     //private UnityEvent playerRespawnEndEvent;
@@ -159,6 +160,7 @@ public class Player : MonoBehaviour
         moving = false;
         // UI UPDATE
         UpdateStepUI();
+        respawning = false;
     }
 
     private void Update()
@@ -237,6 +239,11 @@ public class Player : MonoBehaviour
     public void Respawn(bool costLife = true)
     {
         // Respawn Start
+        if (respawning)
+        {
+            return;
+        }
+        respawning = true;
         if (costLife)
         {
             lives--;
