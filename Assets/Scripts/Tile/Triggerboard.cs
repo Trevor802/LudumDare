@@ -13,25 +13,14 @@ public class Triggerboard : TileNode
     {
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.GetComponent<Player>())
-        {
-            Triggered = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        if (!PlayerDiedOn)
-        {
-            Triggered = false;
-        }
-    }
 
     // Update is called once per frame
     void Update()
     {
+        if (playerIn)
+            Triggered = true;
+        if (!playerIn && !PlayerDiedOn)
+            Triggered = false;
         if (Triggered == true)
         {
             GameObject door = this.transform.Find(doorName).gameObject;
