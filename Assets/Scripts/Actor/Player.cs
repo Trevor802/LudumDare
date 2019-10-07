@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public AudioClip footStep;
+    public AudioClip death;
+    public AudioClip respawn;
     public float moveTime = 0.5f;
     public int initLives = 3;
     public int lives = 3;
@@ -106,6 +109,7 @@ public class Player : MonoBehaviour
         UpdateStepUI();
         if (steps <= 0)
         {
+            source.PlayOneShot(death);
             Respawn();
         }
     }
@@ -113,6 +117,7 @@ public class Player : MonoBehaviour
     private IEnumerator Respawning(bool costLife)
     {
         // Respawn End
+        
         moving = true;
         float spawnDur = deathAnimDur;
         if (costLife)
@@ -127,6 +132,7 @@ public class Player : MonoBehaviour
         moving = false;
         steps = initSteps;
         // Respawn Animation
+        source.PlayOneShot(respawn, 0.5f);
         yield return new WaitForSeconds(respawnAnimDur);
         foreach (TileNode node in FindObjectsOfType<TileNode>())
         {
