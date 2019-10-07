@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     public List<GameObject> cinema_list;
-    private int level_index;
+    public int level_index;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +33,7 @@ public class CameraManager : MonoBehaviour
 
     public void SwitchLevelCamera()
     {
-        Debug.Log(cinema_list.Count+" i="+level_index);
+        //Debug.Log(cinema_list.Count+" i="+level_index);
 
         if(level_index < cinema_list.Count - 1)
         {

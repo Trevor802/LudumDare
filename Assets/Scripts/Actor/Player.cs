@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     public float moveTime = 0.5f;
+    public int initLives = 3;
     public int lives = 3;
     public int initSteps = 7;
     public int steps;
@@ -21,7 +23,15 @@ public class Player : MonoBehaviour
     public bool moving;
     public Coroutine movingCoroutine;
     private GameObject headKey;
+    private GameObject step1;
+    private GameObject step2;
+    private GameObject step3;
+    private GameObject step4;
+    private GameObject step5;
+    private GameObject step6;
+    private GameObject step7;
     private Animator animator;
+    private SpriteRenderer keySprite;
 
     //private UnityEvent playerRespawnStartEvent;
     //private UnityEvent playerRespawnEndEvent;
@@ -32,10 +42,20 @@ public class Player : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         steps = initSteps;
         initPos = transform.position;
-        UIManager.instance.UpdateUI();
         inverseMoveTime = 1 / moveTime;
         headKey = this.transform.Find("HeadKey").gameObject;
+        step1 = this.transform.Find("step1").gameObject;
+        step2 = this.transform.Find("step2").gameObject;
+        step3 = this.transform.Find("step3").gameObject;
+        step4 = this.transform.Find("step4").gameObject;
+        step5 = this.transform.Find("step5").gameObject;
+        step6 = this.transform.Find("step6").gameObject;
+        step7 = this.transform.Find("step7").gameObject;
         animator = GetComponent<Animator>();
+        UIManager.instance.UpdateUI();
+        UpdateStepUI();
+        keySprite = headKey.GetComponent<SpriteRenderer>();
+        keySprite.sortingOrder = 1;
     }
 
     public bool Move(int xDir, int yDir, out RaycastHit2D hit,
@@ -56,6 +76,7 @@ public class Player : MonoBehaviour
                     tile.OnTickStart();
                 }
                 steps--;
+                UpdateStepUI();
             }
             if (smoothMove)
             {
@@ -99,9 +120,11 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(respawnDelaySeconds);
         Vector3 deathPos = transform.position;
         transform.position = initPos;
-        steps = initSteps;
         lastMove = Vector2.zero;
         moving = false;
+        steps = initSteps;
+        UIManager.instance.UpdateUI();
+        UpdateStepUI();
         if (hasKey)
         {
             keyInstance.transform.position = deathPos;
@@ -148,21 +171,26 @@ public class Player : MonoBehaviour
                     if (horizontal == 1)
                     {
                         animator.Play("WalkRight");
+                        keySprite.sortingOrder = 1;
                     }
                     else
                     {
                         animator.Play("WalkLeft");
+                        keySprite.sortingOrder = 1;
                     }
                 }
                 else
                 {
                     if (vertical == 1)
                     {
+                        //headKey.transform.localPosition = new Vector3(headKey.transform.position.x, headKey.transform.position.y, -2f);
+                        keySprite.sortingOrder = 0;
                         animator.Play("WalkUp");
                     }
                     else
                     {
                         animator.Play("WalkDown");
+                        keySprite.sortingOrder = 1;
                     }
                 }
                 RaycastHit2D hit;
@@ -179,14 +207,21 @@ public class Player : MonoBehaviour
         initPos = pos;
     }
 
-    public void Respawn()
+    public void Respawn(bool costLife = true)
     {
+        if (costLife)
+        {
+            lives--;
+        }
+        else
+        {
+            lives = initLives;
+        }
         StopCoroutine(movingCoroutine);
         foreach (TileNode node in FindObjectsOfType<TileNode>())
         {
             node.OnPlayerRespawnStart(this);
         }
-        lives--;
         if (lives <= 0)
         {
             GameOver();
@@ -197,7 +232,7 @@ public class Player : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("Game Over");
+        SceneManager.LoadScene(1);
     }
 
     public bool TryUseKey()
@@ -224,5 +259,81 @@ public class Player : MonoBehaviour
     {
         steps += step;
         UIManager.instance.UpdateUI();
+        UpdateStepUI();
     }
+
+    private void UpdateStepUI()
+    {
+        if (steps == 7)
+        {
+            step1.GetComponent<SpriteRenderer>().enabled = false;
+            step2.GetComponent<SpriteRenderer>().enabled = false;
+            step3.GetComponent<SpriteRenderer>().enabled = false;
+            step4.GetComponent<SpriteRenderer>().enabled = false;
+            step5.GetComponent<SpriteRenderer>().enabled = false;
+            step6.GetComponent<SpriteRenderer>().enabled = false;
+            step7.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        else if (steps == 6)
+        {
+            step1.GetComponent<SpriteRenderer>().enabled = false;
+            step2.GetComponent<SpriteRenderer>().enabled = false;
+            step3.GetComponent<SpriteRenderer>().enabled = false;
+            step4.GetComponent<SpriteRenderer>().enabled = false;
+            step5.GetComponent<SpriteRenderer>().enabled = false;
+            step6.GetComponent<SpriteRenderer>().enabled = true;
+            step7.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        else if (steps == 5)
+        {
+            step1.GetComponent<SpriteRenderer>().enabled = false;
+            step2.GetComponent<SpriteRenderer>().enabled = false;
+            step3.GetComponent<SpriteRenderer>().enabled = false;
+            step4.GetComponent<SpriteRenderer>().enabled = false;
+            step5.GetComponent<SpriteRenderer>().enabled = true;
+            step6.GetComponent<SpriteRenderer>().enabled = false;
+            step7.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        else if (steps == 4)
+        {
+            step1.GetComponent<SpriteRenderer>().enabled = false;
+            step2.GetComponent<SpriteRenderer>().enabled = false;
+            step3.GetComponent<SpriteRenderer>().enabled = false;
+            step4.GetComponent<SpriteRenderer>().enabled = true;
+            step5.GetComponent<SpriteRenderer>().enabled = false;
+            step6.GetComponent<SpriteRenderer>().enabled = false;
+            step7.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        else if (steps == 3)
+        {
+            step1.GetComponent<SpriteRenderer>().enabled = false;
+            step2.GetComponent<SpriteRenderer>().enabled = false;
+            step3.GetComponent<SpriteRenderer>().enabled = true;
+            step4.GetComponent<SpriteRenderer>().enabled = false;
+            step5.GetComponent<SpriteRenderer>().enabled = false;
+            step6.GetComponent<SpriteRenderer>().enabled = false;
+            step7.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        else if (steps == 2)
+        {
+            step1.GetComponent<SpriteRenderer>().enabled = false;
+            step2.GetComponent<SpriteRenderer>().enabled = true;
+            step3.GetComponent<SpriteRenderer>().enabled = false;
+            step4.GetComponent<SpriteRenderer>().enabled = false;
+            step5.GetComponent<SpriteRenderer>().enabled = false;
+            step6.GetComponent<SpriteRenderer>().enabled = false;
+            step7.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        else if (steps == 1)
+        {
+            step1.GetComponent<SpriteRenderer>().enabled = true;
+            step2.GetComponent<SpriteRenderer>().enabled = false;
+            step3.GetComponent<SpriteRenderer>().enabled = false;
+            step4.GetComponent<SpriteRenderer>().enabled = false;
+            step5.GetComponent<SpriteRenderer>().enabled = false;
+            step6.GetComponent<SpriteRenderer>().enabled = false;
+            step7.GetComponent<SpriteRenderer>().enabled = false;
+        }
+    }
+
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Banana : TileNode
 {
     bool slipping = false;
-    bool hasSlipped = false;
     Player player;
     void OnTriggerStay2D(Collider2D col)
     {
@@ -33,7 +32,6 @@ public class Banana : TileNode
                 if (!hit.transform)
                 {
                     slipping = false;
-                    hasSlipped = true;
                 }
             }
         }
