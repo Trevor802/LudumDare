@@ -27,8 +27,7 @@ public class Pickups : TileNode
         if (collision.gameObject.GetComponent<Player>() && pickup == pickup_Type.Key)
         {
             source.Play();
-            collision.gameObject.GetComponent<Player>().AddKey(this.gameObject);
-            this.gameObject.SetActive(false);
+            StartCoroutine(DeactivateUpItem(collision));
         }
         if (collision.gameObject.GetComponent<Player>() && pickup == pickup_Type.AP_supply)
         {
@@ -39,5 +38,13 @@ public class Pickups : TileNode
         //Debug.Log("Pick up key!");
         //Destroy(this.gameObject);
 
+    }
+
+    private IEnumerator DeactivateUpItem(Collider2D collision)
+    {
+        yield return new WaitForSeconds(0.3f);
+        this.gameObject.SetActive(false);
+        collision.gameObject.GetComponent<Player>().AddKey(this.gameObject);
+        //
     }
 }

@@ -11,18 +11,21 @@ public class Doors : TileNode
     private bool isInAnimation;
     public GameObject startPoint;
     public float camSwitchBeforeDelay;
+    private AudioSource source;
+
     void Start()
     {
         LevelCamera= GameObject.FindGameObjectWithTag("MainCamera");
         GameObject.FindGameObjectWithTag("MainCamera");
         animator = GetComponent<Animator>();
+        source = GetComponent<AudioSource>();
     }
 
     public override void OnPlayerEnter(Player player)
     {
         if (player.TryUseKey())
         {
-            print("play");
+            source.Play();
             animator.Play("exit");
             isInAnimation = true;
             player.Respawn(false);
