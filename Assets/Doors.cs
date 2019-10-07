@@ -10,19 +10,24 @@ public class Doors : TileNode
     private Animator animator;
     private bool isInAnimation;
     public GameObject startPoint;
+<<<<<<< Updated upstream
     public float camSwitchBeforeDelay;
+=======
+    private AudioSource source;
+>>>>>>> Stashed changes
     void Start()
     {
         LevelCamera= GameObject.FindGameObjectWithTag("MainCamera");
         GameObject.FindGameObjectWithTag("MainCamera");
         animator = GetComponent<Animator>();
+        source = GetComponent<AudioSource>();
     }
 
     public override void OnPlayerEnter(Player player)
     {
         if (player.TryUseKey())
         {
-            print("play");
+            source.Play();
             animator.Play("exit");
             isInAnimation = true;
             player.Respawn(false);
