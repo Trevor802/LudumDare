@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
     private SpriteRenderer keySprite;
     private AudioSource source;
     private ObjectPooler Pools;
-    private int ifWinCount = 0;
 
     //private UnityEvent playerRespawnStartEvent;
     //private UnityEvent playerRespawnEndEvent;
@@ -48,11 +47,11 @@ public class Player : MonoBehaviour
         headKey = this.transform.Find("HeadKey").gameObject;
         animator = GetComponent<Animator>();
         source = GetComponent<AudioSource>();
-        UIManager.instance.UpdateUI();
         UpdateStepUI();
         keySprite = headKey.GetComponent<SpriteRenderer>();
         keySprite.sortingOrder = 1;
         Pools = GameObject.Find("Pools").GetComponent<ObjectPooler>();
+        UIManager.instance.initUI();
     }
 
     public bool Move(int xDir, int yDir, out RaycastHit2D hit,
@@ -153,7 +152,6 @@ public class Player : MonoBehaviour
         keySprite.sortingOrder = 1;
         moving = false;
         // UI UPDATE
-        UIManager.instance.UpdateUI();
         UpdateStepUI();
     }
 
@@ -222,7 +220,6 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene("2Dlevel");
-            UIManager.instance.initUI();
         }
     }
 
@@ -237,6 +234,7 @@ public class Player : MonoBehaviour
         if (costLife)
         {
             lives--;
+            UIManager.instance.UpdateUI();
         }
         else
         {

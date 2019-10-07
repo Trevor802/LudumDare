@@ -26,32 +26,26 @@ public class UIManager : MonoBehaviour
     public Text stepsText;
     public Text livesText;
     public Text keyText;
-    public RawImage lifeImage1;
-    public RawImage lifeImage2;
-    public RawImage lifeImage3;
+    public RawImage[] lifeIcons;
+    public RawImage[] crossIcons;
     public void UpdateUI()
     {
         Player player = FindObjectOfType<Player>();
         stepsText.text = "Steps: " + player.steps;
         livesText.text = "Lives: " + player.lives;
         keyText.text = "Key: " + player.hasKey.ToString();
-        if (player.lives == 3)
+        for (int i = 0; i < player.initLives; i++)
         {
-            lifeImage1.enabled = false;
-            lifeImage2.enabled = false;
-            lifeImage3.enabled = true;
-        }
-        else if (player.lives == 2)
-        {
-            lifeImage1.enabled = false;
-            lifeImage2.enabled = true;
-            lifeImage3.enabled = false;
-        }
-        else if (player.lives == 1)
-        {
-            lifeImage1.enabled = true;
-            lifeImage2.enabled = false;
-            lifeImage3.enabled = false;
+            if (i <= player.lives - 1)
+            {
+                lifeIcons[i].enabled = true;
+                crossIcons[i].enabled = false;
+            }
+            else
+            {
+                lifeIcons[i].enabled = false;
+                crossIcons[i].enabled = true;
+            }
         }
     }
 
@@ -60,13 +54,27 @@ public class UIManager : MonoBehaviour
         stepsText.text = "";
         livesText.text = "";
         keyText.text = "";
-        lifeImage1.enabled = false;
-        lifeImage2.enabled = false;
-        lifeImage3.enabled = false;
+        for (int i = 0; i < lifeIcons.Length; i++)
+        {
+            lifeIcons[i].enabled = false;
+            crossIcons[i].enabled = false;
+        }
     }
 
     public void initUI()
     {
-        lifeImage3.enabled = true;
+        Player player = FindObjectOfType<Player>();
+        for (int i = 0; i < lifeIcons.Length; i++)
+        {
+            crossIcons[i].enabled = false;
+            if (i <= player.initLives - 1)
+            {
+                lifeIcons[i].enabled = true;
+            }
+            else
+            {
+                lifeIcons[i].enabled = false;
+            }
+        }
     }
 }
