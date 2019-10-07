@@ -54,4 +54,17 @@ public class UIManager : MonoBehaviour
             lifeImage3.enabled = false;
         }
     }
+
+    public void ClearUI()
+    {
+        stepsText.text = "";
+        livesText.text = "";
+        keyText.text = "";
+        lifeImage1.enabled = false;
+    }
+
+    public void initUI()
+    {
+        lifeImage3.enabled = true;
+    }
 }
