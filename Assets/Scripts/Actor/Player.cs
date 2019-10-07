@@ -116,6 +116,8 @@ public class Player : MonoBehaviour
         lastMove = Vector2.zero;
         moving = false;
         steps = initSteps;
+        animator.Play("WalkDown");
+        keySprite.sortingOrder = 1;
         if (hasKey)
         {
             keyInstance.transform.position = deathPos;
