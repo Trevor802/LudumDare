@@ -35,6 +35,7 @@ public class UIManager : MonoBehaviour
         stepsText.text = "Steps: " + player.steps;
         livesText.text = "Lives: " + player.lives;
         keyText.text = "Key: " + player.hasKey.ToString();
+        /*
         if (player.lives == 3)
         {
             lifeImage1.enabled = false;
@@ -52,7 +53,7 @@ public class UIManager : MonoBehaviour
             lifeImage1.enabled = true;
             lifeImage2.enabled = false;
             lifeImage3.enabled = false;
-        }
+        }*/
     }
 
     public void ClearUI()
@@ -60,11 +61,11 @@ public class UIManager : MonoBehaviour
         stepsText.text = "";
         livesText.text = "";
         keyText.text = "";
-        lifeImage1.enabled = false;
+        //lifeImage1.enabled = false;
     }
 
     public void initUI()
     {
-        lifeImage3.enabled = true;
+        //lifeImage3.enabled = true;
     }
 }
