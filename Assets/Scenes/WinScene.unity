@@ -271,7 +271,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: YOU WIN!
+  m_Text: '  '
 --- !u!222 &489294049
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -312,6 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39bbdde9c533c5c43ba0145a3974f666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audio: {fileID: 8300000, guid: f26f28c5c5bee0340b284b63d779959b, type: 3}
 --- !u!114 &1851618619
 MonoBehaviour:
   m_ObjectHideFlags: 0

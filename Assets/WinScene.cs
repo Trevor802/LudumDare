@@ -5,19 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class WinScene : MonoBehaviour
 {
+    public AudioClip audio;
     void Start()
     {
-
+        AudioManager.instance.PlayMusic(audio);
+        StartAnim();
     }
 
     // Update is called once per frame
     void Update()
     {
-        UIManager.instance.ClearUI();
+        //UIManager.instance.ClearUI();
     }
     public void StartAnim()
     {
-        Debug.Log("Playing Animation");
+        SceneManager.LoadScene("Animation_GuguBorn");
     }
 
     public void OpenLevel()

@@ -9,10 +9,14 @@ public class MakeSentence : MonoBehaviour
     public Text textBox;
     public Animator animator;
     public Queue<string> sentences;
+    [SerializeField]
+    public AudioClip clip;
     // Start is called before the first frame update
     void Start()
     {
         sentences = new Queue<string>();
+        AudioManager.instance.PlayMusic(clip);
+
     }
 
     public void StartSentence(Sentence sentence)
