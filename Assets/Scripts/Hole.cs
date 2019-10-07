@@ -5,9 +5,11 @@ public class Hole : TileNode
 {
     private Animator animator;
     bool filled = false;
+    private AudioSource source;
     void Start()
     {
         animator = GetComponent<Animator>();
+        source = GetComponent<AudioSource>();
         //animator.Play("pitOpen");
     }
     public override void OnPlayerEnter(Player player)
@@ -17,6 +19,7 @@ public class Hole : TileNode
             if (filled == false)
             {
                 animator.Play("pitClose");
+                source.Play();
                 player.Respawn();
             }
             filled = true;
