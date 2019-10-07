@@ -11,7 +11,9 @@ public class Player : MonoBehaviour
     public int lives = 3;
     public int initSteps = 7;
     public int steps;
-    public float respawnDelaySeconds = 0.5f;
+    public float deathAnimDur = 0.5f;
+    public float camSwitchDur = 1f;
+    public float respawnAnimDur = 0.5f;
     private Vector3 initPos;
     public bool hasKey = false;
     public LayerMask blockingLayer;
@@ -59,6 +61,7 @@ public class Player : MonoBehaviour
         boxCollider.enabled = true;
         if (hit.transform == null)
         {
+            // Move Start
             if (costStep)
             {
                 foreach (TileNode tile in FindObjectsOfType<TileNode>())
@@ -82,6 +85,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator SmoothMovement(Vector3 end)
     {
+        // Move End
         moving = true;
         // Set the player's z position to 0, or remove the z value while calculating the distance
         float sqrDistance = (new Vector2(transform.position.x ,transform.position.y) - new Vector2(end.x, end.y)).sqrMagnitude;
@@ -106,19 +110,28 @@ public class Player : MonoBehaviour
         }
     }
 
-    private IEnumerator Respawning()
+    private IEnumerator Respawning(bool costLife)
     {
+        // Respawn End
         moving = true;
-        yield return new WaitForSeconds(respawnDelaySeconds);
-        foreach (TileNode node in FindObjectsOfType<TileNode>())
+        float spawnDur = deathAnimDur;
+        if (costLife)
         {
-            node.OnPlayerRespawnEnd(this);
+            spawnDur += camSwitchDur;
         }
+        // Death Animation
+        yield return new WaitForSeconds(spawnDur);
         Vector3 deathPos = transform.position;
         transform.position = initPos;
         lastMove = Vector2.zero;
         moving = false;
         steps = initSteps;
+        // Respawn Animation
+        yield return new WaitForSeconds(respawnAnimDur);
+        foreach (TileNode node in FindObjectsOfType<TileNode>())
+        {
+            node.OnPlayerRespawnEnd(this);
+        }
         animator.Play("WalkDown");
         keySprite.sortingOrder = 1;
         if (hasKey)
@@ -203,6 +216,7 @@ public class Player : MonoBehaviour
 
     public void Respawn(bool costLife = true)
     {
+        // Respawn Start
         if (costLife)
         {
             lives--;
@@ -221,7 +235,7 @@ public class Player : MonoBehaviour
             GameOver();
             return;
         }
-        StartCoroutine(Respawning());
+        StartCoroutine(Respawning(costLife));
     }
 
     public void GameOver()
