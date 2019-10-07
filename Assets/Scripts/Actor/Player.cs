@@ -141,7 +141,6 @@ public class Player : MonoBehaviour
         }
         transform.position = initPos;
         lastMove = Vector2.zero;
-        moving = false;
         steps = initSteps;
         // Respawn Animation
         source.PlayOneShot(respawn, 0.5f);
@@ -152,6 +151,7 @@ public class Player : MonoBehaviour
         }
         animator.Play("WalkDown");
         keySprite.sortingOrder = 1;
+        moving = false;
         // UI UPDATE
         UIManager.instance.UpdateUI();
         UpdateStepUI();
