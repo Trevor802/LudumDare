@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Doors : TileNode
 {
@@ -12,6 +13,7 @@ public class Doors : TileNode
     public GameObject startPoint;
     public float camSwitchBeforeDelay;
     private AudioSource source;
+    private int cnt = 5;
 
     void Start()
     {
@@ -29,6 +31,12 @@ public class Doors : TileNode
             animator.Play("exit");
             isInAnimation = true;
             player.Respawn(false);
+            //judge if win
+            cnt++;
+            if(cnt >= 5)
+            {
+                player.GameWin();
+            }
         }
         
     }
