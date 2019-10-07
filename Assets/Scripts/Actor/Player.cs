@@ -202,7 +202,7 @@ public class Player : MonoBehaviour
                     if (vertical == 1)
                     {
                         //headKey.transform.localPosition = new Vector3(headKey.transform.position.x, headKey.transform.position.y, -2f);
-                        keySprite.sortingOrder = 0;
+                        keySprite.sortingOrder = -1;
                         animator.Play("WalkUp");
                     }
                     else
