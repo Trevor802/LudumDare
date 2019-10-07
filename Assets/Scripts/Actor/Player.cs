@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     private GameObject step6;
     private GameObject step7;
     private Animator animator;
+    private SpriteRenderer keySprite;
 
     //private UnityEvent playerRespawnStartEvent;
     //private UnityEvent playerRespawnEndEvent;
@@ -53,6 +54,8 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         UIManager.instance.UpdateUI();
         UpdateStepUI();
+        keySprite = headKey.GetComponent<SpriteRenderer>();
+        keySprite.sortingOrder = 1;
     }
 
     public bool Move(int xDir, int yDir, out RaycastHit2D hit,
@@ -168,21 +171,26 @@ public class Player : MonoBehaviour
                     if (horizontal == 1)
                     {
                         animator.Play("WalkRight");
+                        keySprite.sortingOrder = 1;
                     }
                     else
                     {
                         animator.Play("WalkLeft");
+                        keySprite.sortingOrder = 1;
                     }
                 }
                 else
                 {
                     if (vertical == 1)
                     {
+                        //headKey.transform.localPosition = new Vector3(headKey.transform.position.x, headKey.transform.position.y, -2f);
+                        keySprite.sortingOrder = 0;
                         animator.Play("WalkUp");
                     }
                     else
                     {
                         animator.Play("WalkDown");
+                        keySprite.sortingOrder = 1;
                     }
                 }
                 RaycastHit2D hit;

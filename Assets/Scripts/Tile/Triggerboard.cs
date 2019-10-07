@@ -8,9 +8,11 @@ public class Triggerboard : TileNode
     bool PlayerDiedOn = false;
     public string doorName = "door";
     private float threshold = 0.2f;
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
     }
 
 
@@ -41,6 +43,7 @@ public class Triggerboard : TileNode
         {
             PlayerDiedOn = true;
             Triggered = true;
+            animator.SetBool("PlayerBody", true);
         }
     }
 }

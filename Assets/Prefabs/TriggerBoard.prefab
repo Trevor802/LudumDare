@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 979848669770735530}
   - component: {fileID: 4593903838142960492}
   - component: {fileID: 4716848419912266926}
+  - component: {fileID: 1623421247689616152}
   m_Layer: 0
   m_Name: TriggerBoard
   m_TagString: Untagged
