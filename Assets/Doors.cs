@@ -20,7 +20,8 @@ public class Doors : TileNode
     {
         if (player.TryUseKey())
         {
-            animator.Play("Trigger");
+            print("play");
+            animator.Play("exit");
             isInAnimation = true;
             player.Respawn(false);
         }
