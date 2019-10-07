@@ -125,9 +125,11 @@ public class Player : MonoBehaviour
         if (costLife)
         {
             spawnDur += camSwitchDur;
+            // Death Animation
+            animator.Play("Death");
         }
-        // Death Animation
-        animator.Play("Death");
+        
+        
         HideStepIcon();
         yield return new WaitForSeconds(spawnDur);
         Vector3 deathPos = transform.position;

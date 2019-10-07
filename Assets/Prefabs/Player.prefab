@@ -680,9 +680,9 @@ MonoBehaviour:
   lives: 3
   initSteps: 7
   steps: 0
-  deathAnimDur: 2
+  deathAnimDur: 0.1
   camSwitchDur: 1
-  respawnAnimDur: 2
+  respawnAnimDur: 0.2
   hasKey: 0
   blockingLayer:
     serializedVersion: 2
