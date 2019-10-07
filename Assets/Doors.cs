@@ -10,11 +10,9 @@ public class Doors : TileNode
     private Animator animator;
     private bool isInAnimation;
     public GameObject startPoint;
-<<<<<<< Updated upstream
     public float camSwitchBeforeDelay;
-=======
     private AudioSource source;
->>>>>>> Stashed changes
+
     void Start()
     {
         LevelCamera= GameObject.FindGameObjectWithTag("MainCamera");
