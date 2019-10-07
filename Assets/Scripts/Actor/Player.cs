@@ -23,13 +23,7 @@ public class Player : MonoBehaviour
     public bool moving;
     public Coroutine movingCoroutine;
     private GameObject headKey;
-    private GameObject step1;
-    private GameObject step2;
-    private GameObject step3;
-    private GameObject step4;
-    private GameObject step5;
-    private GameObject step6;
-    private GameObject step7;
+    public SpriteRenderer[] stepIcons;
     private Animator animator;
     private SpriteRenderer keySprite;
 
@@ -44,13 +38,6 @@ public class Player : MonoBehaviour
         initPos = transform.position;
         inverseMoveTime = 1 / moveTime;
         headKey = this.transform.Find("HeadKey").gameObject;
-        step1 = this.transform.Find("step1").gameObject;
-        step2 = this.transform.Find("step2").gameObject;
-        step3 = this.transform.Find("step3").gameObject;
-        step4 = this.transform.Find("step4").gameObject;
-        step5 = this.transform.Find("step5").gameObject;
-        step6 = this.transform.Find("step6").gameObject;
-        step7 = this.transform.Find("step7").gameObject;
         animator = GetComponent<Animator>();
         UIManager.instance.UpdateUI();
         UpdateStepUI();
@@ -76,7 +63,6 @@ public class Player : MonoBehaviour
                     tile.OnTickStart();
                 }
                 steps--;
-                UpdateStepUI();
             }
             if (smoothMove)
             {
@@ -108,6 +94,9 @@ public class Player : MonoBehaviour
         {
             tile.OnTickEnd();
         }
+        // UI UPDATE
+        UIManager.instance.UpdateUI();
+        UpdateStepUI();
         if (steps <= 0)
         {
             Respawn();
@@ -127,8 +116,6 @@ public class Player : MonoBehaviour
         lastMove = Vector2.zero;
         moving = false;
         steps = initSteps;
-        UIManager.instance.UpdateUI();
-        UpdateStepUI();
         if (hasKey)
         {
             keyInstance.transform.position = deathPos;
@@ -136,6 +123,9 @@ public class Player : MonoBehaviour
             headKey.SetActive(false);
             hasKey = false;
         }
+        // UI UPDATE
+        UIManager.instance.UpdateUI();
+        UpdateStepUI();
     }
 
     private void Update()
@@ -195,7 +185,6 @@ public class Player : MonoBehaviour
                 }
                 RaycastHit2D hit;
                 Move(horizontal, vertical, out hit);
-                UIManager.instance.UpdateUI();
             }
         }
         horizontal = 0;
@@ -253,87 +242,26 @@ public class Player : MonoBehaviour
         headKey.SetActive(true);
         //Debug.Log(keyInstance.name);
         hasKey = true;
-        UIManager.instance.UpdateUI();
     }
 
     public void AddStep(int step)
     {
         steps += step;
-        UIManager.instance.UpdateUI();
-        UpdateStepUI();
     }
 
     private void UpdateStepUI()
     {
-        if (steps == 7)
+        for (int i = 0; i < 7; i++)
         {
-            step1.GetComponent<SpriteRenderer>().enabled = false;
-            step2.GetComponent<SpriteRenderer>().enabled = false;
-            step3.GetComponent<SpriteRenderer>().enabled = false;
-            step4.GetComponent<SpriteRenderer>().enabled = false;
-            step5.GetComponent<SpriteRenderer>().enabled = false;
-            step6.GetComponent<SpriteRenderer>().enabled = false;
-            step7.GetComponent<SpriteRenderer>().enabled = true;
-        }
-        else if (steps == 6)
-        {
-            step1.GetComponent<SpriteRenderer>().enabled = false;
-            step2.GetComponent<SpriteRenderer>().enabled = false;
-            step3.GetComponent<SpriteRenderer>().enabled = false;
-            step4.GetComponent<SpriteRenderer>().enabled = false;
-            step5.GetComponent<SpriteRenderer>().enabled = false;
-            step6.GetComponent<SpriteRenderer>().enabled = true;
-            step7.GetComponent<SpriteRenderer>().enabled = false;
-        }
-        else if (steps == 5)
-        {
-            step1.GetComponent<SpriteRenderer>().enabled = false;
-            step2.GetComponent<SpriteRenderer>().enabled = false;
-            step3.GetComponent<SpriteRenderer>().enabled = false;
-            step4.GetComponent<SpriteRenderer>().enabled = false;
-            step5.GetComponent<SpriteRenderer>().enabled = true;
-            step6.GetComponent<SpriteRenderer>().enabled = false;
-            step7.GetComponent<SpriteRenderer>().enabled = false;
-        }
-        else if (steps == 4)
-        {
-            step1.GetComponent<SpriteRenderer>().enabled = false;
-            step2.GetComponent<SpriteRenderer>().enabled = false;
-            step3.GetComponent<SpriteRenderer>().enabled = false;
-            step4.GetComponent<SpriteRenderer>().enabled = true;
-            step5.GetComponent<SpriteRenderer>().enabled = false;
-            step6.GetComponent<SpriteRenderer>().enabled = false;
-            step7.GetComponent<SpriteRenderer>().enabled = false;
-        }
-        else if (steps == 3)
-        {
-            step1.GetComponent<SpriteRenderer>().enabled = false;
-            step2.GetComponent<SpriteRenderer>().enabled = false;
-            step3.GetComponent<SpriteRenderer>().enabled = true;
-            step4.GetComponent<SpriteRenderer>().enabled = false;
-            step5.GetComponent<SpriteRenderer>().enabled = false;
-            step6.GetComponent<SpriteRenderer>().enabled = false;
-            step7.GetComponent<SpriteRenderer>().enabled = false;
-        }
-        else if (steps == 2)
-        {
-            step1.GetComponent<SpriteRenderer>().enabled = false;
-            step2.GetComponent<SpriteRenderer>().enabled = true;
-            step3.GetComponent<SpriteRenderer>().enabled = false;
-            step4.GetComponent<SpriteRenderer>().enabled = false;
-            step5.GetComponent<SpriteRenderer>().enabled = false;
-            step6.GetComponent<SpriteRenderer>().enabled = false;
-            step7.GetComponent<SpriteRenderer>().enabled = false;
-        }
-        else if (steps == 1)
-        {
-            step1.GetComponent<SpriteRenderer>().enabled = true;
-            step2.GetComponent<SpriteRenderer>().enabled = false;
-            step3.GetComponent<SpriteRenderer>().enabled = false;
-            step4.GetComponent<SpriteRenderer>().enabled = false;
-            step5.GetComponent<SpriteRenderer>().enabled = false;
-            step6.GetComponent<SpriteRenderer>().enabled = false;
-            step7.GetComponent<SpriteRenderer>().enabled = false;
+            if (i == steps - 1)
+            {
+                stepIcons[i].enabled = true;
+            }
+            else
+            {
+                stepIcons[i].enabled = false;
+            }
+
         }
     }
 
