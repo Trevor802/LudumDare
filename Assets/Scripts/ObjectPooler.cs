@@ -16,7 +16,6 @@ public class ObjectPooler : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
     }
     #endregion
 
