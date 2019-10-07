@@ -16,7 +16,6 @@ public class Hole : TileNode
         {
             if (filled == false)
             {
-                print("pass");
                 animator.Play("pitClose");
                 player.Respawn();
             }
