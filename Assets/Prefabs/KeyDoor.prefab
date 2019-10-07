@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2703136758182481044}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 10, z: 0}
+  m_LocalPosition: {x: -3, y: 8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8982404412974507271}
@@ -42,8 +42,8 @@ GameObject:
   - component: {fileID: 8982404412974507288}
   - component: {fileID: 8982404412974507289}
   - component: {fileID: 8982404412974507290}
-  - component: {fileID: 291992505}
-  - component: {fileID: 291992501}
+  - component: {fileID: 7413042147095598346}
+  - component: {fileID: 3214746566188431732}
   m_Layer: 0
   m_Name: KeyDoor
   m_TagString: Untagged
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelIndex: 0
   startPoint: {fileID: 2703136758182481044}
-  camSwitchBeforeDelay: 2
+  camSwitchBeforeDelay: 0
 --- !u!61 &8982404412974507290
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.8}
   m_EdgeRadius: 0
---- !u!82 &291992505
+--- !u!82 &7413042147095598346
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,7 +169,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8702243e3f21cd24cab69f4ad7bbb597, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.275
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -253,7 +253,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!95 &291992501
+--- !u!95 &3214746566188431732
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

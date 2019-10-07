@@ -68,7 +68,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -944048341
   m_SortingLayer: 1
-  m_SortingOrder: 3
+  m_SortingOrder: 20
   m_Sprite: {fileID: -5894955762392725802, guid: 35ef7f6791e040a4c9c0a4fb125cce94,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -149,7 +149,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -944048341
   m_SortingLayer: 1
-  m_SortingOrder: 3
+  m_SortingOrder: 20
   m_Sprite: {fileID: -7908628291288568763, guid: 35ef7f6791e040a4c9c0a4fb125cce94,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -230,7 +230,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -944048341
   m_SortingLayer: 1
-  m_SortingOrder: 3
+  m_SortingOrder: 20
   m_Sprite: {fileID: 2949316090705767711, guid: 35ef7f6791e040a4c9c0a4fb125cce94,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -311,7 +311,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -944048341
   m_SortingLayer: 1
-  m_SortingOrder: 3
+  m_SortingOrder: 20
   m_Sprite: {fileID: -6746061792629074286, guid: 35ef7f6791e040a4c9c0a4fb125cce94,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -392,7 +392,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -944048341
   m_SortingLayer: 1
-  m_SortingOrder: 3
+  m_SortingOrder: 20
   m_Sprite: {fileID: 2865987701436281913, guid: 35ef7f6791e040a4c9c0a4fb125cce94,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -473,7 +473,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -944048341
   m_SortingLayer: 1
-  m_SortingOrder: 3
+  m_SortingOrder: 20
   m_Sprite: {fileID: 4899201696670506934, guid: 35ef7f6791e040a4c9c0a4fb125cce94,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -929,7 +929,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -944048341
   m_SortingLayer: 1
-  m_SortingOrder: 3
+  m_SortingOrder: 20
   m_Sprite: {fileID: 2443136069737068690, guid: 35ef7f6791e040a4c9c0a4fb125cce94,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

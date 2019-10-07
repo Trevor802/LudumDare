@@ -34,7 +34,6 @@ public class CameraManager : MonoBehaviour
     public void SwitchLevelCamera()
     {
         //Debug.Log(cinema_list.Count+" i="+level_index);
-
         if(level_index < cinema_list.Count - 1)
         {
             cinema_list[level_index + 1].SetActive(true);
