@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class Trap : TileNode
 {
-   // public bool hitWithTrap = false;
+    // public bool hitWithTrap = false;
     private int cnt = 1;
     //public GameObject trap;
     // private int firstTrapAtStep = 0;
     private int trapTimes = 2;// cnt%? 2 is odd/even
     public bool isTrapOnEven = true;
     private bool activated;
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
-        if(isTrapOnEven == false)
+        animator = GetComponent<Animator>();
+        if (isTrapOnEven == false)
         {
-            GetComponent<SpriteRenderer>().enabled = false;
+            animator.Play("TrapOff");
+            UIManager.instance.UpdateUI();
+            // GetComponent<SpriteRenderer>().enabled = false;
         }
-        
+
+
     }
     override public void OnTickStart()
     {
@@ -43,29 +48,33 @@ public class Trap : TileNode
             if (isTrapOnEven == true)
             {
                 isTrapOnEven = false;
+                animator.Play("TrapOff");
             }
             else
             {
                 isTrapOnEven = true;
+                animator.Play("TrapOn");
             }
-                
-            GetComponent<SpriteRenderer>().enabled = isTrapOnEven;
-                // this.gameObject.SetActive(false);
+
+            // GetComponent<SpriteRenderer>().enabled = isTrapOnEven;
+            // this.gameObject.SetActive(false);
         }
         else
         {
-            if(isTrapOnEven == false)
+            if (isTrapOnEven == false)
             {
                 isTrapOnEven = true;
+                animator.Play("TrapOn");
             }
             else
             {
                 isTrapOnEven = false;
+                animator.Play("TrapOff");
             }
-            GetComponent<SpriteRenderer>().enabled = isTrapOnEven;
+            //GetComponent<SpriteRenderer>().enabled = isTrapOnEven;
         }
-        
 
+        UIManager.instance.UpdateUI();
     }
 
 
