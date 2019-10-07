@@ -24,12 +24,14 @@ public class Triggerboard : TileNode
             Triggered = false;
         if (Triggered == true)
         {
+            animator.SetBool("PlayerOn", true);
             GameObject door = this.transform.Find(doorName).gameObject;
             door.GetComponent<BoxCollider2D>().enabled = false;
             door.GetComponent<SpriteRenderer>().enabled = false;
         }
         if (Triggered == false)
         {
+            animator.SetBool("PlayerOn", false);
             GameObject door = this.transform.Find(doorName).gameObject;
             door.GetComponent<BoxCollider2D>().enabled = true;
             door.GetComponent<SpriteRenderer>().enabled = true;
@@ -42,7 +44,6 @@ public class Triggerboard : TileNode
         {
             PlayerDiedOn = true;
             Triggered = true;
-            animator.SetBool("PlayerBody", true);
         }
     }
 }

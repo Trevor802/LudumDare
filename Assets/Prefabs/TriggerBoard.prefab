@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 979848669770735530}
   - component: {fileID: 4593903838142960492}
   - component: {fileID: 4716848419912266926}
-  - component: {fileID: 1728750102}
+  - component: {fileID: 2469049822894954011}
   m_Layer: 0
   m_Name: TriggerBoard
   m_TagString: Untagged
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorName: door
---- !u!95 &1728750102
+--- !u!95 &2469049822894954011
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -134,7 +134,7 @@ Animator:
   m_GameObject: {fileID: 4294215749208332357}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fc86fc7b005ebbc43816af6ab71735e8, type: 2}
+  m_Controller: {fileID: 9100000, guid: 54dbaa92b662f9c4b9d22f82fb3f46bf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
