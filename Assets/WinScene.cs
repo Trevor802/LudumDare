@@ -14,11 +14,14 @@ public class WinScene : MonoBehaviour
     void Update()
     {
         UIManager.instance.ClearUI();
-        //play anim and after anim jump to MainScene
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SceneManager.LoadScene("MainScene");
-            UIManager.instance.initUI();
-        }
+    }
+    public void StartAnim()
+    {
+        Debug.Log("Playing Animation");
+    }
+
+    public void OpenLevel()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 }
