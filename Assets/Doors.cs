@@ -20,10 +20,8 @@ public class Doors : TileNode
             levelIndex = LevelCamera.GetComponent<CameraManager>().level_index;
             nextLevel = "Level" + (levelIndex + 1).ToString();
             Vector3 nextCheckPoint = new Vector3(GameObject.Find("Background").transform.Find("Grid").Find(nextLevel).Find("checkpoint").position.x, GameObject.Find("Background").transform.Find("Grid").Find(nextLevel).Find("checkpoint").position.y, player.transform.position.z);
-            Debug.Log("reset checkpoint");
             player.ResetRespawnPos(nextCheckPoint);
-            Debug.Log("respawn");
-            player.Respawn();
+            player.Respawn(false);
             this.gameObject.SetActive(false);
         }
         

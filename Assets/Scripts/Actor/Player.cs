@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     public float moveTime = 0.5f;
+    public int initLives = 3;
     public int lives = 3;
     public int initSteps = 7;
     public int steps;
@@ -119,6 +120,7 @@ public class Player : MonoBehaviour
         lastMove = Vector2.zero;
         moving = false;
         steps = initSteps;
+        UIManager.instance.UpdateUI();
         UpdateStepUI();
         if (hasKey)
         {
@@ -197,14 +199,21 @@ public class Player : MonoBehaviour
         initPos = pos;
     }
 
-    public void Respawn()
+    public void Respawn(bool costLife = true)
     {
+        if (costLife)
+        {
+            lives--;
+        }
+        else
+        {
+            lives = initLives;
+        }
         StopCoroutine(movingCoroutine);
         foreach (TileNode node in FindObjectsOfType<TileNode>())
         {
             node.OnPlayerRespawnStart(this);
         }
-        lives--;
         if (lives <= 0)
         {
             GameOver();
