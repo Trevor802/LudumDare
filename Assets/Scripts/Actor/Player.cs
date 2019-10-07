@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
     public bool Move(int xDir, int yDir, out RaycastHit2D hit,
         bool costStep = true, bool smoothMove = true)
     {
-        source.Play();
+        source.PlayOneShot(footStep);
         Vector2 start = transform.position;
         lastMove = new Vector2(xDir, yDir);
         Vector2 end = start + lastMove;
@@ -203,7 +203,7 @@ public class Player : MonoBehaviour
                     if (vertical == 1)
                     {
                         //headKey.transform.localPosition = new Vector3(headKey.transform.position.x, headKey.transform.position.y, -2f);
-                        keySprite.sortingOrder = 0;
+                        keySprite.sortingOrder = -1;
                         animator.Play("WalkUp");
                     }
                     else

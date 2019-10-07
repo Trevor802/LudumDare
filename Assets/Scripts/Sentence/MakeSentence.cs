@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MakeSentence : MonoBehaviour
@@ -61,5 +62,6 @@ public class MakeSentence : MonoBehaviour
     void EndSentence()
     {
         animator.SetBool("IsOpen", false);
+        SceneManager.LoadScene("2DLevel");
     }
 }
