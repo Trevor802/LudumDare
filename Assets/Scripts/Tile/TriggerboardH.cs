@@ -2,40 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Triggerboard : TileNode
+public class TriggerboardH : TileNode
 {
     bool Triggered = false;
     bool PlayerDiedOn = false;
     public string doorName = "door";
     private float threshold = 0.2f;
     private Animator animator;
+    private Animator doorAnimator;
     private AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        doorAnimator = this.transform.Find(doorName).GetComponent<Animator>();
         source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerInside)
-            Triggered = true;
-        if (!playerInside && !PlayerDiedOn)
-            Triggered = false;
         if (Triggered == true)
         {
+            animator.SetBool("PlayerOn", true);
             GameObject door = this.transform.Find(doorName).gameObject;
             door.GetComponent<BoxCollider2D>().enabled = false;
-            door.GetComponent<SpriteRenderer>().enabled = false;
+            doorAnimator.Play("DoorOnH");
         }
         if (Triggered == false)
         {
             animator.SetBool("PlayerOn", false);
             GameObject door = this.transform.Find(doorName).gameObject;
             door.GetComponent<BoxCollider2D>().enabled = true;
-            door.GetComponent<SpriteRenderer>().enabled = true;
+            doorAnimator.Play("DoorOffH");
         }
     }
 
@@ -50,9 +49,19 @@ public class Triggerboard : TileNode
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Triggered = true;
         if (!PlayerDiedOn)
         {
             source.Play();
         }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!PlayerDiedOn)
+        {
+            Triggered = false;
+        }
+    }
+
 }

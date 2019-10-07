@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 979795725724227869}
   - component: {fileID: 7448082014538506717}
   - component: {fileID: 5346191840480230447}
+  - component: {fileID: 5098180627495829462}
   m_Layer: 8
   m_Name: door
   m_TagString: Untagged
@@ -107,6 +108,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.27242464}
   m_EdgeRadius: 0
+--- !u!95 &5098180627495829462
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2488149958524017811}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 820c1faa5535ecc45bb25804b2bda3a3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3641953338427209636
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,8 +138,8 @@ GameObject:
   - component: {fileID: 5458380802434385112}
   - component: {fileID: 7893996985441741613}
   - component: {fileID: 8916540238556797762}
-  - component: {fileID: 830954154780238072}
   - component: {fileID: 6108562657347791891}
+  - component: {fileID: 4306938211983901165}
   m_Layer: 0
   m_Name: TriggerBoardH
   m_TagString: Untagged
@@ -217,19 +237,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4842032, y: 0.42811644}
   m_EdgeRadius: 0
---- !u!114 &830954154780238072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3641953338427209636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2de57aeec3e5bb1429415df8b4691e0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorName: door
 --- !u!95 &6108562657347791891
 Animator:
   serializedVersion: 3
@@ -249,3 +256,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4306938211983901165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3641953338427209636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18573cf618ece04b8cf9c714500a716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorName: door

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3809905285834323019}
   - component: {fileID: 979848669770735530}
   - component: {fileID: 4593903838142960492}
-  - component: {fileID: 4716848419912266926}
   - component: {fileID: 2469049822894954011}
+  - component: {fileID: 2355566446763575056}
   m_Layer: 0
   m_Name: TriggerBoard
   m_TagString: Untagged
@@ -110,19 +110,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.48, y: 0.48}
   m_EdgeRadius: 0
---- !u!114 &4716848419912266926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4294215749208332357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2de57aeec3e5bb1429415df8b4691e0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorName: door
 --- !u!95 &2469049822894954011
 Animator:
   serializedVersion: 3
@@ -134,6 +121,38 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 54dbaa92b662f9c4b9d22f82fb3f46bf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2355566446763575056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4294215749208332357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252091534d21ea540bc6e7cca375e99a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorName: door
+--- !u!95 &9069220792536371825
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5810584752687581772}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 88bf6421e5884854a8e5affbd9bbf2bb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -216,6 +235,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dcd5d2e406a53b4a8c47f1b864e76d5, type: 3}
+--- !u!1 &5810584752687581772 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5234513995688978386, guid: 2dcd5d2e406a53b4a8c47f1b864e76d5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1731601849534164382}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1581732838107037290 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1005590347647292404, guid: 2dcd5d2e406a53b4a8c47f1b864e76d5,
