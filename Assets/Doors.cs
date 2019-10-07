@@ -6,16 +6,19 @@ public class Doors : TileNode
     private GameObject LevelCamera;
     public int levelIndex;
     private string nextLevel;
+    private Animator animator;
     void Start()
     {
         LevelCamera= GameObject.FindGameObjectWithTag("MainCamera");
         GameObject.FindGameObjectWithTag("MainCamera");
+        animator = GetComponent<Animator>();
     }
 
     public override void OnPlayerEnter(Player player)
     {
         if (player.TryUseKey())
         {
+            animator.Play("Trigger");
             LevelCamera.GetComponent<CameraManager>().SwitchLevelCamera();
             levelIndex = LevelCamera.GetComponent<CameraManager>().level_index;
             nextLevel = "Level" + (levelIndex + 1).ToString();
