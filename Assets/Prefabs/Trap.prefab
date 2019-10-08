@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8b64a609261a284c93175e325cf129e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cnt: 1
   isTrapOnEven: 1
 --- !u!95 &8801123353006984038
 Animator:
@@ -153,7 +154,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ebd4cd029fd100e47aae0301b28bd3b1, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
