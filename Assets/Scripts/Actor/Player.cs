@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     private ObjectPooler Pools;
     private bool respawning;
     public int doorCount = 0;
+    private bool winning = false;
 
     //private UnityEvent playerRespawnStartEvent;
     //private UnityEvent playerRespawnEndEvent;
@@ -111,7 +112,7 @@ public class Player : MonoBehaviour
         // UI UPDATE
         UIManager.instance.UpdateUI();
         UpdateStepUI();
-        if (steps <= 0)
+        if (steps <= 0 && !winning)
         {
             source.PlayOneShot(death,0.25f);
             Respawn();
@@ -269,6 +270,7 @@ public class Player : MonoBehaviour
 
     public void GameOver()
     {
+        if (winning) return;
         UIManager.instance.ClearUI();
         SceneManager.LoadScene("RestartScene");
     }
@@ -330,7 +332,9 @@ public class Player : MonoBehaviour
     }
 
     public void GameWin()
-    {       
+    {
+        winning = true;
+        Debug.Log("win");
         UIManager.instance.ClearUI();
         SceneManager.LoadScene("WinScene");
     }
