@@ -66,6 +66,6 @@ public class MakeSentence : MonoBehaviour
     void EndSentence()
     {
         animator.SetBool("IsOpen", false);
-        SceneManager.LoadScene("2DLevel_nero");
+        SceneManager.LoadScene("2DLevel");
     }
 }

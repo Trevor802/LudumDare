@@ -20,7 +20,6 @@ public class Trap : TileNode
         if (isTrapOnEven == false)
         {
             animator.Play("TrapOff");
-            UIManager.instance.UpdateUI();
             // GetComponent<SpriteRenderer>().enabled = false;
         }
         source = GetComponent<AudioSource>();
@@ -74,8 +73,6 @@ public class Trap : TileNode
             }
             //GetComponent<SpriteRenderer>().enabled = isTrapOnEven;
         }
-
-        UIManager.instance.UpdateUI();
     }
 
 

@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
         float sqrDistance = (new Vector2(transform.position.x ,transform.position.y) - new Vector2(end.x, end.y)).sqrMagnitude;
         while(sqrDistance > float.Epsilon)
         {
-            Vector3 newPos = Vector3.MoveTowards(rb2D.position, end, inverseMoveTime * 1);
+            Vector3 newPos = Vector3.MoveTowards(rb2D.position, end, inverseMoveTime * Time.deltaTime);
             rb2D.MovePosition(newPos);
             sqrDistance = (new Vector2(transform.position.x, transform.position.y) - new Vector2(end.x, end.y)).sqrMagnitude;
             yield return null;
