@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
         UpdateStepUI();
         if (steps <= 0)
         {
-            source.PlayOneShot(death);
+            source.PlayOneShot(death,0.25f);
             Respawn();
         }
     }
@@ -150,7 +150,7 @@ public class Player : MonoBehaviour
         // Respawn Animation
         animator.Play("Respawn");
         ShowStepIcon();
-        source.PlayOneShot(respawn, 0.5f);
+        source.PlayOneShot(respawn, 0.25f);
         yield return new WaitForSeconds(respawnAnimDur);
         foreach (TileNode node in FindObjectsOfType<TileNode>())
         {
