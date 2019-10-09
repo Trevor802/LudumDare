@@ -24,6 +24,7 @@ public class WinScene : MonoBehaviour
 
     public void OpenLevel()
     {
+        UIManager.instance.gameOver = false;
         SceneManager.LoadScene("MainScene");
     }
 }
