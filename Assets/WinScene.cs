@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class WinScene : MonoBehaviour
 {
-    public AudioClip audio;
+    public AudioClip winAudio;
     void Start()
     {
-        AudioManager.instance.PlayMusic(audio);
+        AudioManager.instance.PlayMusic(winAudio);
         StartAnim();
     }
 

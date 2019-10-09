@@ -31,15 +31,13 @@ public class Doors : TileNode
             animator.Play("exit");
             isInAnimation = true;
             //judge if win
-            player.doorCount++;
-            if(player.doorCount >= 5)
+            if(CameraManager.level_index >= 4)
             {
                 player.GameWin();
                 return;
             }
             player.Respawn(false);
         }
-        
     }
 
     public override void OnPlayerRespawnStart(Player player)

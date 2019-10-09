@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        DontDestroyOnLoad(this);
     }
     #endregion
 
@@ -27,6 +28,10 @@ public class UIManager : MonoBehaviour
     public Text keyText;
     public RawImage[] lifeIcons;
     public RawImage[] crossIcons;
+    public bool gameOver = false;
+    public Vector3 restartPos;
+    public int levelIndex;
+
     public void UpdateUI()
     {
         Player player = FindObjectOfType<Player>();

@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     public float deathAnimDur = 0.5f;
     public float camSwitchDur = 1f;
     public float respawnAnimDur = 0.5f;
-    private Vector3 initPos;
+    private Vector3 respawnPos;
     public bool hasKey = false;
     public LayerMask blockingLayer;
     private BoxCollider2D boxCollider;
@@ -34,8 +34,8 @@ public class Player : MonoBehaviour
     private AudioSource source;
     private ObjectPooler Pools;
     private bool respawning;
-    public int doorCount = 0;
     private bool winning = false;
+
 
     //private UnityEvent playerRespawnStartEvent;
     //private UnityEvent playerRespawnEndEvent;
@@ -45,7 +45,10 @@ public class Player : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         rb2D = GetComponent<Rigidbody2D>();
         steps = initSteps;
-        initPos = transform.position;
+        if (UIManager.instance.gameOver)
+        {
+            transform.position = UIManager.instance.restartPos;
+        }
         inverseMoveTime = 1 / moveTime;
         headKey = this.transform.Find("HeadKey").gameObject;
         animator = GetComponent<Animator>();
@@ -145,7 +148,7 @@ public class Player : MonoBehaviour
             headKey.SetActive(false);
             hasKey = false;
         }
-        transform.position = initPos;
+        transform.position = respawnPos;
         lastMove = Vector2.zero;
         steps = initSteps;
         // Respawn Animation
@@ -235,7 +238,7 @@ public class Player : MonoBehaviour
 
     public void ResetRespawnPos(Vector3 pos)
     {
-        initPos = pos;
+        respawnPos = pos;
     }
 
     public void Respawn(bool costLife = true)
@@ -271,6 +274,9 @@ public class Player : MonoBehaviour
     public void GameOver()
     {
         if (winning) return;
+        UIManager.instance.gameOver = true;
+        UIManager.instance.levelIndex = CameraManager.level_index;
+        UIManager.instance.restartPos = respawnPos;
         UIManager.instance.ClearUI();
         SceneManager.LoadScene("RestartScene");
     }

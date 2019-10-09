@@ -5,21 +5,30 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     public List<GameObject> cinema_list;
-    public int level_index;
+    public static int level_index;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (!UIManager.instance.gameOver)
+        {
+            level_index = 0;
+        }
+        else
+        {
+            level_index = UIManager.instance.levelIndex;
+        }
+        for (int i = 0; i < cinema_list.Count; i++)
+        {
+            if (i == level_index)
+                cinema_list[i].SetActive(true);
+            else
+                cinema_list[i].SetActive(false);
+        }
     }
 
     private void Awake()
     {
-        level_index = 0;
-        cinema_list[0].SetActive(true);
-        for(int i=1; i<cinema_list.Count; i++)
-        {
-            cinema_list[i].SetActive(false);
-        }
+
     }
 
     // Update is called once per frame
