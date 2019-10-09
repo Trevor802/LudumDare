@@ -7,7 +7,6 @@ public class SentenceTrigger : MonoBehaviour
     public Sentence sentence;
     public void TriggerSentence()
     {
-        print("pased");
         FindObjectOfType<MakeSentence>().StartSentence(sentence);
     }
 }

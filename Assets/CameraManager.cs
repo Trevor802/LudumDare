@@ -39,7 +39,6 @@ public class CameraManager : MonoBehaviour
         {
             cinema_list[level_index].SetActive(false);
             level_index++;
-            Debug.Log(level_index);
             cinema_list[level_index].SetActive(true);
         }
         else
