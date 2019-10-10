@@ -201,12 +201,12 @@ public class Player : MonoBehaviour
                     if (horizontal == 1)
                     {
                         animator.Play("WalkRight");
-                        keySprite.sortingOrder = 1;
+                        keySprite.sortingOrder = 10;
                     }
                     else
                     {
                         animator.Play("WalkLeft");
-                        keySprite.sortingOrder = 1;
+                        keySprite.sortingOrder = 10;
                     }
                 }
                 else
@@ -220,7 +220,7 @@ public class Player : MonoBehaviour
                     else
                     {
                         animator.Play("WalkDown");
-                        keySprite.sortingOrder = 1;
+                        keySprite.sortingOrder = 10;
                     }
                 }
                 RaycastHit2D hit;
@@ -340,7 +340,7 @@ public class Player : MonoBehaviour
     public void GameWin()
     {
         winning = true;
-        Debug.Log("win");
+        //Debug.Log("win");
         UIManager.instance.ClearUI();
         SceneManager.LoadScene("WinScene");
     }
