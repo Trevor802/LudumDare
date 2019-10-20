@@ -301,7 +301,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1979688529}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -471,7 +471,7 @@ RectTransform:
   m_Children:
   - {fileID: 689014864}
   m_Father: {fileID: 1979688529}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -801,6 +801,103 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &438561233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 438561234}
+  - component: {fileID: 438561237}
+  - component: {fileID: 438561236}
+  - component: {fileID: 438561235}
+  m_Layer: 5
+  m_Name: Text (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &438561234
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438561233}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1979688529}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -166.25}
+  m_SizeDelta: {x: 408.9, y: 70.7}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &438561235
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438561233}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 485c3114f5699334ca9b5c9df4d64165, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &438561236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438561233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 7b7e2a97ad6e4c24eb6416992c71454f, type: 3}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 6
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Press Space to Continue...
+--- !u!222 &438561237
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438561233}
+  m_CullTransparentMesh: 0
 --- !u!1 &449628023
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,7 +928,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1979688529}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -904,7 +1001,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1979688529}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1644,7 +1741,7 @@ RectTransform:
   - {fileID: 1677634671}
   - {fileID: 342317716}
   m_Father: {fileID: 1979688529}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -2167,35 +2264,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sentence:
     sentences:
-    - 'In a world full of chaos and terrors, a group of people has reached an ancient
-      tomb, searching for guidenceand hope.
+    - 'A group of people gathered together, trying to summon <color=red>the Great
+      One</color> at all costs.
 
 
-      Press Space to Continue...'
-    - 'The group has gathered around a dark-portal.
+'
+    - 'The closer they get to <color=red>the Great One</color>, the weaker and crazier
+      they feel.
 
 
-      Press Space to Continue...'
-    - 'Past that deep-dark space of unknown, a lurking shadow murmured : ''Bring me
-      the Holy Grail, and I shall grant you knowledge beyond space and time.
+'
+    - 'But they are ready to <color=red>sacrifice</color> themselves to bring <color=red>the
+      Holy Grail</color> to him and revive the world again.
 
-
-      Press Space to Continue...'
-    - 'Cultist 1:
-
-      Whatever it takes, we must prepare for the coming of the Great One.
-
-
-      Press Space to Continue...'
-    - 'Cultist 2:
-
-      But every step I take, my feet feel heavier. Vision, blurred. Mind, Crumbling.My
-      body might not last long once we jump down there.
-
-
-      Press Space to Continue...'
-    - "Cultist 3:\nIt must be the Great One calling on us. Quick, we must bring Him
-      the Holy Grail. We won\u2019t die for Nothing.\n\nPress Space to Continue..."
+'
 --- !u!95 &1677634673
 Animator:
   serializedVersion: 3
@@ -2402,7 +2484,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1979688529}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2538,6 +2620,7 @@ RectTransform:
   m_Children:
   - {fileID: 1244518581}
   - {fileID: 2010758298}
+  - {fileID: 438561234}
   - {fileID: 449628024}
   - {fileID: 183220647}
   - {fileID: 579800371}
@@ -2608,7 +2691,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 6
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2658,6 +2741,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: -37.8}
-  m_SizeDelta: {x: 408.85, y: 186.17}
+  m_AnchoredPosition: {x: -0, y: 31.7}
+  m_SizeDelta: {x: 408.9, y: 325.2}
   m_Pivot: {x: 0.5, y: 0.5}

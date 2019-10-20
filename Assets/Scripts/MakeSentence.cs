@@ -8,13 +8,13 @@ public class MakeSentence : MonoBehaviour
 {
     public Text textBox;
     public Animator animator;
-    public Queue<string> sentences;
+    public List<string> sentences;
     [SerializeField]
     public AudioClip clip;
     // Start is called before the first frame update
     void Start()
     {
-        sentences = new Queue<string>();
+        sentences = new List<string>();
         AudioManager.instance.PlayMusic(clip);
 
     }
@@ -27,7 +27,7 @@ public class MakeSentence : MonoBehaviour
 
         foreach(string q in sentence.sentences)
         {
-            sentences.Enqueue(q);
+            sentences.Add(q);
         }
 
         NextSentence();
@@ -48,18 +48,46 @@ public class MakeSentence : MonoBehaviour
             EndSentence();
             return;
         }
-        string j = sentences.Dequeue();
+        string j = sentences[0];
+        sentences.RemoveAt(0);
         StopAllCoroutines();
         StartCoroutine(DisplaySentence(j));
     }
 
     IEnumerator DisplaySentence(string sentence)
     {
-        textBox.text = "";
+        string rt = "";
+        bool caching = false;
+        bool metHead = false;
         foreach(char letter in sentence.ToCharArray())
         {
-            textBox.text += letter;
-            yield return null;
+            if (letter == '<')
+            {
+                caching = true;
+            }
+            else if (letter == '>')
+            {
+                if (metHead)
+                {
+                    caching = false;
+                    metHead = false;
+                    textBox.text += rt;
+                    rt = "";
+                }
+                else
+                {
+                    metHead = true;
+                }
+            }
+            if (!caching)
+            {
+                textBox.text += letter;
+                yield return null;
+            }
+            else
+            {
+                rt += letter;
+            }
         }
     }
 
