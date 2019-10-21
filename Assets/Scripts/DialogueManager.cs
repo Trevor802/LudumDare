@@ -8,15 +8,16 @@ using VII;
 public class DialogueManager : MonoBehaviour
 {
     public Text textBox;
-    public Animator animator;
+    //public Animator animator;
     public List<string> sentences;
+    public float CharPopupDuration = 0.02f;
     public SceneType sceneToLoadAfterDialogue;
     private int sentenceIndex = 0;
     private bool inputAvail = false;
 
     public void StartSentence()
     {
-        animator.SetBool("IsOpen", true);
+        //animator.SetBool("IsOpen", true);
         textBox.gameObject.SetActive(true);
         NextSentence();
         inputAvail = true;
@@ -79,7 +80,7 @@ public class DialogueManager : MonoBehaviour
             if (!caching)
             {
                 textBox.text += letter;
-                yield return null;
+                yield return new WaitForSeconds(CharPopupDuration);
             }
             else
             {
@@ -90,7 +91,7 @@ public class DialogueManager : MonoBehaviour
 
     void EndSentence()
     {
-        animator.SetBool("IsOpen", false);
+        //animator.SetBool("IsOpen", false);
         VII.SceneManager.instance.LoadScene(sceneToLoadAfterDialogue);
         inputAvail = false;
     }

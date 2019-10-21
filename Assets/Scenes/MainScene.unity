@@ -1886,7 +1886,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1431030795}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 485c3114f5699334ca9b5c9df4d64165, type: 2}
   m_CullingMode: 0
@@ -2695,6 +2695,49 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueManager
       objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: sentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: textBox
+      value: 
+      objectReference: {fileID: 1431030798}
+    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1431030797}
+    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: sceneToLoadAfterDialogue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: sentences.Array.data[0]
+      value: A group of people gathered together, trying to summon <color=red>the
+        Great One</color> at all costs.
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: sentences.Array.data[1]
+      value: The closer they get to <color=red>the Great One</color>, the weaker and
+        crazier they feel.
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: sentences.Array.data[2]
+      value: But they are ready to sacrifice themselves to bring <color=red>the Holy
+        Grail</color> to him and revive the world again.
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: CharPopupDuration
+      value: 0.02
+      objectReference: {fileID: 0}
     - target: {fileID: 748700562014271669, guid: ecf96a8f1ff92421ea06f3dae82f8265,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2749,44 +2792,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
-        type: 3}
-      propertyPath: sentences.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
-        type: 3}
-      propertyPath: textBox
-      value: 
-      objectReference: {fileID: 1431030798}
-    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
-        type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 1431030797}
-    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
-        type: 3}
-      propertyPath: sceneToLoadAfterDialogue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
-        type: 3}
-      propertyPath: sentences.Array.data[0]
-      value: A group of people gathered together, trying to summon <color=red>the
-        Great One</color> at all costs.
-      objectReference: {fileID: 0}
-    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
-        type: 3}
-      propertyPath: sentences.Array.data[1]
-      value: The closer they get to <color=red>the Great One</color>, the weaker and
-        crazier they feel.
-      objectReference: {fileID: 0}
-    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
-        type: 3}
-      propertyPath: sentences.Array.data[2]
-      value: But they are ready to sacrifice themselves to bring <color=red>the Holy
-        Grail</color> to him and revive the world again.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecf96a8f1ff92421ea06f3dae82f8265, type: 3}
