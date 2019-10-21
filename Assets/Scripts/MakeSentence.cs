@@ -11,6 +11,7 @@ public class MakeSentence : MonoBehaviour
     public List<string> sentences;
     [SerializeField]
     public AudioClip clip;
+    private int sentenceIndex = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,14 +44,19 @@ public class MakeSentence : MonoBehaviour
 
     public void NextSentence()
     {
-        if(sentences.Count == 0)
+        if(sentenceIndex >= sentences.Count)
         {
             EndSentence();
             return;
         }
-        string j = sentences[0];
-        sentences.RemoveAt(0);
         StopAllCoroutines();
+        textBox.text = "";
+        for (int i = 0; i < sentenceIndex; i++)
+        {
+            textBox.text += sentences[i];
+        }
+        string j = sentences[sentenceIndex];
+        sentenceIndex++;
         StartCoroutine(DisplaySentence(j));
     }
 
