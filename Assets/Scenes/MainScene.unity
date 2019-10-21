@@ -755,149 +755,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368436311}
   m_CullTransparentMesh: 0
---- !u!1 &375348478
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 375348480}
-  - component: {fileID: 375348479}
-  m_Layer: 0
-  m_Name: textManger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &375348479
+--- !u!114 &375348479 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+    type: 3}
+  m_PrefabInstance: {fileID: 748700562377254325}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 375348478}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b447d038edb7934dbf67f0ec06f95e2, type: 3}
+  m_Script: {fileID: 11500000, guid: bc493e8a24cc644859c476cf49510284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textBox: {fileID: 2010758295}
-  animator: {fileID: 2010758296}
-  clip: {fileID: 8300000, guid: 76cec3587fa9e2f42b26624dfaa86196, type: 3}
---- !u!4 &375348480
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 375348478}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.35446185, y: -0.03563963, z: -0.43413448}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &438561233
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 438561234}
-  - component: {fileID: 438561237}
-  - component: {fileID: 438561236}
-  - component: {fileID: 438561235}
-  m_Layer: 5
-  m_Name: Text (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &438561234
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 438561233}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1979688529}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -166.25}
-  m_SizeDelta: {x: 408.9, y: 70.7}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &438561235
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 438561233}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 485c3114f5699334ca9b5c9df4d64165, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &438561236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 438561233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 7b7e2a97ad6e4c24eb6416992c71454f, type: 3}
-    m_FontSize: 20
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 40
-    m_Alignment: 6
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Press Space to Continue...
---- !u!222 &438561237
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 438561233}
-  m_CullTransparentMesh: 0
 --- !u!1 &449628023
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,7 +797,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1979688529}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1130,7 +999,6 @@ GameObject:
   - component: {fileID: 689014869}
   - component: {fileID: 689014868}
   - component: {fileID: 689014867}
-  - component: {fileID: 689014866}
   - component: {fileID: 689014865}
   m_Layer: 5
   m_Name: FunctionButton
@@ -1173,49 +1041,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4b53014ab0f4a20803fe1251c9f205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &689014866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 689014863}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0f9280f818adc34e8cadfea3fcfd6d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sentence:
-    sentences:
-    - 'In a world full of chaos and terrors, a group of people has reached an ancient
-      tomb, searching for guidenceand hope.
-
-
-      Press Space to Continue...'
-    - 'The group has gathered around a dark-portal.
-
-
-      Press Space to Continue...'
-    - 'Past that deep-dark space of unknown, a lurking shadow murmured : ''Bring me
-      the Holy Grail, and I shall grant you knowledge beyond space and time.
-
-
-      Press Space to Continue...'
-    - 'Cultist 1:
-
-      Whatever it takes, we must prepare for the coming of the Great One.
-
-
-      Press Space to Continue...'
-    - 'Cultist 2:
-
-      But every step I take, my feet feel heavier. Vision, blurred. Mind, Crumbling.My
-      body might not last long once we jump down there.
-
-
-      Press Space to Continue...'
-    - "Cultist 3:\nIt must be the Great One calling on us. Quick, we must bring Him
-      the Holy Grail. We won\u2019t die for Nothing.\n\nPress Space to Continue..."
 --- !u!95 &689014867
 Animator:
   serializedVersion: 3
@@ -1967,6 +1792,103 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1378171556}
   m_CullTransparentMesh: 0
+--- !u!1 &1431030795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1431030796}
+  - component: {fileID: 1431030799}
+  - component: {fileID: 1431030798}
+  - component: {fileID: 1431030797}
+  m_Layer: 5
+  m_Name: DialogueText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1431030796
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431030795}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1979688529}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 31.7}
+  m_SizeDelta: {x: 408.9, y: 325.2}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1431030797
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431030795}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 485c3114f5699334ca9b5c9df4d64165, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1431030798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431030795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 7b7e2a97ad6e4c24eb6416992c71454f, type: 3}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 6
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &1431030799
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431030795}
+  m_CullTransparentMesh: 0
 --- !u!1 &1638691268
 GameObject:
   m_ObjectHideFlags: 0
@@ -2219,7 +2141,6 @@ GameObject:
   - component: {fileID: 1677634675}
   - component: {fileID: 1677634674}
   - component: {fileID: 1677634673}
-  - component: {fileID: 1677634672}
   - component: {fileID: 1677634677}
   m_Layer: 5
   m_Name: FunctionButton
@@ -2250,34 +2171,6 @@ RectTransform:
   m_AnchoredPosition: {x: -395, y: -181}
   m_SizeDelta: {x: 400, y: 72.38}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1677634672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1677634670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0f9280f818adc34e8cadfea3fcfd6d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sentence:
-    sentences:
-    - 'A group of people gathered together, trying to summon <color=red>the Great
-      One</color> at all costs.
-
-
-'
-    - 'The closer they get to <color=red>the Great One</color>, the weaker and crazier
-      they feel.
-
-
-'
-    - 'But they are ready to <color=red>sacrifice</color> themselves to bring <color=red>the
-      Holy Grail</color> to him and revive the world again.
-
-'
 --- !u!95 &1677634673
 Animator:
   serializedVersion: 3
@@ -2395,8 +2288,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1677634672}
-        m_MethodName: TriggerSentence
+      - m_Target: {fileID: 375348479}
+        m_MethodName: StartSentence
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2405,6 +2298,17 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1981138794}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1677634675
 MonoBehaviour:
@@ -2619,9 +2523,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1244518581}
-  - {fileID: 2010758298}
-  - {fileID: 438561234}
   - {fileID: 449628024}
+  - {fileID: 1431030796}
+  - {fileID: 1981138795}
   - {fileID: 183220647}
   - {fileID: 579800371}
   - {fileID: 1922065263}
@@ -2647,7 +2551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c513ab1b8b0407691845d6171f4ca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2010758294
+--- !u!1 &1981138794
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2655,24 +2559,62 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2010758298}
-  - component: {fileID: 2010758297}
-  - component: {fileID: 2010758295}
-  - component: {fileID: 2010758296}
+  - component: {fileID: 1981138795}
+  - component: {fileID: 1981138798}
+  - component: {fileID: 1981138797}
+  - component: {fileID: 1981138796}
   m_Layer: 5
-  m_Name: Text
+  m_Name: ContinueText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2010758295
+  m_IsActive: 0
+--- !u!224 &1981138795
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981138794}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1979688529}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -166.25}
+  m_SizeDelta: {x: 408.9, y: 70.7}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1981138796
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981138794}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 485c3114f5699334ca9b5c9df4d64165, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1981138797
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2010758294}
+  m_GameObject: {fileID: 1981138794}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
@@ -2697,50 +2639,119 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
---- !u!95 &2010758296
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2010758294}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 485c3114f5699334ca9b5c9df4d64165, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!222 &2010758297
+  m_Text: Press Space to Continue...
+--- !u!222 &1981138798
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2010758294}
+  m_GameObject: {fileID: 1981138794}
   m_CullTransparentMesh: 0
---- !u!224 &2010758298
-RectTransform:
+--- !u!1001 &748700562377254325
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2010758294}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1979688529}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: 31.7}
-  m_SizeDelta: {x: 408.9, y: 325.2}
-  m_Pivot: {x: 0.5, y: 0.5}
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 748700562014271819, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: m_Name
+      value: DialogueManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271669, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.35446185
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271669, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.03563963
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271669, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.43413448
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271669, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271669, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271669, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271669, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271669, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271669, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271669, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271669, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: sentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: textBox
+      value: 
+      objectReference: {fileID: 1431030798}
+    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1431030797}
+    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: sceneToLoadAfterDialogue
+      value: 2DLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: sentences.Array.data[0]
+      value: A group of people gathered together, trying to summon <color=red>the
+        Great One</color> at all costs.
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: sentences.Array.data[1]
+      value: The closer they get to <color=red>the Great One</color>, the weaker and
+        crazier they feel.
+      objectReference: {fileID: 0}
+    - target: {fileID: 748700562014271818, guid: ecf96a8f1ff92421ea06f3dae82f8265,
+        type: 3}
+      propertyPath: sentences.Array.data[2]
+      value: But they are ready to sacrifice themselves to bring <color=red>the Holy
+        Grail</color> to him and revive the world again.
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ecf96a8f1ff92421ea06f3dae82f8265, type: 3}
