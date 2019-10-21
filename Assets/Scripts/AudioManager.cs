@@ -26,6 +26,10 @@ public class AudioManager : MonoBehaviour
     // Play sound one time
     public void PlaySingle(AudioClip clip)
     {
+        if (clip == null)
+        {
+            return;
+        }
         soundSource.clip = clip;
         soundSource.Play();
     }
@@ -33,6 +37,10 @@ public class AudioManager : MonoBehaviour
     // Change the background music
     public void PlayMusic(AudioClip clip)
     {
+        if (clip == null)
+        {
+            return;
+        }
         musicSource.clip = clip;
         musicSource.Play();
     }

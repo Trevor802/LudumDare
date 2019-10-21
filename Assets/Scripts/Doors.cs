@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Doors : TileNode
 {
     private GameObject LevelCamera;
-    public int levelIndex;
+    public static int FinalLevelIndex = 4;
     private string nextLevel;
     private Animator animator;
     private bool isInAnimation;
@@ -31,7 +31,7 @@ public class Doors : TileNode
             animator.Play("exit");
             isInAnimation = true;
             //judge if win
-            if(CameraManager.level_index >= 4)
+            if(CameraManager.level_index >= FinalLevelIndex)
             {
                 player.GameWin();
                 return;

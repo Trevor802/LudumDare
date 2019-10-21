@@ -99,8 +99,8 @@ public class Player : MonoBehaviour
         // Move End
         moving = true;
         // Set the player's z position to 0, or remove the z value while calculating the distance
-        float sqrDistance = (new Vector2(transform.position.x ,transform.position.y) - new Vector2(end.x, end.y)).sqrMagnitude;
-        while(sqrDistance > float.Epsilon)
+        float sqrDistance = (new Vector2(transform.position.x, transform.position.y) - new Vector2(end.x, end.y)).sqrMagnitude;
+        while (sqrDistance > float.Epsilon)
         {
             Vector3 newPos = Vector3.MoveTowards(rb2D.position, end, inverseMoveTime * Time.fixedDeltaTime);
             rb2D.MovePosition(newPos);
@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
         UpdateStepUI();
         if (steps <= 0 && !winning)
         {
-            source.PlayOneShot(death,0.25f);
+            source.PlayOneShot(death, 0.25f);
             Respawn();
         }
     }
@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
     private IEnumerator Respawning(bool costLife)
     {
         // Respawn End
-        
+
         moving = true;
         float spawnDur = deathAnimDur;
         if (costLife)
@@ -134,8 +134,8 @@ public class Player : MonoBehaviour
             // Death Animation
             animator.Play("Death");
         }
-        
-        
+
+
         HideStepIcon();
         yield return new WaitForSeconds(spawnDur);
         Vector3 deathPos = transform.position;
@@ -188,11 +188,11 @@ public class Player : MonoBehaviour
         {
             vertical = -1;
         }
-        if(horizontal != 0)
+        if (horizontal != 0)
         {
             vertical = 0;
         }
-        if(horizontal !=0 || vertical != 0)
+        if (horizontal != 0 || vertical != 0)
         {
             if (!moving)
             {
@@ -232,7 +232,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene("2Dlevel");
+            VII.SceneManager.instance.LoadScene(VII.SceneType.GameScene);
         }
     }
 
@@ -278,7 +278,7 @@ public class Player : MonoBehaviour
         UIManager.instance.levelIndex = CameraManager.level_index;
         UIManager.instance.restartPos = respawnPos;
         UIManager.instance.ClearUI();
-        SceneManager.LoadScene("RestartScene");
+        VII.SceneManager.instance.LoadScene(VII.SceneType.RestartScene);
     }
 
     public bool TryUseKey()
@@ -323,7 +323,7 @@ public class Player : MonoBehaviour
 
     private void HideStepIcon()
     {
-        foreach(var icon in stepIcons)
+        foreach (var icon in stepIcons)
         {
             icon.enabled = false;
         }
@@ -340,9 +340,8 @@ public class Player : MonoBehaviour
     public void GameWin()
     {
         winning = true;
-        //Debug.Log("win");
         UIManager.instance.ClearUI();
-        SceneManager.LoadScene("WinScene");
+        VII.SceneManager.instance.LoadScene(VII.SceneType.WinScene);
     }
 
 }

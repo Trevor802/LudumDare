@@ -3,25 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using VII;
 
 public class DialogueManager : MonoBehaviour
 {
     public Text textBox;
     public Animator animator;
     public List<string> sentences;
-    public string sceneToLoadAfterDialogue;
+    public SceneType sceneToLoadAfterDialogue;
     private int sentenceIndex = 0;
+    private bool inputAvail = false;
 
     public void StartSentence()
     {
         animator.SetBool("IsOpen", true);
         textBox.gameObject.SetActive(true);
         NextSentence();
+        inputAvail = true;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && inputAvail)
         {
             NextSentence();
         }
@@ -88,6 +91,7 @@ public class DialogueManager : MonoBehaviour
     void EndSentence()
     {
         animator.SetBool("IsOpen", false);
-        SceneManager.LoadScene(sceneToLoadAfterDialogue);
+        VII.SceneManager.instance.LoadScene(sceneToLoadAfterDialogue);
+        inputAvail = false;
     }
 }

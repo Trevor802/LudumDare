@@ -9,15 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/2DLevel.unity
+    path: Assets/Scenes/GameScene.unity
     guid: 85b2f578b6936bf4292ef515b3609063
   - enabled: 1
     path: Assets/Scenes/RestartScene.unity
     guid: f4c7dbb673065c4418404da7ca2b3cb8
   - enabled: 1
     path: Assets/Scenes/WinScene.unity
-    guid: c028f0dd16344d046ae9c072b45921d4
-  - enabled: 1
-    path: Assets/Scenes/Animation_GuguBorn.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

@@ -23,7 +23,7 @@ public class RestartScene : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("2Dlevel");
+            VII.SceneManager.instance.LoadScene(VII.SceneType.GameScene);
         }
     }
 }
