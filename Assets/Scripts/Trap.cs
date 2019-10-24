@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Trap : TileNode
 {
-    // public bool hitWithTrap = false;
     public int cnt = 1;
-    //public GameObject trap;
-    // private int firstTrapAtStep = 0;
+    public AudioClip dieClip;
     private int trapTimes = 2;// cnt%? 2 is odd/even
     public bool isTrapOnEven = true;
     private bool activated;
     private Animator animator;
-    private AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +17,7 @@ public class Trap : TileNode
         if (isTrapOnEven == false)
         {
             animator.Play("TrapOff");
-            // GetComponent<SpriteRenderer>().enabled = false;
         }
-        source = GetComponent<AudioSource>();
-
     }
     override public void OnTickStart()
     {
@@ -34,11 +28,6 @@ public class Trap : TileNode
     override public void OnTickEnd()
     {
         activated = true;
-    }
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     void IsTrap()
@@ -55,9 +44,6 @@ public class Trap : TileNode
                 isTrapOnEven = true;
                 animator.Play("TrapOn");
             }
-
-            // GetComponent<SpriteRenderer>().enabled = isTrapOnEven;
-            // this.gameObject.SetActive(false);
         }
         else
         {
@@ -71,21 +57,17 @@ public class Trap : TileNode
                 isTrapOnEven = false;
                 animator.Play("TrapOff");
             }
-            //GetComponent<SpriteRenderer>().enabled = isTrapOnEven;
         }
     }
 
-
-
+    //TODO Use Tick
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<Player>() && isTrapOnEven == true && activated)
         {
-            //hitWithTrap = true;
-            source.Play();
+            AudioManager.instance.PlaySingle(dieClip);
             collision.gameObject.GetComponent<Player>().Respawn();
             activated = false;
-            //this.gameObject.SetActive(false);
         }
     }
 }

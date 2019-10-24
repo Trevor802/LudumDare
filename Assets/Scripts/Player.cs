@@ -31,14 +31,9 @@ public class Player : MonoBehaviour
     public SpriteRenderer[] stepIcons;
     private Animator animator;
     private SpriteRenderer keySprite;
-    private AudioSource source;
     private ObjectPooler Pools;
     private bool respawning;
     private bool winning = false;
-
-
-    //private UnityEvent playerRespawnStartEvent;
-    //private UnityEvent playerRespawnEndEvent;
 
     private void Start()
     {
@@ -52,7 +47,6 @@ public class Player : MonoBehaviour
         inverseMoveTime = 1f / moveTime;
         headKey = this.transform.Find("HeadKey").gameObject;
         animator = GetComponent<Animator>();
-        source = GetComponent<AudioSource>();
         UpdateStepUI();
         keySprite = headKey.GetComponent<SpriteRenderer>();
         keySprite.sortingOrder = 1;
@@ -63,7 +57,7 @@ public class Player : MonoBehaviour
     public bool Move(int xDir, int yDir, out RaycastHit2D hit,
         bool costStep = true, bool smoothMove = true)
     {
-        source.PlayOneShot(footStep);
+        AudioManager.instance.PlaySingle(footStep);
         Vector2 start = transform.position;
         lastMove = new Vector2(xDir, yDir);
         Vector2 end = start + lastMove;
@@ -117,7 +111,7 @@ public class Player : MonoBehaviour
         UpdateStepUI();
         if (steps <= 0 && !winning)
         {
-            source.PlayOneShot(death, 0.25f);
+            AudioManager.instance.PlaySingle(death);
             Respawn();
         }
     }
@@ -154,7 +148,7 @@ public class Player : MonoBehaviour
         // Respawn Animation
         animator.Play("Respawn");
         ShowStepIcon();
-        source.PlayOneShot(respawn, 0.25f);
+        AudioManager.instance.PlaySingle(respawn);
         yield return new WaitForSeconds(respawnAnimDur);
         foreach (TileNode node in FindObjectsOfType<TileNode>())
         {
@@ -296,7 +290,6 @@ public class Player : MonoBehaviour
     {
         keyInstance = picked_key;
         headKey.SetActive(true);
-        //Debug.Log(keyInstance.name);
         hasKey = true;
     }
 

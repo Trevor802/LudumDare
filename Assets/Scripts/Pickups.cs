@@ -8,6 +8,7 @@ public class Pickups : TileNode
     public enum pickup_Type { Key, AP_supply };
     public int AP_supply_qty;
     public pickup_Type pickup;
+    public AudioClip pickUp;
     private AudioSource source;
     //public Doors pairedDoor;
     // Start is called before the first frame update
@@ -22,11 +23,12 @@ public class Pickups : TileNode
 
     }
 
+    // TODO Use Tick
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<Player>() && pickup == pickup_Type.Key)
         {
-            source.Play();
+            AudioManager.instance.PlaySingle(pickUp);
             StartCoroutine(DeactivateUpItem(collision));
         }
         if (collision.gameObject.GetComponent<Player>() && pickup == pickup_Type.AP_supply)
