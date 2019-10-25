@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Trap : TileNode
 {
-    public int cnt = 1;
+    private int cnt = 1;
     public AudioClip dieClip;
-    private int trapTimes = 2;// cnt%? 2 is odd/even
+    public int trapTimes = 2;// cnt%? 2 is odd/even
     public bool isTrapOnEven = true;
-    private bool activated;
     private Animator animator;
     // Start is called before the first frame update
     void Start()
@@ -19,19 +18,14 @@ public class Trap : TileNode
             animator.Play("TrapOff");
         }
     }
-    override public void OnTickStart()
+    public override void OnTickStart()
     {
-        cnt++;
-        IsTrap();
-        activated = false;
-    }
-    override public void OnTickEnd()
-    {
-        activated = true;
+        TrapCount();
     }
 
-    void IsTrap()
+    void TrapCount()
     {
+        cnt++;
         if (cnt % trapTimes != 0)
         {
             if (isTrapOnEven == true)
@@ -60,14 +54,13 @@ public class Trap : TileNode
         }
     }
 
-    //TODO Use Tick
-    private void OnTriggerStay2D(Collider2D collision)
+    public override void OnPlayerEnter(Player player)
     {
-        if (collision.gameObject.GetComponent<Player>() && isTrapOnEven == true && activated)
+        base.OnPlayerEnter(player);
+        if (isTrapOnEven)
         {
             AudioManager.Instance.PlaySingle(dieClip);
-            collision.gameObject.GetComponent<Player>().Respawn();
-            activated = false;
+            player.Respawn();
         }
     }
 }

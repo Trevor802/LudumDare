@@ -162,9 +162,8 @@ public class Player : MonoBehaviour
             animator.Play("Death");
         }
 
-
         HideStepIcon();
-        yield return new WaitForSeconds(spawnDur);
+        // yield return new WaitForSeconds(spawnDur);
 
         // EVENT: Respawing Ends
         Vector3 deathPos = transform.position;

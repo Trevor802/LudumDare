@@ -2,51 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace VII
+{
+    public enum PickupType {
+        KEY = 0,
+        STEP = 1
+    };
+}
 
 public class Pickups : TileNode
 {
-    public enum pickup_Type { Key, AP_supply };
-    public int AP_supply_qty;
-    public pickup_Type pickup;
+    
+    public int numSteps;
+    public VII.PickupType pickupType;
     public AudioClip pickUp;
-    private AudioSource source;
-    //public Doors pairedDoor;
-    // Start is called before the first frame update
-    void Start()
-    {
-        source = GetComponent<AudioSource>();
-    }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnPlayerEnter(Player player)
     {
-
-    }
-
-    // TODO Use Tick
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.GetComponent<Player>() && pickup == pickup_Type.Key)
+        base.OnPlayerEnter(player);
+        switch (pickupType)
         {
-            AudioManager.Instance.PlaySingle(pickUp);
-            StartCoroutine(DeactivateUpItem(collision));
+            case VII.PickupType.KEY:
+                AudioManager.Instance.PlaySingle(pickUp);
+                gameObject.SetActive(false);
+                Player.Instance.AddKey(gameObject);
+                break;
+            case VII.PickupType.STEP:
+                Player.Instance.AddStep(numSteps);
+                gameObject.SetActive(false);
+                break;
+            default:
+                break;
         }
-        if (collision.gameObject.GetComponent<Player>() && pickup == pickup_Type.AP_supply)
-        {
-            collision.gameObject.GetComponent<Player>().AddStep(AP_supply_qty);
-            this.gameObject.SetActive(false);
-        }
-
-        //Debug.Log("Pick up key!");
-        //Destroy(this.gameObject);
-
-    }
-
-    private IEnumerator DeactivateUpItem(Collider2D collision)
-    {
-        yield return new WaitForSeconds(0.3f);
-        this.gameObject.SetActive(false);
-        collision.gameObject.GetComponent<Player>().AddKey(this.gameObject);
-        //
     }
 }
