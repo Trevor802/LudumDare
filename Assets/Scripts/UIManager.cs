@@ -19,66 +19,40 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(this);
     }
     #endregion
 
-    public Text stepsText;
-    public Text livesText;
-    public Text keyText;
-    public RawImage[] lifeIcons;
-    public RawImage[] crossIcons;
-    public bool gameOver = false;
-    public Vector3 restartPos;
+    public GameObject lifeIcon;
+    public RectTransform lifeIconHolder;
+
+    private List<RawImage> m_lifeIcons;
+    private List<RawImage> m_crossIcons;
 
     public void UpdateUI()
     {
-        Player player = FindObjectOfType<Player>();
-        stepsText.text = "Steps: " + player.GetSteps();
-        livesText.text = "Lives: " + player.GetLives();
-        keyText.text = "Key: " + player.GetHasKey().ToString();
-
-        for (int i = 0; i < player.initLives; i++)
+        for (int i = 0; i < Player.Instance.initLives; i++)
         {
-            if (i <= player.GetLives() - 1)
-            {
-                lifeIcons[i].enabled = true;
-                crossIcons[i].enabled = false;
-            }
-            else
-            {
-                lifeIcons[i].enabled = false;
-                crossIcons[i].enabled = true;
-            }
+            m_crossIcons[i].enabled = i >= Player.Instance.GetLives();
         }
     }
 
     public void ClearUI()
     {
-        stepsText.text = "";
-        livesText.text = "";
-        keyText.text = "";
-        for (int i = 0; i < lifeIcons.Length; i++)
-        {
-            lifeIcons[i].enabled = false;
-            crossIcons[i].enabled = false;
-        }
+        m_lifeIcons.ForEach(x => x.enabled = false);
+        m_crossIcons.ForEach(x => x.enabled = false);
     }
 
     public void InitUI()
     {
-        Player player = FindObjectOfType<Player>();
-        for (int i = 0; i < lifeIcons.Length; i++)
+        m_lifeIcons = new List<RawImage>();
+        m_crossIcons = new List<RawImage>();
+        for (int i = 0; i < Player.Instance.initLives; i++)
         {
-            crossIcons[i].enabled = false;
-            if (i <= player.initLives - 1)
-            {
-                lifeIcons[i].enabled = true;
-            }
-            else
-            {
-                lifeIcons[i].enabled = false;
-            }
+            var life = Instantiate(lifeIcon, lifeIconHolder);
+            m_lifeIcons.Add(life.GetComponent<RawImage>());
+            m_crossIcons.Add(life.transform.GetChild(0).GetComponent<RawImage>());
         }
+        m_lifeIcons.ForEach(x => x.enabled = true);
+        m_crossIcons.ForEach(x => x.enabled = true);
     }
 }

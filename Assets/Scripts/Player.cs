@@ -80,12 +80,9 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        if (UIManager.Instance.gameOver)
-        {
-            transform.position = UIManager.Instance.restartPos;
-        }
         UpdateStepUI();
         UIManager.Instance.InitUI();
+        UIManager.Instance.UpdateUI();
     }
 
     public bool Move(int xDir, int yDir, out RaycastHit2D hit,
@@ -143,14 +140,14 @@ public class Player : MonoBehaviour
         {
             tile.OnTickEnd();
         }
-        // UI UPDATE
-        UIManager.Instance.UpdateUI();
         UpdateStepUI();
         if (steps <= 0 && playerState != VII.PlayerState.ENDING)
         {
             AudioManager.Instance.PlaySingle(death);
             Respawn();
         }
+        // UI UPDATE
+        UIManager.Instance.UpdateUI();
     }
 
     private IEnumerator Respawning(bool costLife)
@@ -280,7 +277,6 @@ public class Player : MonoBehaviour
         if (costLife)
         {
             lives--;
-            UIManager.Instance.UpdateUI();
         }
         else
         {
@@ -303,8 +299,6 @@ public class Player : MonoBehaviour
     {
         if (playerState == VII.PlayerState.ENDING) return;
         playerState = VII.PlayerState.ENDING;
-        UIManager.Instance.gameOver = true;
-        UIManager.Instance.restartPos = respawnPos;
         UIManager.Instance.ClearUI();
         VII.SceneManager.Instance.LoadScene(VII.SceneType.RestartScene);
     }
