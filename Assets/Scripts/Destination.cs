@@ -13,12 +13,10 @@ public class Destination : TileNode
     public GameObject startPoint;
     public float camSwitchBeforeDelay;
     public AudioClip teleport;
-    public int cnt = 0;
 
     void Start()
     {
         LevelCamera= GameObject.FindGameObjectWithTag("MainCamera");
-        GameObject.FindGameObjectWithTag("MainCamera");
         animator = GetComponent<Animator>();
     }
 
@@ -35,6 +33,9 @@ public class Destination : TileNode
                 player.GameWin();
                 return;
             }
+            Vector3 nextCheckPoint = new Vector3(startPoint.transform.position.x,
+                startPoint.transform.position.y, player.transform.position.z);
+            player.ResetRespawnPos(nextCheckPoint);
             player.Respawn(false);
         }
     }
@@ -42,19 +43,9 @@ public class Destination : TileNode
     public override void OnPlayerRespawnStart(Player player)
     {
         base.OnPlayerRespawnStart(player);
-        StartCoroutine(Delay(player));
-    }
-
-    private IEnumerator Delay(Player player)
-    {
-        yield return new WaitForSeconds(camSwitchBeforeDelay);
         if (isInAnimation)
         {
-            StopAllCoroutines();
-            LevelCamera.GetComponent<CameraManager>().SwitchLevelCamera();
-            Vector3 nextCheckPoint = new Vector3(startPoint.transform.position.x,
-                startPoint.transform.position.y, player.transform.position.z);
-            player.ResetRespawnPos(nextCheckPoint);
+            CameraManager.instance.SwitchLevelCamera();
         }
     }
 

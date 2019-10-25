@@ -9,6 +9,7 @@ public class TileNode : MonoBehaviour
     protected bool playerInside;
     protected Player collidedPlayer;
 
+    #region Virtual Functions
     public virtual void OnTickStart()
     {
     }
@@ -55,5 +56,10 @@ public class TileNode : MonoBehaviour
             playerOutTemp = true;
             playerInTemp = false;
         }
+    }
+    #endregion Virtual Functions
+    protected bool CheckPlayerOn()
+    {
+        return Vector2.Distance(Player.instance.transform.position, this.transform.position) < Mathf.Epsilon;
     }
 }

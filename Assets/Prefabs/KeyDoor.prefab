@@ -40,9 +40,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8982404412974507271}
   - component: {fileID: 8982404412974507288}
-  - component: {fileID: 8982404412974507289}
   - component: {fileID: 8982404412974507290}
   - component: {fileID: 291992501}
+  - component: {fileID: 8822754237533349410}
   m_Layer: 0
   m_Name: KeyDoor
   m_TagString: Untagged
@@ -115,22 +115,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8982404412974507289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8982404412974507291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6ad1972b637eac4ab009c86d34f67ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startPoint: {fileID: 2703136758182481044}
-  camSwitchBeforeDelay: 0.09
-  teleport: {fileID: 8300000, guid: 8702243e3f21cd24cab69f4ad7bbb597, type: 3}
-  cnt: 0
 --- !u!61 &8982404412974507290
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -176,3 +160,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8822754237533349410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8982404412974507291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf71fe2e46b64a23a7eb847c3ec56e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPoint: {fileID: 2703136758182481044}
+  camSwitchBeforeDelay: 0.5
+  teleport: {fileID: 8300000, guid: d7f0134434d488147af173cad49c12fc, type: 3}
+  cnt: 0

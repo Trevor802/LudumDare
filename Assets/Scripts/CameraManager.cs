@@ -4,6 +4,22 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    #region Singleton
+    public static CameraManager instance = null;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+    #endregion
+
     public List<GameObject> cinema_list;
     public static int level_index;
     // Start is called before the first frame update
@@ -26,11 +42,6 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -42,20 +53,9 @@ public class CameraManager : MonoBehaviour
 
     public void SwitchLevelCamera()
     {
-        //Debug.Log(cinema_list.Count+" i="+level_index);
-
-        if(level_index < cinema_list.Count - 1)
-        {
-            cinema_list[level_index].SetActive(false);
-            level_index++;
-            cinema_list[level_index].SetActive(true);
-        }
-        else
-        {
-            cinema_list[0].SetActive(true);
-            cinema_list[level_index].SetActive(false);
-            level_index = 0;
-        }
-        
+        level_index++;
+        level_index %= cinema_list.Count;
+        cinema_list.ForEach(cam => cam.SetActive(false));
+        cinema_list[level_index].SetActive(true);
     }
 }

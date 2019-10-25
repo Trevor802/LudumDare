@@ -151,20 +151,19 @@ public class Player : MonoBehaviour
 
     private IEnumerator Respawning(bool costLife)
     {
-        // Respawn End
-
         moving = true;
         float spawnDur = deathAnimDur;
         if (costLife)
         {
             spawnDur += camSwitchDur;
-            // Death Animation
             animator.Play("Death");
         }
 
 
         HideStepIcon();
         yield return new WaitForSeconds(spawnDur);
+
+        // EVENT: Respawing Ends
         Vector3 deathPos = transform.position;
         Quaternion deathRot = transform.rotation;
         Pools.SpawnFromPool("Body", deathPos, deathRot);
@@ -273,7 +272,7 @@ public class Player : MonoBehaviour
     public void Respawn(bool costLife = true)
     {
         // Respawn Start
-        if (respawning)
+        if (playerState == VII.PlayerState.RESPAWING)
         {
             return;
         }
