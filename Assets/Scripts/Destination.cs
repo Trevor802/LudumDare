@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class Doors : TileNode
+public class Destination : TileNode
 {
     private GameObject LevelCamera;
     public static int FinalLevelIndex = 4;
@@ -12,7 +12,7 @@ public class Doors : TileNode
     private bool isInAnimation;
     public GameObject startPoint;
     public float camSwitchBeforeDelay;
-    private AudioSource source;
+    public AudioClip teleport;
     public int cnt = 0;
 
     void Start()
@@ -20,14 +20,13 @@ public class Doors : TileNode
         LevelCamera= GameObject.FindGameObjectWithTag("MainCamera");
         GameObject.FindGameObjectWithTag("MainCamera");
         animator = GetComponent<Animator>();
-        source = GetComponent<AudioSource>();
     }
 
     public override void OnPlayerEnter(Player player)
     {
         if (player.TryUseKey())
         {
-            source.Play();
+            AudioManager.instance.PlaySingle(teleport);
             animator.Play("exit");
             isInAnimation = true;
             //judge if win

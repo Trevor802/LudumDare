@@ -4,8 +4,35 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
+namespace VII
+{
+    public enum PlayerState
+    {
+        IDLE = 0,
+        MOVING = 1,
+        RESPAWING = 2,
+        WINNING = 3
+    }
+}
+
 public class Player : MonoBehaviour
 {
+    #region Singleton
+    public static Player instance = null;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+    #endregion
+
     public AudioClip footStep;
     public AudioClip death;
     public AudioClip respawn;
@@ -34,6 +61,7 @@ public class Player : MonoBehaviour
     private ObjectPooler Pools;
     private bool respawning;
     private bool winning = false;
+    private VII.PlayerState playerState;
 
     private void Start()
     {
@@ -66,6 +94,7 @@ public class Player : MonoBehaviour
         boxCollider.enabled = true;
         if (hit.transform == null)
         {
+            playerState = VII.PlayerState.MOVING;
             // Move Start
             if (costStep)
             {
@@ -82,6 +111,7 @@ public class Player : MonoBehaviour
             else
             {
                 transform.position = new Vector3(end.x, end.y, -1);
+                playerState = VII.PlayerState.IDLE;
             }
             return true;
         }
@@ -90,17 +120,20 @@ public class Player : MonoBehaviour
 
     private IEnumerator SmoothMovement(Vector3 end)
     {
-        // Move End
         moving = true;
         // Set the player's z position to 0, or remove the z value while calculating the distance
         float sqrDistance = (new Vector2(transform.position.x, transform.position.y) - new Vector2(end.x, end.y)).sqrMagnitude;
+
+        // Using while probably skips the Unity deltaTime duration
         while (sqrDistance > float.Epsilon)
-        {
+        { 
             Vector3 newPos = Vector3.MoveTowards(rb2D.position, end, inverseMoveTime * Time.fixedDeltaTime);
             rb2D.MovePosition(newPos);
             sqrDistance = (new Vector2(transform.position.x, transform.position.y) - new Vector2(end.x, end.y)).sqrMagnitude;
             yield return null;
         }
+        // EVENT: Movement Ends
+        playerState = VII.PlayerState.IDLE;
         moving = false;
         foreach (TileNode tile in FindObjectsOfType<TileNode>())
         {
@@ -109,7 +142,7 @@ public class Player : MonoBehaviour
         // UI UPDATE
         UIManager.instance.UpdateUI();
         UpdateStepUI();
-        if (steps <= 0 && !winning)
+        if (steps <= 0 && playerState != VII.PlayerState.WINNING)
         {
             AudioManager.instance.PlaySingle(death);
             Respawn();
@@ -150,6 +183,8 @@ public class Player : MonoBehaviour
         ShowStepIcon();
         AudioManager.instance.PlaySingle(respawn);
         yield return new WaitForSeconds(respawnAnimDur);
+        // Respawning Ends
+        playerState = VII.PlayerState.IDLE;
         foreach (TileNode node in FindObjectsOfType<TileNode>())
         {
             node.OnPlayerRespawnEnd(this);
@@ -243,6 +278,7 @@ public class Player : MonoBehaviour
             return;
         }
         respawning = true;
+        playerState = VII.PlayerState.RESPAWING;
         if (costLife)
         {
             lives--;
@@ -333,8 +369,13 @@ public class Player : MonoBehaviour
     public void GameWin()
     {
         winning = true;
+        playerState = VII.PlayerState.WINNING;
         UIManager.instance.ClearUI();
         VII.SceneManager.instance.LoadScene(VII.SceneType.WinScene);
     }
+
+    // Getter
+
+    public VII.PlayerState GetPlayerState() { return playerState; }
 
 }

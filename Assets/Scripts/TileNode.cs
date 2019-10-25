@@ -9,7 +9,9 @@ public class TileNode : MonoBehaviour
     protected bool playerInside;
     protected Player collidedPlayer;
 
-    public virtual void OnTickStart() { }
+    public virtual void OnTickStart()
+    {
+    }
     public virtual void OnTickEnd()
     {
         if (playerInTemp)
@@ -25,10 +27,7 @@ public class TileNode : MonoBehaviour
             playerOutTemp = false;
         }
     }
-    public virtual void OnPlayerRespawnStart(Player player)
-    {
-        
-    }
+    public virtual void OnPlayerRespawnStart(Player player) { }
     public virtual void OnPlayerRespawnEnd(Player player)
     {
         playerInTemp = false;
