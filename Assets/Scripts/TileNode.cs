@@ -60,6 +60,6 @@ public class TileNode : MonoBehaviour
     #endregion Virtual Functions
     protected bool CheckPlayerOn()
     {
-        return Vector2.Distance(Player.instance.transform.position, this.transform.position) < Mathf.Epsilon;
+        return Vector2.Distance(Player.Instance.transform.position, this.transform.position) < Mathf.Epsilon;
     }
 }

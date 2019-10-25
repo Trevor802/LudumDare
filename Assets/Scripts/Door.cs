@@ -20,7 +20,7 @@ public class Door : TileNode
     {
         isOpen = true;
         m_collider.enabled = false;
-        AudioManager.instance.PlaySingle(doorOpen);
+        AudioManager.Instance.PlaySingle(doorOpen);
         m_animator.SetBool("isOpen", true);
     }
 
@@ -28,7 +28,7 @@ public class Door : TileNode
     {
         isOpen = false;
         m_collider.enabled = true;
-        AudioManager.instance.PlaySingle(doorClose);
+        AudioManager.Instance.PlaySingle(doorClose);
         m_animator.SetBool("isOpen", false);
     }
 

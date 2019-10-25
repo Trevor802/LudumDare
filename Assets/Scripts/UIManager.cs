@@ -7,15 +7,15 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     #region Singleton
-    public static UIManager instance = null;
+    public static UIManager Instance = null;
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
-        else if (instance != this)
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }
@@ -30,18 +30,17 @@ public class UIManager : MonoBehaviour
     public RawImage[] crossIcons;
     public bool gameOver = false;
     public Vector3 restartPos;
-    public int levelIndex;
 
     public void UpdateUI()
     {
         Player player = FindObjectOfType<Player>();
-        stepsText.text = "Steps: " + player.steps;
-        livesText.text = "Lives: " + player.lives;
-        keyText.text = "Key: " + player.hasKey.ToString();
+        stepsText.text = "Steps: " + player.GetSteps();
+        livesText.text = "Lives: " + player.GetLives();
+        keyText.text = "Key: " + player.GetHasKey().ToString();
 
         for (int i = 0; i < player.initLives; i++)
         {
-            if (i <= player.lives - 1)
+            if (i <= player.GetLives() - 1)
             {
                 lifeIcons[i].enabled = true;
                 crossIcons[i].enabled = false;
@@ -66,7 +65,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void initUI()
+    public void InitUI()
     {
         Player player = FindObjectOfType<Player>();
         for (int i = 0; i < lifeIcons.Length; i++)

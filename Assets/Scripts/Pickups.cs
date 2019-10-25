@@ -28,7 +28,7 @@ public class Pickups : TileNode
     {
         if (collision.gameObject.GetComponent<Player>() && pickup == pickup_Type.Key)
         {
-            AudioManager.instance.PlaySingle(pickUp);
+            AudioManager.Instance.PlaySingle(pickUp);
             StartCoroutine(DeactivateUpItem(collision));
         }
         if (collision.gameObject.GetComponent<Player>() && pickup == pickup_Type.AP_supply)

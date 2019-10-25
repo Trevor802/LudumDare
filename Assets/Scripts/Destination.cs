@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class Destination : TileNode
 {
     private GameObject LevelCamera;
-    public static int FinalLevelIndex = 4;
     private string nextLevel;
     private Animator animator;
     private bool isInAnimation;
@@ -24,11 +23,12 @@ public class Destination : TileNode
     {
         if (player.TryUseKey())
         {
-            AudioManager.instance.PlaySingle(teleport);
+            AudioManager.Instance.PlaySingle(teleport);
             animator.Play("exit");
             isInAnimation = true;
+            Player.Instance.AddLevel();
             //judge if win
-            if(CameraManager.level_index >= FinalLevelIndex)
+            if(Player.Instance.GetCurrentLevel() >= Player.Instance.numLevels)
             {
                 player.GameWin();
                 return;
@@ -45,7 +45,7 @@ public class Destination : TileNode
         base.OnPlayerRespawnStart(player);
         if (isInAnimation)
         {
-            CameraManager.instance.SwitchLevelCamera();
+            CameraManager.Instance.SwitchLevelCamera();
         }
     }
 

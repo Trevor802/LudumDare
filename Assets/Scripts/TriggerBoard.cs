@@ -7,7 +7,6 @@ public class TriggerBoard : TileNode
     public AudioClip triggerClip;
     private bool playerOn = false;
     private bool tombstoneOn;
-    private float threshold = 0.2f;
     public Door targetDoor;
     private Animator animator;
     // Start is called before the first frame update
@@ -22,7 +21,7 @@ public class TriggerBoard : TileNode
         if (tombstoneOn) return;
         playerOn = true;
         animator.SetBool("PlayerOn", true);
-        AudioManager.instance.PlaySingle(triggerClip);
+        AudioManager.Instance.PlaySingle(triggerClip);
         targetDoor.OpenDoor();
     }
 
@@ -41,7 +40,7 @@ public class TriggerBoard : TileNode
         if (tombstoneOn) return;
         playerOn = false;
         animator.SetBool("PlayerOn", false);
-        AudioManager.instance.PlaySingle(triggerClip);
+        AudioManager.Instance.PlaySingle(triggerClip);
         targetDoor.CloseDoor();
     }
 

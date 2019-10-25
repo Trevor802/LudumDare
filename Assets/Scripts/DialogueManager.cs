@@ -92,7 +92,7 @@ public class DialogueManager : MonoBehaviour
     void EndSentence()
     {
         //animator.SetBool("IsOpen", false);
-        VII.SceneManager.instance.LoadScene(sceneToLoadAfterDialogue);
+        VII.SceneManager.Instance.LoadScene(sceneToLoadAfterDialogue);
         inputAvail = false;
     }
 }

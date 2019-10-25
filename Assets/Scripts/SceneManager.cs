@@ -17,15 +17,15 @@ namespace VII
     public class SceneManager : MonoBehaviour
     {
         #region Singleton
-        public static SceneManager instance = null;
+        public static SceneManager Instance = null;
 
         private void Awake()
         {
-            if (instance == null)
+            if (Instance == null)
             {
-                instance = this;
+                Instance = this;
             }
-            else if (instance != this)
+            else if (Instance != this)
             {
                 Destroy(gameObject);
             }
@@ -69,7 +69,7 @@ namespace VII
                 default:
                     break;
             }
-            AudioManager.instance.PlayMusic(musicOfScenes[scene]);
+            AudioManager.Instance.PlayMusic(musicOfScenes[scene]);
         }
     }
 }

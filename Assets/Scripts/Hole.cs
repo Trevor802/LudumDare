@@ -17,7 +17,7 @@ public class Hole : TileNode
             if (filled == false)
             {
                 animator.Play("pitClose");
-                AudioManager.instance.PlaySingle(holeClose);
+                AudioManager.Instance.PlaySingle(holeClose);
                 player.Respawn();
             }
             filled = true;

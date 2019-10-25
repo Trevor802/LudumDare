@@ -5,15 +5,15 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     #region Singleton
-    public static CameraManager instance = null;
+    public static CameraManager Instance = null;
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
-        else if (instance != this)
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }
@@ -21,18 +21,10 @@ public class CameraManager : MonoBehaviour
     #endregion
 
     public List<GameObject> cinema_list;
-    public static int level_index;
+    private int level_index;
     // Start is called before the first frame update
     void Start()
     {
-        if (!UIManager.instance.gameOver)
-        {
-            level_index = 0;
-        }
-        else
-        {
-            level_index = UIManager.instance.levelIndex;
-        }
         for (int i = 0; i < cinema_list.Count; i++)
         {
             if (i == level_index)

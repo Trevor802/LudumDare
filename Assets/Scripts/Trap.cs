@@ -65,7 +65,7 @@ public class Trap : TileNode
     {
         if (collision.gameObject.GetComponent<Player>() && isTrapOnEven == true && activated)
         {
-            AudioManager.instance.PlaySingle(dieClip);
+            AudioManager.Instance.PlaySingle(dieClip);
             collision.gameObject.GetComponent<Player>().Respawn();
             activated = false;
         }

@@ -11,78 +11,87 @@ namespace VII
         IDLE = 0,
         MOVING = 1,
         RESPAWING = 2,
-        WINNING = 3
+        ENDING = 3
     }
 }
 
 public class Player : MonoBehaviour
 {
     #region Singleton
-    public static Player instance = null;
+    public static Player Instance = null;
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
-        else if (instance != this)
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }
+
+        // Initialization
+        lives = initLives;
+        steps = initSteps;
+        inverseMoveTime = 1f / moveTime;
+        boxCollider = GetComponent<BoxCollider2D>();
+        rb2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        headKey = this.transform.Find("HeadKey").gameObject;
+        keySprite = headKey.GetComponent<SpriteRenderer>();
+        keySprite.sortingOrder = 1;
     }
     #endregion
 
+    #region PlayerData
+    [Header("Audio Clips")]
     public AudioClip footStep;
     public AudioClip death;
     public AudioClip respawn;
+    [Header("Configuration")]
+    public int numLevels = 5;
     public float moveTime = 0.5f;
-    public int initLives = 3;
-    public int lives = 3;
+    public int initLives = 7;
     public int initSteps = 7;
-    public int steps;
     public float deathAnimDur = 0.5f;
     public float camSwitchDur = 1f;
     public float respawnAnimDur = 0.5f;
-    private Vector3 respawnPos;
-    public bool hasKey = false;
     public LayerMask blockingLayer;
+    [Header("Game Objects")]
+    public GameObject keyInstance;
+    public SpriteRenderer[] stepIcons;
+    #endregion PlayerData
+
+    private Vector3 respawnPos;
+    private int steps;
+    private int lives;
+    private bool hasKey = false;
     private BoxCollider2D boxCollider;
     private Rigidbody2D rb2D;
-    public Vector2 lastMove;
-    public GameObject keyInstance;
+    private Vector2 lastMove;
     private float inverseMoveTime;
-    public Coroutine movingCoroutine;
+    private Coroutine movingCoroutine;
     private GameObject headKey;
-    public SpriteRenderer[] stepIcons;
     private Animator animator;
     private SpriteRenderer keySprite;
-    private ObjectPooler Pools;
     private VII.PlayerState playerState;
+    private int currentLevel;
 
     private void Start()
     {
-        boxCollider = GetComponent<BoxCollider2D>();
-        rb2D = GetComponent<Rigidbody2D>();
-        steps = initSteps;
-        if (UIManager.instance.gameOver)
+        if (UIManager.Instance.gameOver)
         {
-            transform.position = UIManager.instance.restartPos;
+            transform.position = UIManager.Instance.restartPos;
         }
-        inverseMoveTime = 1f / moveTime;
-        headKey = this.transform.Find("HeadKey").gameObject;
-        animator = GetComponent<Animator>();
         UpdateStepUI();
-        keySprite = headKey.GetComponent<SpriteRenderer>();
-        keySprite.sortingOrder = 1;
-        Pools = GameObject.Find("Pools").GetComponent<ObjectPooler>();
-        UIManager.instance.initUI();
+        UIManager.Instance.InitUI();
     }
 
     public bool Move(int xDir, int yDir, out RaycastHit2D hit,
         bool costStep = true, bool smoothMove = true)
     {
-        AudioManager.instance.PlaySingle(footStep);
+        AudioManager.Instance.PlaySingle(footStep);
         Vector2 start = transform.position;
         lastMove = new Vector2(xDir, yDir);
         Vector2 end = start + lastMove;
@@ -135,11 +144,11 @@ public class Player : MonoBehaviour
             tile.OnTickEnd();
         }
         // UI UPDATE
-        UIManager.instance.UpdateUI();
+        UIManager.Instance.UpdateUI();
         UpdateStepUI();
-        if (steps <= 0 && playerState != VII.PlayerState.WINNING)
+        if (steps <= 0 && playerState != VII.PlayerState.ENDING)
         {
-            AudioManager.instance.PlaySingle(death);
+            AudioManager.Instance.PlaySingle(death);
             Respawn();
         }
     }
@@ -160,7 +169,7 @@ public class Player : MonoBehaviour
         // EVENT: Respawing Ends
         Vector3 deathPos = transform.position;
         Quaternion deathRot = transform.rotation;
-        Pools.SpawnFromPool("Body", deathPos, deathRot);
+        ObjectPooler.Instance.SpawnFromPool("Body", deathPos, deathRot);
         if (hasKey)
         {
             keyInstance.transform.position = deathPos;
@@ -174,7 +183,7 @@ public class Player : MonoBehaviour
         // Respawn Animation
         animator.Play("Respawn");
         ShowStepIcon();
-        AudioManager.instance.PlaySingle(respawn);
+        AudioManager.Instance.PlaySingle(respawn);
         yield return new WaitForSeconds(respawnAnimDur);
         // Respawning Ends
         playerState = VII.PlayerState.IDLE;
@@ -252,7 +261,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            VII.SceneManager.instance.LoadScene(VII.SceneType.GameScene);
+            VII.SceneManager.Instance.LoadScene(VII.SceneType.GameScene);
         }
     }
 
@@ -272,7 +281,7 @@ public class Player : MonoBehaviour
         if (costLife)
         {
             lives--;
-            UIManager.instance.UpdateUI();
+            UIManager.Instance.UpdateUI();
         }
         else
         {
@@ -293,13 +302,12 @@ public class Player : MonoBehaviour
 
     public void GameOver()
     {
-        if (playerState == VII.PlayerState.WINNING) return;
-        playerState = VII.PlayerState.WINNING;
-        UIManager.instance.gameOver = true;
-        UIManager.instance.levelIndex = CameraManager.level_index;
-        UIManager.instance.restartPos = respawnPos;
-        UIManager.instance.ClearUI();
-        VII.SceneManager.instance.LoadScene(VII.SceneType.RestartScene);
+        if (playerState == VII.PlayerState.ENDING) return;
+        playerState = VII.PlayerState.ENDING;
+        UIManager.Instance.gameOver = true;
+        UIManager.Instance.restartPos = respawnPos;
+        UIManager.Instance.ClearUI();
+        VII.SceneManager.Instance.LoadScene(VII.SceneType.RestartScene);
     }
 
     public bool TryUseKey()
@@ -359,13 +367,22 @@ public class Player : MonoBehaviour
 
     public void GameWin()
     {
-        playerState = VII.PlayerState.WINNING;
-        UIManager.instance.ClearUI();
-        VII.SceneManager.instance.LoadScene(VII.SceneType.WinScene);
+        playerState = VII.PlayerState.ENDING;
+        UIManager.Instance.ClearUI();
+        VII.SceneManager.Instance.LoadScene(VII.SceneType.WinScene);
+    }
+
+    public void AddLevel()
+    {
+        currentLevel++;
     }
 
     // Getter
 
     public VII.PlayerState GetPlayerState() { return playerState; }
-
+    public int GetCurrentLevel() { return currentLevel; }
+    public int GetSteps() { return steps; }
+    public int GetLives() { return lives; }
+    public bool GetHasKey() { return hasKey; }
+    public Vector2 GetLastMove() { return lastMove; }
 }

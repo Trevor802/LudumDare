@@ -4,15 +4,15 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     #region Singleton
-    public static AudioManager instance = null;
+    public static AudioManager Instance = null;
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
-        else if (instance != this)
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }
