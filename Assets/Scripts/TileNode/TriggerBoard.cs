@@ -9,9 +9,10 @@ public class TriggerBoard : TileNode
     private bool tombstoneOn;
     public Door targetDoor;
     private Animator animator;
-    // Start is called before the first frame update
-    void Awake()
+
+    protected override void Awake()
     {
+        base.Awake();
         animator = GetComponent<Animator>();
     }
 

@@ -9,10 +9,15 @@ public class Trap : TileNode
     public int trapTimes = 2;// cnt%? 2 is odd/even
     public bool isTrapOnEven = true;
     private Animator animator;
-    // Start is called before the first frame update
+
+    protected override void Awake()
+    {
+        base.Awake();
+        animator = GetComponent<Animator>();
+    }
+
     void Start()
     {
-        animator = GetComponent<Animator>();
         if (isTrapOnEven == false)
         {
             animator.Play("TrapOff");

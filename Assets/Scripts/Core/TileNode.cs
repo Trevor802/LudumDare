@@ -9,6 +9,18 @@ public class TileNode : MonoBehaviour
     protected bool playerInside;
     protected Player collidedPlayer;
 
+    #region Event System
+    // Child's Awake function needs to execute base.Awake() function to
+    // subscribe self to the Event System
+    protected virtual void Awake()
+    {
+        VII.VIIEvents.TickStart.AddListener(OnTickStart);
+        VII.VIIEvents.TickEnd.AddListener(OnTickEnd);
+        VII.VIIEvents.PlayerRespawnStart.AddListener(OnPlayerRespawnStart);
+        VII.VIIEvents.PlayerRespawnEnd.AddListener(OnPlayerRespawnEnd);
+    }
+    #endregion
+
     #region Virtual Functions
     public virtual void OnTickStart()
     {
@@ -36,7 +48,10 @@ public class TileNode : MonoBehaviour
         playerInside = false;
     }
 
-    public virtual void OnPlayerEnter(Player player) { }
+    public virtual void OnPlayerEnter(Player player)
+    {
+       
+    }
 
     public virtual void OnPlayerExit(Player player) { }
 

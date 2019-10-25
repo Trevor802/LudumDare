@@ -11,8 +11,9 @@ public class Destination : TileNode
     public float camSwitchBeforeDelay;
     public AudioClip teleport;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         animator = GetComponent<Animator>();
     }
 

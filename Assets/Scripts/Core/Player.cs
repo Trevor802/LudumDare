@@ -101,10 +101,7 @@ public class Player : MonoBehaviour
             // Move Start
             if (costStep)
             {
-                foreach (TileNode tile in FindObjectsOfType<TileNode>())
-                {
-                    tile.OnTickStart();
-                }
+                VII.VIIEvents.TickStart.Invoke();
                 steps--;
             }
             if (smoothMove)
@@ -136,10 +133,7 @@ public class Player : MonoBehaviour
         }
         // EVENT: Movement Ends
         playerState = VII.PlayerState.IDLE;
-        foreach (TileNode tile in FindObjectsOfType<TileNode>())
-        {
-            tile.OnTickEnd();
-        }
+        VII.VIIEvents.TickEnd.Invoke();
         UpdateStepUI();
         if (steps <= 0 && playerState != VII.PlayerState.ENDING)
         {
@@ -183,10 +177,8 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(respawnAnimDur);
         // Respawning Ends
         playerState = VII.PlayerState.IDLE;
-        foreach (TileNode node in FindObjectsOfType<TileNode>())
-        {
-            node.OnPlayerRespawnEnd(this);
-        }
+        // Broadcast with Event System
+        VII.VIIEvents.PlayerRespawnEnd.Invoke(this);
         animator.Play("WalkDown");
         keySprite.sortingOrder = 1;
         // UI UPDATE
@@ -283,10 +275,7 @@ public class Player : MonoBehaviour
             lives = initLives;
         }
         StopCoroutine(movingCoroutine);
-        foreach (TileNode node in FindObjectsOfType<TileNode>())
-        {
-            node.OnPlayerRespawnStart(this);
-        }
+        VII.VIIEvents.PlayerRespawnStart.Invoke(this);
         if (lives <= 0)
         {
             GameOver();
