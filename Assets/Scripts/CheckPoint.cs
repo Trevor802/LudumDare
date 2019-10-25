@@ -3,25 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CheckPoint : TileNode
-{
-    public Vector3 lastCheckPointPos;
-    public Player otherPlayer;
-    void OnTriggerEnter2D(Collider2D other)
+{ 
+    public override void OnPlayerEnter(Player player)
     {
-       
-        Player otherPlayer = other.GetComponent<Player>();
-        if (otherPlayer.CompareTag("Player"))
-        {
-            lastCheckPointPos = transform.position;
-            otherPlayer.ResetRespawnPos(new Vector3(lastCheckPointPos.x, lastCheckPointPos.y, otherPlayer.transform.position.z));
-        }
-        
-    }
-    
-    void Update()
-    {
-        
-        
-        
+        base.OnPlayerEnter(player);
+        player.ResetRespawnPos(new Vector3(transform.position.x,
+            transform.position.y, player.transform.position.z));
     }
 }
