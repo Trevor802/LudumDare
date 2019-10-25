@@ -5,17 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Destination : TileNode
 {
-    private GameObject LevelCamera;
-    private string nextLevel;
     private Animator animator;
     private bool isInAnimation;
     public GameObject startPoint;
     public float camSwitchBeforeDelay;
     public AudioClip teleport;
 
-    void Start()
+    void Awake()
     {
-        LevelCamera= GameObject.FindGameObjectWithTag("MainCamera");
         animator = GetComponent<Animator>();
     }
 
