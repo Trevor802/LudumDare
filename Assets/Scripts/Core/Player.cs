@@ -10,7 +10,7 @@ namespace VII
     {
         IDLE = 0,
         MOVING = 1,
-        RESPAWING = 2,
+        RESPAWNING = 2,
         ENDING = 3
     }
 }
@@ -261,11 +261,11 @@ public class Player : MonoBehaviour
     public void Respawn(bool costLife = true)
     {
         // Respawn Start
-        if (playerState == VII.PlayerState.RESPAWING)
+        if (playerState == VII.PlayerState.RESPAWNING)
         {
             return;
         }
-        playerState = VII.PlayerState.RESPAWING;
+        playerState = VII.PlayerState.RESPAWNING;
         if (costLife)
         {
             lives--;
