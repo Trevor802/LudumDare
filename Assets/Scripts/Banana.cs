@@ -25,7 +25,7 @@ public class Banana : TileNode
         if (player)
         {
             // Debug.Log(slipping);
-            if (slipping == true && !player.moving)
+            if (slipping == true && player.GetPlayerState() == VII.PlayerState.IDLE)
             {
                 RaycastHit2D hit;
                 player.Move((int)player.lastMove.x, (int)player.lastMove.y, out hit, false);

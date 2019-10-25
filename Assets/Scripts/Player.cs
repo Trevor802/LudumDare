@@ -52,15 +52,12 @@ public class Player : MonoBehaviour
     public Vector2 lastMove;
     public GameObject keyInstance;
     private float inverseMoveTime;
-    public bool moving;
     public Coroutine movingCoroutine;
     private GameObject headKey;
     public SpriteRenderer[] stepIcons;
     private Animator animator;
     private SpriteRenderer keySprite;
     private ObjectPooler Pools;
-    private bool respawning;
-    private bool winning = false;
     private VII.PlayerState playerState;
 
     private void Start()
@@ -120,7 +117,6 @@ public class Player : MonoBehaviour
 
     private IEnumerator SmoothMovement(Vector3 end)
     {
-        moving = true;
         // Set the player's z position to 0, or remove the z value while calculating the distance
         float sqrDistance = (new Vector2(transform.position.x, transform.position.y) - new Vector2(end.x, end.y)).sqrMagnitude;
 
@@ -134,7 +130,6 @@ public class Player : MonoBehaviour
         }
         // EVENT: Movement Ends
         playerState = VII.PlayerState.IDLE;
-        moving = false;
         foreach (TileNode tile in FindObjectsOfType<TileNode>())
         {
             tile.OnTickEnd();
@@ -151,7 +146,6 @@ public class Player : MonoBehaviour
 
     private IEnumerator Respawning(bool costLife)
     {
-        moving = true;
         float spawnDur = deathAnimDur;
         if (costLife)
         {
@@ -190,10 +184,8 @@ public class Player : MonoBehaviour
         }
         animator.Play("WalkDown");
         keySprite.sortingOrder = 1;
-        moving = false;
         // UI UPDATE
         UpdateStepUI();
-        respawning = false;
     }
 
     private void Update()
@@ -222,7 +214,7 @@ public class Player : MonoBehaviour
         }
         if (horizontal != 0 || vertical != 0)
         {
-            if (!moving)
+            if (playerState == VII.PlayerState.IDLE)
             {
                 if (horizontal != 0)
                 {
@@ -276,7 +268,6 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        respawning = true;
         playerState = VII.PlayerState.RESPAWING;
         if (costLife)
         {
@@ -302,7 +293,8 @@ public class Player : MonoBehaviour
 
     public void GameOver()
     {
-        if (winning) return;
+        if (playerState == VII.PlayerState.WINNING) return;
+        playerState = VII.PlayerState.WINNING;
         UIManager.instance.gameOver = true;
         UIManager.instance.levelIndex = CameraManager.level_index;
         UIManager.instance.restartPos = respawnPos;
@@ -367,7 +359,6 @@ public class Player : MonoBehaviour
 
     public void GameWin()
     {
-        winning = true;
         playerState = VII.PlayerState.WINNING;
         UIManager.instance.ClearUI();
         VII.SceneManager.instance.LoadScene(VII.SceneType.WinScene);
