@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraManager : MonoBehaviour
+public class CameraManager : TileNode
 {
     #region Singleton
     public static CameraManager Instance = null;
@@ -22,6 +22,7 @@ public class CameraManager : MonoBehaviour
 
     public List<GameObject> cinema_list;
     private int level_index;
+    private Player player;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +33,9 @@ public class CameraManager : MonoBehaviour
             else
                 cinema_list[i].SetActive(false);
         }
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        if (player == null)
+            Debug.LogError("CameraManager: Player not found!");
     }
 
     // Update is called once per frame
@@ -49,5 +53,8 @@ public class CameraManager : MonoBehaviour
         level_index %= cinema_list.Count;
         cinema_list.ForEach(cam => cam.SetActive(false));
         cinema_list[level_index].SetActive(true);
+        Vector3 next_checkpoint = cinema_list[level_index].GetComponent<LevelData>().level_checkpoint.transform.position;
+        player.ResetRespawnPos(next_checkpoint);
+        player.Respawn(false);
     }
 }
