@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraManager : MonoBehaviour
+public class CameraManager : TileNode
 {
     #region Singleton
     public static CameraManager Instance = null;
@@ -22,6 +22,7 @@ public class CameraManager : MonoBehaviour
 
     public List<GameObject> cinema_list;
     private int level_index;
+    private Player player;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,27 +33,32 @@ public class CameraManager : MonoBehaviour
             else
                 cinema_list[i].SetActive(false);
         }
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        if (player == null)
+            Debug.LogError("CameraManager: Player not found!");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.E))
         {
-            SwitchLevelCamera();
+            SwitchLevelCamera(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SwitchLevelCamera(-1);
         }
     }
 
-    public void SwitchLevelCamera()
+    public void SwitchLevelCamera(int index)
     {
-        level_index++;
+        level_index+=index;
         level_index %= cinema_list.Count;
         cinema_list.ForEach(cam => cam.SetActive(false));
         cinema_list[level_index].SetActive(true);
-        //reset trap cnt when switch level
-        for (int i = 0; i < FindObjectsOfType<Trap>().Length; i++)
-        {
-            FindObjectsOfType<Trap>()[i].cnt = 1;
-        }
+        Vector3 next_checkpoint = cinema_list[level_index].GetComponent<LevelData>().level_checkpoint.transform.position;
+        player.ResetRespawnPos(next_checkpoint);
+        player.Respawn(false);
     }
 }

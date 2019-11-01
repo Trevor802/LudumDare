@@ -274,7 +274,10 @@ public class Player : MonoBehaviour
         {
             lives = initLives;
         }
-        StopCoroutine(movingCoroutine);
+        if(movingCoroutine!=null)
+        {
+            StopCoroutine(movingCoroutine);
+        }
         VII.VIIEvents.PlayerRespawnStart.Invoke(this);
         if (lives <= 0)
         {
