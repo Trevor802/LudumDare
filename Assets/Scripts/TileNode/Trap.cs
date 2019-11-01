@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Trap : TileNode
 {
-    private int cnt = 1;
+    public int cnt = 1;
     public AudioClip dieClip;
     public int trapTimes = 2;// cnt%? 2 is odd/even
     public bool isTrapOnEven = true;

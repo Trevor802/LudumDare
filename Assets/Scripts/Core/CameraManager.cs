@@ -49,5 +49,10 @@ public class CameraManager : MonoBehaviour
         level_index %= cinema_list.Count;
         cinema_list.ForEach(cam => cam.SetActive(false));
         cinema_list[level_index].SetActive(true);
+        //reset trap cnt when switch level
+        for (int i = 0; i < FindObjectsOfType<Trap>().Length; i++)
+        {
+            FindObjectsOfType<Trap>()[i].cnt = 1;
+        }
     }
 }
