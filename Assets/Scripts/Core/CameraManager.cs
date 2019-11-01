@@ -41,15 +41,19 @@ public class CameraManager : TileNode
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.E))
         {
-            SwitchLevelCamera();
+            SwitchLevelCamera(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SwitchLevelCamera(-1);
         }
     }
 
-    public void SwitchLevelCamera()
+    public void SwitchLevelCamera(int index)
     {
-        level_index++;
+        level_index+=index;
         level_index %= cinema_list.Count;
         cinema_list.ForEach(cam => cam.SetActive(false));
         cinema_list[level_index].SetActive(true);

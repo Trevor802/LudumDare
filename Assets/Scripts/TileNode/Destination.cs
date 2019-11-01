@@ -43,7 +43,7 @@ public class Destination : TileNode
         base.OnPlayerRespawnStart(player);
         if (isInAnimation)
         {
-            CameraManager.Instance.SwitchLevelCamera();
+            CameraManager.Instance.SwitchLevelCamera(1);
         }
     }
 
