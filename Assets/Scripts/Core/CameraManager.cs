@@ -54,6 +54,10 @@ public class CameraManager : TileNode
     public void SwitchLevelCamera(int index)
     {
         level_index+=index;
+        if(level_index < 0)
+        {
+            level_index += cinema_list.Count;
+        }
         level_index %= cinema_list.Count;
         cinema_list.ForEach(cam => cam.SetActive(false));
         cinema_list[level_index].SetActive(true);
